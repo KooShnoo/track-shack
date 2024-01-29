@@ -8,12 +8,9 @@ import app  from './app.ts';
 import debug  from 'debug';
 import http  from 'http';
 import mongoose from 'mongoose';
+import { dbLogger, serverLogger } from './loggers.ts';
 
 const db = process.env.MONGO_URI!;
-
-// loggers
-const serverLogger = debug('backend:server');
-const dbLogger = debug('backend:mongodb');
 
 /**
  * Get port from environment and store in Express.

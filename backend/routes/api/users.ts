@@ -1,9 +1,9 @@
 import express, { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import mongoose from 'mongoose';
-import User, { IUser } from '../../models/User.ts'
+import User, { IUser } from '../../models/User.ts';
 import passport from 'passport';
-import { loginUser, restoreUser } from '../../passport.ts'
+import { loginUser, restoreUser } from '../../passport.ts';
 
 import { validateRegisterInput } from '../../validations/register.ts';
 import { validateLoginInput } from '../../validations/login.ts';
@@ -48,7 +48,7 @@ router.post('/register', validateRegisterInput, async (req: Request, res: Respon
   if (!req.body.password) {
     next("no password provided");
     return;
-  };
+  }
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
@@ -62,7 +62,7 @@ router.post('/register', validateRegisterInput, async (req: Request, res: Respon
       catch(err) {
         next(err);
       }
-    })
+    });
   });
 });
 
