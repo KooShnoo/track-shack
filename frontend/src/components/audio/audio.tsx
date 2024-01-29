@@ -1,25 +1,49 @@
-import { useState, useEffect } from 'react';
-import { Howl } from 'howler';
+import React, { useState, useEffect } from 'react';
+import Seekbar from './seekbar';
+import './audio.css';
 
 const AudioPlayer = ({ src }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(1.0);
+  const [volume, setVolume] = useState(0.5);
   const [seek, setSeek] = useState(0);
-  const [sound, setSound] = useState(null);
+  const [duration, setDuration] = useState(0);
+
+  const audioRef = React.useRef(null);
 
   useEffect(() => {
-    setSound(new Howl({ src, volume, onend: () => setIsPlaying(false) }));
-    return () => {
-      sound && sound.unload();
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+      audioRef.current.currentTime = seek;
+    }
+  }, [volume, seek]);
+
+  useEffect(() => {
+    const handleTimeUpdate = () => {
+      setSeek(audioRef.current.currentTime);
     };
-  }, [src, volume]);
+
+    const handleDurationChange = () => {
+      setDuration(audioRef.current.duration);
+    };
+
+    audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
+    audioRef.current.addEventListener('durationchange', handleDurationChange);
+
+    return () => {
+      audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
+      audioRef.current.removeEventListener(
+        'durationchange',
+        handleDurationChange
+      );
+    };
+  }, []);
 
   const togglePlay = () => {
-    if (sound) {
+    if (audioRef.current) {
       if (isPlaying) {
-        sound.pause();
+        audioRef.current.pause();
       } else {
-        sound.play();
+        audioRef.current.play();
       }
       setIsPlaying(!isPlaying);
     }
@@ -28,40 +52,27 @@ const AudioPlayer = ({ src }) => {
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    if (sound) {
-      sound.volume(newVolume);
-    }
   };
 
-  const handleSeekChange = (e) => {
-    const newSeek = parseFloat(e.target.value);
+  const handleSeekChange = (newSeek) => {
     setSeek(newSeek);
-    if (sound) {
-      sound.seek(newSeek);
-    }
+    audioRef.current.currentTime = newSeek;
   };
 
   return (
     <div className="audio-player">
-      <button onClick={togglePlay}>
-        {isPlaying ? 'Pause' : 'Play'}
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value={volume}
-          onChange={handleVolumeChange}
-        />
-        <input
-          type="range"
-          min="0"
-          max={sound ? sound.duration() : 0}
-          step="1"
-          value={seek}
-          onChange={handleSeekChange}
-        />
-      </button>
+      <button onClick={togglePlay}>{isPlaying ? 'Pause' : 'Play'}</button>
+      <input
+        className="volume-slider"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value={volume}
+        onChange={handleVolumeChange}
+      />
+      <Seekbar duration={duration} onSeekChange={handleSeekChange} />
+      <audio ref={audioRef} src={src} onEnded={() => setIsPlaying(false)} />
     </div>
   );
 };
