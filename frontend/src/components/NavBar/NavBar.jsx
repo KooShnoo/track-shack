@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
 
-function NavBar () {
+function NavBar() {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
   
@@ -16,27 +16,24 @@ function NavBar () {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <Link to={'/tweets'}>All Tweets</Link>
-          <Link to={'/profile'}>Profile</Link>
-          <Link to={'/tweets/new'}>Write a Tweet</Link>
           <button onClick={logoutUser}>Logout</button>
         </div>
       );
     } else {
       return (
         <div className="links-auth">
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
+          <Link id="signup-button" to={'/signup'}>Signup</Link>
+          <Link id="login-button" to={'/login'}>Login</Link>
         </div>
       );
     }
   };
 
   return (
-    <>
-      <h1>TrackShack</h1>
+    <di className='nav-bar'>
+      <Link id='nav-header' to={'/'}>TrackShack</Link>
       { getLinks() }
-    </>
+    </di>
   );
 }
 

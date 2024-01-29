@@ -1,7 +1,7 @@
 function MainPage() {
   return (
     <>
-      <p>Twitter Clone</p>
+      {/* <p>Twitter Clone</p> */}
       <footer>
       </footer>
     </>
