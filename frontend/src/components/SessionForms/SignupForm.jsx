@@ -53,8 +53,8 @@ function SignupForm () {
 
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
+      <h2 id='signup-header'>Welcome to the Shack!</h2>
       <div className='credential-fields'>
-        <h2 id='signup-header'>Welcome to the Shack!</h2>
         <div className="errors">{errors?.email}</div>
         <label>
           <span>Email:</span>
