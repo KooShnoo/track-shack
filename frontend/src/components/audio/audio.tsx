@@ -25,7 +25,7 @@ const AudioPlayer = ({ src }) => {
     }
   };
 
-  const handleVolume = (e) => {
+  const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
     if (sound) {
