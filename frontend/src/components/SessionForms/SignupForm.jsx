@@ -52,51 +52,58 @@ function SignupForm () {
   };
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input type="text"
-          value={email}
-          onChange={update('email')}
-          placeholder="Email"
+    <form className="signup-form" onSubmit={handleSubmit}>
+      <div className='credential-fields'>
+        <h2 id='signup-header'>Welcome to the Shack!</h2>
+        <div className="errors">{errors?.email}</div>
+        <label>
+          <span>Email:</span>
+          <input id='input-field'
+            type="text"
+            value={email}
+            onChange={update('email')}
+            placeholder="Email"
+          />
+        </label>
+        <div className="errors">{errors?.username}</div>
+        <label>
+          <span>Username:</span>
+          <input id='input-field' 
+            type="text"
+            value={username}
+            onChange={update('username')}
+            placeholder="Username"
+          />
+        </label>
+        <div className="errors">{errors?.password}</div>
+        <label>
+          <span>Password:</span>
+          <input id='input-field'
+            type="password"
+            value={password}
+            onChange={update('password')}
+            placeholder="Password"
+          />
+        </label>
+        <div className="errors">
+          {password !== password2 && 'Confirm Password field must match'}
+        </div>
+        <label>
+          <span>Confirm Password:</span>
+          <input id='input-field'
+            type="password"
+            value={password2}
+            onChange={update('password2')}
+            placeholder="Confirm Password"
+          />
+        </label>
+        
+        <input id='submit-button'
+          type="submit"
+          value="Sign Up"
+          disabled={!email || !username || !password || password !== password2}
         />
-      </label>
-      <div className="errors">{errors?.username}</div>
-      <label>
-        <span>Username</span>
-        <input type="text"
-          value={username}
-          onChange={update('username')}
-          placeholder="Username"
-        />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input type="password"
-          value={password}
-          onChange={update('password')}
-          placeholder="Password"
-        />
-      </label>
-      <div className="errors">
-        {password !== password2 && 'Confirm Password field must match'}
       </div>
-      <label>
-        <span>Confirm Password</span>
-        <input type="password"
-          value={password2}
-          onChange={update('password2')}
-          placeholder="Confirm Password"
-        />
-      </label>
-      <input
-        type="submit"
-        value="Sign Up"
-        disabled={!email || !username || !password || password !== password2}
-      />
     </form>
   );
 }
