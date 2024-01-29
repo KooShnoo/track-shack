@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import NavBar from "./components/NavBar/NavBar";
-
+import Splash from "./components/Splash/Splash";
 import MainPage from "./components/MainPage/MainPage";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
@@ -26,7 +26,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <AuthRoute component={MainPage} />,
+        element:
+        <> 
+          <AuthRoute component={MainPage} />
+          <Splash />
+        </>,
       },
       {
         path: "login",

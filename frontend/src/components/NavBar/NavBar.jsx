@@ -8,8 +8,8 @@ function NavBar () {
   const dispatch = useDispatch();
   
   const logoutUser = e => {
-      e.preventDefault();
-      dispatch(logout());
+    e.preventDefault();
+    dispatch(logout());
   };
 
   const getLinks = () => {
@@ -34,7 +34,7 @@ function NavBar () {
 
   return (
     <>
-      <h1>MERN Twitter</h1>
+      <h1>TrackShack</h1>
       { getLinks() }
     </>
   );
