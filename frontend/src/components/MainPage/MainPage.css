@@ -1,0 +1,41 @@
+@keyframes flowAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
+}
+
+.custom-shape-divider-bottom-1706567101 svg {
+  animation: flowAnimation 50s linear infinite;
+}
+
+.custom-shape-divider-bottom-1706567101 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1706567101 svg {
+  position: relative;
+  display: block;
+  width: calc(246% + 3rem);
+  height: 30rem;
+}
+
+.custom-shape-divider-bottom-1706567101 .shape-fill {
+  fill: #8d739c;
+}
+
+.custom-shape-divider-bottom-1706567101 .shape-fill {
+  fill: linear-gradient(
+    to right,
+    #8d739c,
+    #b48eb6
+  ); /* Adjust colors as needed */
+}
