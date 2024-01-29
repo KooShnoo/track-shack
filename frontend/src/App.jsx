@@ -5,9 +5,11 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 
-import MainPage from './components/MainPage/MainPage';
-import LoginForm from './components/SessionForms/LoginForm';
-import SignupForm from './components/SessionForms/SignupForm';
+import MainPage from "./components/MainPage/MainPage";
+import LoginForm from "./components/SessionForms/LoginForm";
+import SignupForm from "./components/SessionForms/SignupForm";
+import TrackPostCreate from "./components/TrackPost/TrackPostCreate";
+
 
 import { getCurrentUser } from './store/session';
 import FootBar from './components/FootBar/FootBar';
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
         path: 'signup',
         element: <AuthRoute component={SignupForm} />,
       },
+      {
+        path: 'createTrackPost',
+        element: <TrackPostCreate/>
+      }
     ],
   },
 ]);

@@ -5,3 +5,15 @@ form > .errors {
   display: flex;
   align-items: center;
 }
+
+p {
+  font-family: Manrope;
+}
+
+h1 {
+  font-family: Manrope;
+}
+
+label {
+  font-size: Manrope;
+}
