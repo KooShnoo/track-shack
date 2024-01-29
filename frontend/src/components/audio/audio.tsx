@@ -1,78 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import Seekbar from './seekbar';
+import React, { useState, useEffect, useRef } from 'react';
 import './audio.css';
 
 const AudioPlayer = ({ src }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [seek, setSeek] = useState(0);
-  const [duration, setDuration] = useState(0);
-
-  const audioRef = React.useRef(null);
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-      audioRef.current.currentTime = seek;
-    }
-  }, [volume, seek]);
+    const audio = audioRef.current;
 
-  useEffect(() => {
     const handleTimeUpdate = () => {
-      setSeek(audioRef.current.currentTime);
+      // Update the seek bar based on the current time
+      const seekBar = document.getElementById('seekBar');
+      seekBar.value = audio.currentTime;
     };
 
-    const handleDurationChange = () => {
-      setDuration(audioRef.current.duration);
+    const handleVolumeChange = () => {
+      // Update the volume bar based on the current volume
+      const volumeBar = document.getElementById('volumeBar');
+      volumeBar.value = audio.volume;
     };
 
-    audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
-    audioRef.current.addEventListener('durationchange', handleDurationChange);
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+    audio.addEventListener('volumechange', handleVolumeChange);
 
     return () => {
-      audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
-      audioRef.current.removeEventListener(
-        'durationchange',
-        handleDurationChange
-      );
+      // Cleanup: Remove event listeners when the component unmounts
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener('volumechange', handleVolumeChange);
     };
   }, []);
 
   const togglePlay = () => {
+    const audio = audioRef.current;
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.pause();
+        audio.pause();
       } else {
-        audioRef.current.play();
+        audio.play();
       }
       setIsPlaying(!isPlaying);
     }
   };
 
-  const handleVolumeChange = (e) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
+  const handleSeek = (value) => {
+    const audio = audioRef.current;
+    audio.currentTime = value;
   };
 
-  const handleSeekChange = (newSeek) => {
-    setSeek(newSeek);
-    audioRef.current.currentTime = newSeek;
+  const handleVolumeChange = (value) => {
+    const audio = audioRef.current;
+    audio.volume = value;
   };
 
   return (
     <div className="audio-player">
+      <audio ref={audioRef} src={src}></audio>
       <button onClick={togglePlay}>{isPlaying ? 'Pause' : 'Play'}</button>
       <input
-        className="volume-slider"
+        id="volumeBar"
         type="range"
         min="0"
         max="1"
         step="0.01"
-        value={volume}
-        onChange={handleVolumeChange}
+        defaultValue="1"
+        onChange={(e) => handleVolumeChange(e.target.value)}
       />
-      <Seekbar duration={duration} onSeekChange={handleSeekChange} />
-      <audio ref={audioRef} src={src} onEnded={() => setIsPlaying(false)} />
+      <input
+        id="seekBar"
+        type="range"
+        min="0"
+        max={audioRef.current ? audioRef.current.duration : '100'}
+        step="1"
+        onChange={(e) => handleSeek(e.target.value)}
+      />
     </div>
   );
 };
