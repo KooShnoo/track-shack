@@ -2,7 +2,8 @@
 
 import { configureStore } from '@reduxjs/toolkit'
 import sessionReducer from './session'
-import { errorsReducer } from './session'
+import errorsReducer from './errors'
+import trackPostsReducer from './trackPost'
 // import thunk from 'redux-thunk';
 // import session from "./session";
 // import errors from "./errors";
@@ -12,7 +13,8 @@ import { errorsReducer } from './session'
 export default configureStore({
   reducer: {
     session: sessionReducer,
-    errors: errorsReducer
+    errors: errorsReducer,
+    trackPosts: trackPostsReducer
   }
 })
 
