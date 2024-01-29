@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './SessionForms.css';
+import './SignupForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 
 function SignupForm () {
@@ -21,35 +21,35 @@ function SignupForm () {
     let setState;
 
     switch (field) {
-      case 'email':
-        setState = setEmail;
-        break;
-      case 'username':
-        setState = setUsername;
-        break;
-      case 'password':
-        setState = setPassword;
-        break;
-      case 'password2':
-        setState = setPassword2;
-        break;
-      default:
-        throw Error('Unknown field in Signup Form');
+    case 'email':
+      setState = setEmail;
+      break;
+    case 'username':
+      setState = setUsername;
+      break;
+    case 'password':
+      setState = setPassword;
+      break;
+    case 'password2':
+      setState = setPassword2;
+      break;
+    default:
+      throw Error('Unknown field in Signup Form');
     }
 
     return e => setState(e.currentTarget.value);
-  }
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
     const user = {
       email,
       username,
-      password
+      password,
     };
 
     dispatch(signup(user)); 
-  }
+  };
 
   return (
     <form className="session-form" onSubmit={handleSubmit}>
