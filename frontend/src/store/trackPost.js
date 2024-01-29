@@ -14,6 +14,17 @@ export const getTrack = (trackId) => async dispatch => {
         dispatch(receiveTrack(track))
 }
 
+export const createTrack = (trackPost) => async dispatch => {
+    try {
+        const res = await jwtFetch(`api/trackPosts`, {
+        method: "POST",
+        trackPost
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 const trackPostsSlice = createSlice({
     name: 'trackPosts',
