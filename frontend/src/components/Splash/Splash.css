@@ -16,6 +16,9 @@
 }
 
 .left-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
@@ -38,7 +41,7 @@
 .feed-container{
   border: 1px solid red;
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: 15px;
   height: 84%;
   width: 95%;
   overflow: auto;
