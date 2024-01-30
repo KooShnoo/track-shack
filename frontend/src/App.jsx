@@ -18,6 +18,7 @@ const Layout = () => {
   return (
     <>
       <NavBar />
+      <MainPage />
       <Outlet />
       <FootBar />
     </>
@@ -51,8 +52,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'trackShow/1',
-        element: <TrackShow/>
-      }
+        element: <TrackShow />,
+      },
     ],
   },
 ]);
