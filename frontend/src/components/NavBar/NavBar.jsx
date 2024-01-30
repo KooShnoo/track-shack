@@ -16,7 +16,9 @@ function NavBar() {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <button onClick={logoutUser}>Logout</button>
+          <button className="logout-button" onClick={logoutUser}>
+            Logout
+          </button>
         </div>
       );
     } else {
