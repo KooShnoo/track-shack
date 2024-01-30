@@ -1,5 +1,4 @@
 .splash-base {
-  /* border: 2px solid purple; */
   display: flex;
   justify-content: center;
 }
@@ -8,7 +7,6 @@
   margin-top: 20px;
   height: 720px;
   width: 90%;
-  /* border: 2px solid blue; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,7 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 2px solid black; */
+  margin-right: 2rem;
   border-radius: 10px;
   box-shadow: -25px 25px 150px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(11px);
@@ -27,12 +25,15 @@
   width: 50%;
 }
 
+.left-container:hover,
+.right-container:hover {
+  border: solid, var(--color-one), 10px;
+}
+
 .right-container {
-  /* border: 2px solid black; */
   border-radius: 10px;
   box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(11px);
-  /* margin-top: 25px; */
   margin-left: 10px;
   margin-right: 10px;
   height: 100%;
@@ -41,7 +42,6 @@
 }
 
 .feed-container {
-  border: 1px solid red;
   margin-top: 20px;
   margin-left: 15px;
   height: 84%;
@@ -51,36 +51,34 @@
 
 #search-container {
   margin-top: 20px;
-  /* border: 2px solid green; */
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 #search-bar {
-  width: 90%;
+  border: none;
+  width: 80%;
   padding: 10px;
-  border-top: 2px solid black;
-  border-left: 2px solid black;
-  border-bottom: 2px solid black;
-  border-right: transparent;
-  border-radius: 30px 0 0 30px;
+  border-radius: 20px 0 0 20px;
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0.76515px;
-  outline: none;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 #search-button {
-  border-top: 2px solid black;
-  border-left: transparent;
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
-  border-radius: 0 50% 50% 0;
+  border: none;
+  border-radius: 0 20px 20px 0;
   height: 48px;
   width: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
+  background: var(--color-four);
   cursor: pointer;
+}
+
+#search-button:hover {
+  background: rgb(106, 106, 201);
 }
