@@ -1,14 +1,23 @@
 import { useState } from "react"
-
+import './comment.css'
 
 const Comment = () => {
-    const [body, setBody] = useState('')
+
 
     return (
-        <div className="commentContainer">
-            <textarea name="" id="" cols="20" rows="6" onChange={e => setBody(e.target.value)}></textarea>
+      <div className="commentContainer">
+        <div className="title-container">
+          <h1 className="title-text">From: Username, created at: RIGHT NOW</h1>
         </div>
-    )
+        <div className="body-container">
+          <p className="comment-body">
+            Comment Body ok???????? asdlfjladksfjlasdjfladsjf laksd
+            jflkasdjflk;adjsfl;kasjd flka sdlkfja dslkfjaldksfjklasdjflaksdjf
+            l;kadsjf l;kasdjf
+          </p>
+        </div>
+      </div>
+    );
 }
 
 export default Comment

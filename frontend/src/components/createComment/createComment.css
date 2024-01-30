@@ -1,0 +1,21 @@
+.createCommentContainer {
+    height: 250px;
+}
+
+.create-text {
+    display: flex;
+}
+
+.createCommentContainer .close {
+    position: relative;
+    left: -300px;
+}
+
+.createCommentContainer .close:hover {
+    cursor: pointer;
+}
+
+.create-text .create-new-container {
+    background-color: red;
+}
+

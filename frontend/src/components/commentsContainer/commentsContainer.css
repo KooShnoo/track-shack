@@ -1,5 +1,23 @@
 .commentsContainer {
-    height: 90ef;
+    height: 100%;
+    box-sizing: border-box;
     width: 100%;
-    background-color: aqua;
+}
+
+.show-modal-container {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+
+.create-button-container {
+    height: 25px;
+    /* width: 30px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-button-container h1:hover {
+    cursor: pointer;
 }
