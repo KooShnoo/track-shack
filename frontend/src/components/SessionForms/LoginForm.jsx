@@ -31,7 +31,7 @@ function LoginForm() {
 
     return dispatch(
       login({
-        credential: 'demo@email.com',
+        credential: 'demo@hello.com',
         password: 'password',
       })
     );

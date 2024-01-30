@@ -5,6 +5,7 @@ export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
 
 const startSession = (userInfo, route) => async dispatch => {
+  debugger
   try {  
     const res = await jwtFetch(route, {
       method: "POST",
@@ -58,11 +59,12 @@ export const sessionSlice = createSlice({
     user: null
   },
   reducers: {
-    receiveCurrentUser: (state, action) => {    
-     state.user = action.user 
+    receiveCurrentUser: (state, action) => {
+      debugger   
+     state.user = action.payload
     },
     receiveUserLogout: (state, action) => {
-      state.currentUser.user = null
+      state.user = null
     },
   }
 })
