@@ -1,65 +1,74 @@
 .createPage {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: black;
-    box-sizing: border-box;
+  border: 1px solid red;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  font-family: Manrope;
 }
 
 .TrackPostCreateContainer {
-    border: black solid 1px;
-    width: 65%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(191, 96, 241, 0.8);
-    border-radius: 10px;
+  border: none;
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: -25px 25px 150px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(11px);
 }
 
-.TrackPostCreateContainer .inputContainer {
-    width: 50%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
 
+.TrackPostCreateContainer .inputContainer {
+  /* border: 4px solid yellow; */
+  margin: 10px;
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: center; 
 }
 
 .inputs {
-    height: 100px;
-    width: 50%;
+  height: 100px;
+  width: 50%;
 }
 
 .label {
-    font-size: 28px;
-    font-weight: 500;
+  font-family: Manrope;
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: 500;
 }
 
 .TrackPostCreateContainer .inputContainer.description {
-    height: 200px;
+  height: 200px;
 }
 
 .inputs {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .file-label {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .TrackPostCreateContainer h1 {
-    font-size: 35px;
+  font-size: 35px;
 }
 
 .track-input.file {
-    display: none;
+  display: none;
 }
 
 .track-input {
-    resize: none;
-    border-radius: 10px;
+  font-size: 16px;
+  resize: none;
+  border-radius: 10px;
 }
 
 
@@ -72,7 +81,7 @@
 }
 
 .inputContainer {
-    width: 100%;
+  width: 100%;
 }
 
 .file-label {
@@ -81,51 +90,54 @@
 }
 
 .file-input-container {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .audio-label {
-    background-color: lightblue;
-    padding: 10px;
-    border: black 1px solid;
-    border-radius: 10px;
+  background-color: lightblue;
+  padding: 10px;
+  border: black 1px solid;
+  border-radius: 10px;
 }
 
 .inputDescriptions {
-    display: flex;
-    width: 50%;
+  display: flex;
+  width: 50%;
 }
 
 .file-descriptor {
-    width: 50%;
+  width: 50%;
 }
 
 .audio-label:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .instructions {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .master-text {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .stems-text {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .createPage .descriptor {
-    font-size: 20px;
+  margin: 10px;
+  font-size: 20px;
 }
 
 
+
+
 @media (max-width: 1250px) {
-    .audio-label {
-        padding: 0;
-    }
+  .audio-label {
+      padding: 0;
+  }
 }

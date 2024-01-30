@@ -2,7 +2,7 @@ import mongoose, {Document, ObjectId, SchemaTypes} from 'mongoose';
 const {ObjectId, String} = SchemaTypes;
 const Schema = mongoose.Schema;
 
-export const neededInstrumentTags = ['Guitar', 'Vocals', 'Bass', 'Drums', 'Violin', 'Cello', 'Double Bass', 'Trumpet', 'Piano', 'Vibraphone', 'Musical Saw', 'Theremin', 'Didgeridoo', 'Guzheng', 'Erhu'] as const;
+export const neededInstrumentTags = ['Guitar', 'Lute', 'Vocals', 'Bass', 'Drums', 'Violin', 'Cello', 'Double Bass', 'Trumpet', 'Piano', 'Vibraphone', 'Musical Saw', 'Theremin', 'Didgeridoo', 'Guzheng', 'Erhu', 'Taggleharp'] as const;
 export const genreTags = ['good', 'bad'] as const;
 
 export interface ITrackPost extends Document {
