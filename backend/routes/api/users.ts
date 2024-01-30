@@ -4,9 +4,11 @@ import mongoose from 'mongoose';
 import User, { IUser } from '../../models/User.ts';
 import passport from 'passport';
 import { loginUser, restoreUser } from '../../passport.ts';
+import { UserLoginErrors, UserSignUpErrors, noticeBadCredentials, noticeEmailTaken, noticeNoPassword, noticeUsernameTaken } from '../../validations/errors.ts';
 
 import { validateRegisterInput } from '../../validations/register.ts';
 import { validateLoginInput } from '../../validations/login.ts';
+import { error } from 'console';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -25,19 +27,18 @@ router.post('/register', validateRegisterInput, async (req: Request, res: Respon
     $or: [{ email: req.body.email }, { username: req.body.username }]
   });
 
+  const errors: UserSignUpErrors = {statusCode: 400};
+
   if (user) {
     // Throw a 400 error if the email address and/or email already exists
-    const err: Error & {statusCode?: number} = new Error("Validation Error");
-    err.statusCode = 400;
-    const errors: any = {};
     if (user.email === req.body.email) {
-      errors.email = "A user has already registered with this email";
+      errors.email = noticeEmailTaken;
     }
     if (user.username === req.body.username) {
-      errors.username = "A user has already registered with this username";
+      errors.username = noticeUsernameTaken;
     }
     // err.errors = errors;
-    return next(err);
+    return next(errors);
   }
 
   // Otherwise create a new user
@@ -46,8 +47,8 @@ router.post('/register', validateRegisterInput, async (req: Request, res: Respon
     email: req.body.email
   });
   if (!req.body.password) {
-    next("no password provided");
-    return;
+    errors.password = noticeNoPassword;
+    return next(errors);
   }
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -68,12 +69,11 @@ router.post('/register', validateRegisterInput, async (req: Request, res: Respon
 
 // POST /api/users/login
 router.post('/login', validateLoginInput, async (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate('local', async function(err: any, user: any) {
+  passport.authenticate('local', async function(err: unknown, user: IUser | false | null| undefined) {
     if (err) return next(err);
     if (!user) {
-      const err: any = new Error('Invalid credentials');
+      const err: UserLoginErrors = {message: noticeBadCredentials};
       err.statusCode = 400;
-      err.errors = { email: "Invalid credentials" };
       return next(err);
     }
     return res.json(await loginUser(user));
@@ -82,6 +82,7 @@ router.post('/login', validateLoginInput, async (req: Request, res: Response, ne
 
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface User extends IUser {}
   }
@@ -95,7 +96,7 @@ router.get('/current', restoreUser, (req, res) => {
     const csrfToken = req.csrfToken();
     res.cookie("CSRF-TOKEN", csrfToken);
   }
-  if (!req.user) return res.json(null);
+  if (!req.user) return res.json('null');
   res.json({
     _id: req.user._id,
     username: req.user.username,

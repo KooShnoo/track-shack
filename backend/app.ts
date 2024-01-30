@@ -1,4 +1,5 @@
 import express, { ErrorRequestHandler } from 'express';
+import { Error } from 'mongoose';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -10,6 +11,8 @@ import usersRouter from './routes/api/users.ts';
 import csrfRouter from './routes/api/csrf.ts';
 import './passport.ts';
 import { trackPostRouter } from './routes/api/trackPosts.ts';
+import omit from 'lodash.omit';
+import { ProcessingError } from './validations/errors.ts';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -61,10 +64,11 @@ app.use((req, res, next) => {
 });
 
 // error
-app.use(((err: Error, req, res, next) => {
+app.use(((err: ProcessingError, req, res, next) => {
+  serverErrorLogger('err');
   serverErrorLogger(err);
-  res.status(500);
-  res.json(err);
+  res.status(err.statusCode || 500);
+  res.json(omit(err, 'statusCode'));
 }) as ErrorRequestHandler);
 
 export default app;

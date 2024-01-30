@@ -12,8 +12,8 @@ export interface ITrackPost extends Document {
   albumArtSrc: string
   audioMasterSrc: string
   audioStemsSrc: string
-  neededInstrumentTags: typeof neededInstrumentTags[number];
-  genreTags: typeof genreTags[number];
+  neededInstrumentTags: typeof neededInstrumentTags[number][];
+  genreTags: typeof genreTags[number][];
   author: ObjectId
   // responses: ObjectId[]
 }
@@ -26,8 +26,8 @@ const trackPostSchema = new Schema<ITrackPost>(
     albumArtSrc: {type: String},
     audioMasterSrc: {type: String, required: true},
     audioStemsSrc: {type: String, required: true},
-    neededInstrumentTags: {type: String, enum: neededInstrumentTags},
-    genreTags: {type: String, enum: genreTags},
+    neededInstrumentTags: {type: [String], enum: neededInstrumentTags},
+    genreTags: {type: [String], enum: genreTags},
     author: {type: ObjectId, ref: 'User', required: true},
     // responses: {type: [ObjectId]}
   }, 

@@ -23,7 +23,7 @@ const startSession = (userInfo, route) => async dispatch => {
 
 export const logout = () => dispatch => {
   localStorage.removeItem('jwtToken');
-  dispatch(logoutUser());
+  dispatch(receiveUserLogout());
 };
 
 export const getCurrentUser = () => async dispatch => {

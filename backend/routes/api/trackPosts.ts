@@ -2,6 +2,8 @@ import express from "express";
 import { Error } from 'mongoose';
 import TrackPost, { ITrackPost } from "../../models/TrackPost.ts";
 import { serverErrorLogger, serverLogger } from "../../loggers.ts";
+import { restoreUser } from "../../passport.ts";
+import { PostTrackPostErrors, noticePostTrackPostNoUser } from "../../validations/errors.ts";
 
 
 const router = express.Router();
@@ -17,9 +19,11 @@ router.get('/', async (req, res, _next) => {
 });
 
 
-router.post('/', async (req, res, next) => {
-  // TODO fix require_logged_in
-  if (!req.user) return res.json('nouser.');
+router.post('/', restoreUser,  async (req, res, next) => {
+  if (!req.user){
+    const errors: PostTrackPostErrors = {session: noticePostTrackPostNoUser};
+    return res.status(401).json(errors);
+  } 
   const userId = req.user._id;
   const tp = new TrackPost({...req.body, author: req.user});
   try {
@@ -30,8 +34,9 @@ router.post('/', async (req, res, next) => {
     if (err instanceof Error.ValidationError) {
       serverErrorLogger('invalid');
     }
-    res.json(err);
+    res.status(422).json(err);
   }
+  res.status(201).json(tp.toObject());
 });
 
 export {router as trackPostRouter};
