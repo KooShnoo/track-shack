@@ -5,8 +5,7 @@ export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
 
 const startSession = (userInfo, route) => async dispatch => {
-  debugger
-  try {  
+  try {   
     const res = await jwtFetch(route, {
       method: "POST",
       body: JSON.stringify(userInfo)
@@ -15,10 +14,9 @@ const startSession = (userInfo, route) => async dispatch => {
     localStorage.setItem('jwtToken', token);
     return dispatch(receiveCurrentUser(user));
   } catch(err) {
-    // console.log(err)
     const res = await err.json();
     console.log('SESSION', res)
-    return dispatch(receiveSessionErrors(res.message));
+    return dispatch(receiveSessionErrors(res));
     // if (res.statusCode === 400) {
       
     // }
@@ -40,14 +38,13 @@ export const getCurrentUser = () => async dispatch => {
 const sessionErrorsSlice = createSlice({
   name: 'errors',
   initialState: {
-    errors: null
   },
   reducers: {
-    receiveSessionErrors : (state, action) => {  
-      state.errors = action.payload
+    receiveSessionErrors : (state, action) => {    
+      return {...action.payload.errors}
     },
     clearSessionErrors : (state, action) => {
-      state.errors = null
+      return null
     }
   },
 })
@@ -60,7 +57,6 @@ export const sessionSlice = createSlice({
   },
   reducers: {
     receiveCurrentUser: (state, action) => {
-      debugger   
      state.user = action.payload
     },
     receiveUserLogout: (state, action) => {
