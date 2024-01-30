@@ -21,20 +21,20 @@ function SignupForm() {
     let setState;
 
     switch (field) {
-      case 'email':
-        setState = setEmail;
-        break;
-      case 'username':
-        setState = setUsername;
-        break;
-      case 'password':
-        setState = setPassword;
-        break;
-      case 'password2':
-        setState = setPassword2;
-        break;
-      default:
-        throw Error('Unknown field in Signup Form');
+    case 'email':
+      setState = setEmail;
+      break;
+    case 'username':
+      setState = setUsername;
+      break;
+    case 'password':
+      setState = setPassword;
+      break;
+    case 'password2':
+      setState = setPassword2;
+      break;
+    default:
+      throw Error('Unknown field in Signup Form');
     }
 
     return (e) => setState(e.currentTarget.value);
@@ -69,8 +69,7 @@ function SignupForm() {
         <div className="errors">{errors?.username}</div>
         <label>
           <span>Username:</span>
-          <input
-            id="input-field"
+          <input id='input-field' 
             type="text"
             value={username}
             onChange={update('username')}
@@ -80,8 +79,7 @@ function SignupForm() {
         <div className="errors">{errors?.password}</div>
         <label>
           <span>Password:</span>
-          <input
-            id="input-field"
+          <input id='input-field'
             type="password"
             value={password}
             onChange={update('password')}
@@ -93,17 +91,15 @@ function SignupForm() {
         </div>
         <label>
           <span>Confirm Password:</span>
-          <input
-            id="input-field"
+          <input id='input-field'
             type="password"
             value={password2}
             onChange={update('password2')}
             placeholder="Confirm Password"
           />
         </label>
-
-        <input
-          id="submit-button"
+        
+        <input id='submit-button'
           type="submit"
           value="Sign Up"
           disabled={!email || !username || !password || password !== password2}

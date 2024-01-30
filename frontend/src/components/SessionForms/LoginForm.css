@@ -1,4 +1,4 @@
-.login-form {
+.login-form{
   border: 2px solid blue;
   margin-top: 40px;
   display: flex;
@@ -11,45 +11,45 @@
   overflow: hidden;
 }
 
-#login-header {
+#login-header{
   margin-top: 30px;
   font-size: 30px;
 }
 
-.errors {
+.errors{
   color: red;
   font-size: 14px;
   font-weight: 300;
 }
 
-.credential-fields {
-  border: 2px solid rgb(62, 62, 62);
+.credential-fields{
+  border: 2px solid rgb(62,62,62);
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px; 
   width: 350px;
   height: fit-content;
   border-radius: 24px;
   gap: 10px;
 }
 
-#input-field {
+#input-field{
   margin-top: 10px;
   appearance: none;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   box-shadow: var(0px 1px 4px 0px inset rgba(14, 14, 14, 0.0901960784));
-  border-bottom: var(#0e0e0e2e, rgba(14, 14, 14, 0.1803921569));
+  border-bottom: var(#0E0E0E2E, rgba(14, 14, 14, 0.1803921569));
   border-style: solid;
   border-width: 1px;
   border-radius: 6px;
-  color: #222222;
+  color:#222222;
   display: block;
   font-family: inherit;
   font-size: 16px;
   line-height: 1.7;
   height: 35px;
-  outline: 3px solid rgba(0, 0, 0, 0);
+  outline: 3px solid rgba(0,0,0,0);
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 12px;
@@ -58,7 +58,7 @@
   min-width: 0;
 }
 
-#submit-button {
+#submit-button{
   margin-top: 10px;
   display: inline-block;
   height: 50px;
@@ -66,7 +66,7 @@
   background-color: black;
   font-size: 16px;
   font-weight: 500;
-  line-height: 2;
+  line-height: 2.0;
   color: white;
   border: none;
   border-radius: 24px;
@@ -74,13 +74,13 @@
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#submit-button:hover {
+#submit-button:hover{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: rgb(62, 62, 62);
+  background-color: rgb(62,62,62);
   transform: scale(1.01);
 }
 
-#demo-button {
+#demo-button{
   margin-top: 20px;
   display: inline-block;
   height: 50px;
@@ -88,7 +88,7 @@
 
   font-size: 16px;
   font-weight: 500;
-  line-height: 2;
+  line-height: 2.0;
   /* color: white; */
   /* border: none; */
   border-radius: 24px;
@@ -96,7 +96,7 @@
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#demo-button:hover {
+#demo-button:hover{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   background-color: rgb(196, 194, 194);
   transform: scale(1.01);
