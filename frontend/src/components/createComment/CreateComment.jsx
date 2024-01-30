@@ -6,11 +6,6 @@ const CreateComment = ({setShowModal}) => {
 
   return (
     <div className="createCommentContainer">
-        <div className="close-container">
-          <h1 
-            onClick={(e) => setShowModal(false)}
-            className="close">close</h1>
-        </div>
       <div className="create-text">
         <div className="create-new-container">
           <h1>Create a new comment</h1>

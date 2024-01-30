@@ -6,16 +6,16 @@
     display: flex;
 }
 
-.createCommentContainer .close {
-    position: relative;
-    left: -300px;
+.createCommentContainer .create-new-container {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
 .createCommentContainer .close:hover {
     cursor: pointer;
 }
 
-.create-text .create-new-container {
-    background-color: red;
+.createCommentContainer .publish {
+    margin-top: 10px;
 }
-
