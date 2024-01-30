@@ -15,7 +15,7 @@ export const loginUser = async function(user: IUser) {
     username: user.username,
     email: user.email
   };
-  const token = await jwt.sign(
+  const token = jwt.sign(
     userInfo, // payload
     secretOrKey, // sign with secret key
     { expiresIn: 3600 } // tell the key to expire in one hour
@@ -31,7 +31,7 @@ passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
 }, async function (email, password, done) {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select('+hashedPassword');
   if (user) {
     bcrypt.compare(password, user.hashedPassword, (err, isMatch) => {
       if (err || !isMatch) done(null, false);
@@ -46,7 +46,7 @@ passport.use(new JwtStrategy({
   secretOrKey: secretOrKey,
 }, async (jwtPayload, done) => {
   try {
-    const user = await User.findById(jwtPayload._id)
+    const user = await User.findById(jwtPayload._id);
     if (user) {
       // return the user to the frontend
       return done(null, user);

@@ -8,7 +8,7 @@ import { UserLoginErrors, UserSignUpErrors, noticeBadCredentials, noticeEmailTak
 
 import { validateRegisterInput } from '../../validations/register.ts';
 import { validateLoginInput } from '../../validations/login.ts';
-import { error } from 'console';
+import { serverLogger } from '../../loggers.ts';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -69,7 +69,7 @@ router.post('/register', validateRegisterInput, async (req: Request, res: Respon
 
 // POST /api/users/login
 router.post('/login', validateLoginInput, async (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate('local', async function(err: unknown, user: IUser | false | null| undefined) {
+  passport.authenticate('local', async function(err: unknown, user: IUser | false | null | undefined) {
     if (err) return next(err);
     if (!user) {
       const err: UserLoginErrors = {message: noticeBadCredentials};
