@@ -42,8 +42,7 @@ const sessionErrorsSlice = createSlice({
     errors: null
   },
   reducers: {
-    receiveSessionErrors : (state, action) => {
-      debugger
+    receiveSessionErrors : (state, action) => {  
       state.errors = action.payload
     },
     clearSessionErrors : (state, action) => {

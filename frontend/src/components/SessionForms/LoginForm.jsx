@@ -37,9 +37,10 @@ function LoginForm() {
     );
   };
 
-
+  if(errors) console.log('ERRORS', errors)
   return (
     <form className="login-form" onSubmit={handleSubmit}>
+      <div className="errors">{errors.errors}</div>
       <h2 id="login-header">Login</h2>
       <div className='credential-fields'>
         <div className="errors">{errors?.email}</div>
