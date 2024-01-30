@@ -26,7 +26,7 @@ export const createTrack = (trackPost) => async dispatch => {
     try {
         const res = await jwtFetch(`api/trackPosts`, {
         method: "POST",
-        trackPost
+        body: trackPost
         })
     } catch (error) {
         console.log(error)

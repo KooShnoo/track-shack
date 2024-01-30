@@ -19,11 +19,21 @@ async function jwtFetch(url, options = {}) {
   // If the options.method is not 'GET', then set the "Content-Type" header to
   // "application/json" and the "CSRF-Token" header to the value stored in the
   // "CSRF-TOKEN" cookie.
-  if (options.method.toUpperCase() !== "GET") {
-    options.headers["Content-Type"] =
-      options.headers["Content-Type"] || "application/json";
-    options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
+  // if (options.method.toUpperCase() !== "GET") {
+  //   options.headers["Content-Type"] =
+  //     options.headers["Content-Type"] || "application/json";
+  //   options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
+  // }
+
+  //DAVID's ADJUSTMENT
+  if (options.method.toUpperCase() !== 'GET' && !(options.body instanceof FormData)) {
+    // If the body is not FormData, set the "Content-Type" header to "application/json"
+    // and the "CSRF-Token" header to the value stored in the "CSRF-TOKEN" cookie.
+    options.headers['Content-Type'] = options.headers['Content-Type'] || 'application/json';
   }
+  
+  options.headers['CSRF-Token'] = getCookie('CSRF-TOKEN');
+
 
   // Call fetch with the url and the updated options hash.
   const res = await fetch(url, options);

@@ -14,13 +14,13 @@ const startSession = (userInfo, route) => async dispatch => {
     localStorage.setItem('jwtToken', token);
     return dispatch(receiveCurrentUser(user));
   } catch(err) {
-    console.log(err)
+    // console.log(err)
     const res = await err.json();
-    debugger
-    console.log(res)
-    if (res.statusCode === 400) {
-      return dispatch(receiveErrors(res.errors));
-    }
+    console.log('SESSION', res)
+    return dispatch(receiveSessionErrors(res.message));
+    // if (res.statusCode === 400) {
+      
+    // }
   }
 };
 
@@ -43,7 +43,8 @@ const sessionErrorsSlice = createSlice({
   },
   reducers: {
     receiveSessionErrors : (state, action) => {
-      state.errors = action.errors
+      debugger
+      state.errors = action.payload
     },
     clearSessionErrors : (state, action) => {
       state.errors = null
@@ -58,7 +59,7 @@ export const sessionSlice = createSlice({
     user: null
   },
   reducers: {
-    receiveCurrentUser: (state, action) => {
+    receiveCurrentUser: (state, action) => {    
      state.user = action.user 
     },
     receiveUserLogout: (state, action) => {
