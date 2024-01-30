@@ -96,7 +96,7 @@ router.get('/current', restoreUser, (req, res) => {
     const csrfToken = req.csrfToken();
     res.cookie("CSRF-TOKEN", csrfToken);
   }
-  if (!req.user) return res.json('null');
+  if (!req.user) return res.json(null);
   res.json({
     _id: req.user._id,
     username: req.user.username,
