@@ -28,6 +28,7 @@ function NavBar() {
           <Link id="login-button" to={'/login'}>
             Login
           </Link>
+          
         </div>
       );
     }
@@ -35,8 +36,8 @@ function NavBar() {
 
   return (
     <di className="nav-bar">
-      <Link id="nav-header" to={'/'}>
-        TrackShack
+      <Link id="logo" to={'/'}>
+        <i className="fa-solid fa-compact-disc fa-spin"></i>TRACKshack
       </Link>
       {getLinks()}
     </di>

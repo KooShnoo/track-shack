@@ -37,15 +37,15 @@ function LoginForm() {
     );
   };
 
+
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <h2 id="login-header">Login</h2>
-      <div className="credential-fields">
+      <div className='credential-fields'>
         <div className="errors">{errors?.email}</div>
         <label>
           <span>Email</span>
-          <input
-            id="input-field"
+          <input id="input-field"
             type="text"
             value={email}
             onChange={update('email')}
@@ -55,8 +55,7 @@ function LoginForm() {
         <div className="errors">{errors?.password}</div>
         <label>
           <span>Password</span>
-          <input
-            id="input-field"
+          <input id="input-field"
             type="password"
             value={password}
             onChange={update('password')}
@@ -64,15 +63,12 @@ function LoginForm() {
           />
         </label>
         <br />
-        <input
-          id="submit-button"
+        <input id="submit-button"
           type="submit"
           value="Log In"
           disabled={!email || !password}
         />
-        <button id="demo-button" type="submit" onClick={handleDemoLogin}>
-          Demo User
-        </button>
+        <button id='demo-button' type="submit" onClick={handleDemoLogin}>Demo User</button>
       </div>
     </form>
   );

@@ -1,29 +1,30 @@
-import { useState } from 'react';
-import './TrackPostCreate.css';
-import { createTrack } from '../../store/trackPost';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import "./TrackPostCreate.css";
+import { createTrack } from "../../store/trackPost";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 const TrackPostCreate = () => {
   // const currentUser = useSelector(state => state.session.user)
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const [title, setTitle] = useState('');
-  const [subTitle, setSubtitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [subTitle, setSubtitle] = useState("");
+  const [description, setDescription] = useState("");
   const [audioFile, setAudioFile] = useState(null);
   const [stems, setStems] = useState(null);
-  const [image, setImage] = useState(null);
-  const [errors, setErrors] = useState(null);
-  const [authorId, setAuthorId] = useState(null);
+  const [image, setImage] = useState(null)
+  const [errors, setErrors] = useState(null)
+  const [authorId, setAuthorId] = useState(null)
+
 
   // useEffect(() => {
   //   setAuthorId(currentUser.id)
   // }, [dispatch])
-
+  
   // if(!currentUser) {
   //   navigate("/")
   // }

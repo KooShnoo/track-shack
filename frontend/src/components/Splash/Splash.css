@@ -1,10 +1,10 @@
-.splash-base {
+.splash-base{
   /* border: 2px solid purple; */
   display: flex;
   justify-content: center;
 }
 
-.splash-container {
+.splash-container{
   margin-top: 20px;
   height: 720px;
   width: 90%;
@@ -15,7 +15,7 @@
   align-items: center;
 }
 
-.left-container {
+.left-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,7 +26,7 @@
   width: 50%;
 }
 
-.right-container {
+.right-container{
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
@@ -38,7 +38,7 @@
   overflow: auto;
 }
 
-.feed-container {
+.feed-container{
   border: 1px solid red;
   margin-top: 20px;
   margin-left: 15px;
@@ -47,14 +47,14 @@
   overflow: auto;
 }
 
-#search-container {
+#search-container{
   margin-top: 20px;
   /* border: 2px solid green; */
   display: flex;
   flex-direction: row;
 }
 
-#search-bar {
+#search-bar{
   width: 90%;
   padding: 10px;
   border-top: 2px solid black;
@@ -64,11 +64,11 @@
   border-radius: 30px 0 0 30px;
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: 0.76515px;
+  letter-spacing: .76515px;
   outline: none;
 }
 
-#search-button {
+#search-button{
   border-top: 2px solid black;
   border-left: transparent;
   border-bottom: 2px solid black;
