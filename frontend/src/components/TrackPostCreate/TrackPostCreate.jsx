@@ -57,7 +57,9 @@ const TrackPostCreate = () => {
       <div className="TrackPostCreateContainer">
         <h1>Create A New TRACK For Your SHACK</h1>
         <p className="label">Title</p>
-        <p className="descriptor">(Put the title of the song)</p>
+        <p className="descriptor">
+          (Name the track headed for the shack!)
+        </p>
         <div className="inputContainer">
           <textarea
             className="track-input"
@@ -70,8 +72,7 @@ const TrackPostCreate = () => {
         </div>
         <p className="label">SubTitle</p>
         <p className="descriptor">
-          (Please give a brief description of what your looking for from
-          collaborators)
+          (Let us know what your project needs!)
         </p>
         <div className="inputContainer">
           <textarea
@@ -84,8 +85,7 @@ const TrackPostCreate = () => {
         </div>
         <p className="label">Description</p>
         <p className="descriptor">
-          (Please give a brief description of what your looking for from
-          collaborators)
+          (Tell us about your project!)
         </p>
         <div className="inputContainer description">
           <textarea
