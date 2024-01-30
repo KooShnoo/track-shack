@@ -25,7 +25,6 @@ function MainPage() {
           ></path>
         </svg>
       </div>
-      <p>t r a c k s h a c k</p>
     </>
   );
 }

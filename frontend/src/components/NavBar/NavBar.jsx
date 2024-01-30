@@ -4,10 +4,10 @@ import './NavBar.css';
 import { logout } from '../../store/session';
 
 function NavBar() {
-  const loggedIn = useSelector(state => !!state.session.user);
+  const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
-  
-  const logoutUser = e => {
+
+  const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
@@ -22,17 +22,23 @@ function NavBar() {
     } else {
       return (
         <div className="links-auth">
-          <Link id="signup-button" to={'/signup'}>Signup</Link>
-          <Link id="login-button" to={'/login'}>Login</Link>
+          <Link id="signup-button" to={'/signup'}>
+            Signup
+          </Link>
+          <Link id="login-button" to={'/login'}>
+            Login
+          </Link>
         </div>
       );
     }
   };
 
   return (
-    <di className='nav-bar'>
-      <Link id='nav-header' to={'/'}>TrackShack</Link>
-      { getLinks() }
+    <di className="nav-bar">
+      <Link id="nav-header" to={'/'}>
+        TrackShack
+      </Link>
+      {getLinks()}
     </di>
   );
 }

@@ -2,23 +2,23 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export const AuthRoute = ({ component: Component, ...props }) => {
-  const loggedIn = useSelector(state => !!state.session.user);
-  const state = useSelector(state => state.session.user)
-  console.log(state)
+  const loggedIn = useSelector((state) => !!state.session.user);
+  const state = useSelector((state) => state.session.user);
+  console.log(state);
 
-  return (
-    !loggedIn ?
-      <Component {...props} /> :
-      <Navigate to="/tweets" replace={true} />
+  return !loggedIn ? (
+    <Component {...props} />
+  ) : (
+    <Navigate to="/tweets" replace={true} />
   );
 };
 
 export const ProtectedRoute = ({ component: Component, ...props }) => {
-  const loggedIn = useSelector(state => !!state.session.user);
+  const loggedIn = useSelector((state) => !!state.session.user);
 
-  return (
-    loggedIn ? 
-      <Component {...props} /> :
-      <Navigate to="/login" replace={true} />
+  return loggedIn ? (
+    <Component {...props} />
+  ) : (
+    <Navigate to="/login" replace={true} />
   );
 };

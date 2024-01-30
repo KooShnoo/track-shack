@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import './SignupForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 
-function SignupForm () {
+function SignupForm() {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const errors = useSelector(state => state.errors.session);
+  const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,30 +17,30 @@ function SignupForm () {
     };
   }, [dispatch]);
 
-  const update = field => {
+  const update = (field) => {
     let setState;
 
     switch (field) {
-    case 'email':
-      setState = setEmail;
-      break;
-    case 'username':
-      setState = setUsername;
-      break;
-    case 'password':
-      setState = setPassword;
-      break;
-    case 'password2':
-      setState = setPassword2;
-      break;
-    default:
-      throw Error('Unknown field in Signup Form');
+      case 'email':
+        setState = setEmail;
+        break;
+      case 'username':
+        setState = setUsername;
+        break;
+      case 'password':
+        setState = setPassword;
+        break;
+      case 'password2':
+        setState = setPassword2;
+        break;
+      default:
+        throw Error('Unknown field in Signup Form');
     }
 
-    return e => setState(e.currentTarget.value);
+    return (e) => setState(e.currentTarget.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const user = {
       email,
@@ -48,17 +48,18 @@ function SignupForm () {
       password,
     };
 
-    dispatch(signup(user)); 
+    dispatch(signup(user));
   };
 
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
-      <h2 id='signup-header'>Welcome to the Shack!</h2>
-      <div className='credential-fields'>
+      <h2 id="signup-header">Welcome to the Shack!</h2>
+      <div className="credential-fields">
         <div className="errors">{errors?.email}</div>
         <label>
           <span>Email:</span>
-          <input id='input-field'
+          <input
+            id="input-field"
             type="text"
             value={email}
             onChange={update('email')}
@@ -68,7 +69,8 @@ function SignupForm () {
         <div className="errors">{errors?.username}</div>
         <label>
           <span>Username:</span>
-          <input id='input-field' 
+          <input
+            id="input-field"
             type="text"
             value={username}
             onChange={update('username')}
@@ -78,7 +80,8 @@ function SignupForm () {
         <div className="errors">{errors?.password}</div>
         <label>
           <span>Password:</span>
-          <input id='input-field'
+          <input
+            id="input-field"
             type="password"
             value={password}
             onChange={update('password')}
@@ -90,15 +93,17 @@ function SignupForm () {
         </div>
         <label>
           <span>Confirm Password:</span>
-          <input id='input-field'
+          <input
+            id="input-field"
             type="password"
             value={password2}
             onChange={update('password2')}
             placeholder="Confirm Password"
           />
         </label>
-        
-        <input id='submit-button'
+
+        <input
+          id="submit-button"
           type="submit"
           value="Sign Up"
           disabled={!email || !username || !password || password !== password2}
