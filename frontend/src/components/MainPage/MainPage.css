@@ -29,7 +29,8 @@
 }
 
 .custom-shape-divider-bottom-1706567101 .shape-fill {
-  fill: #8d739c;
+  /* fill: #8d739c; */
+  fill: var(--color-two);
 }
 
 .custom-shape-divider-bottom-1706567101 .shape-fill {
