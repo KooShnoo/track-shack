@@ -9,6 +9,7 @@ import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 import TrackPostCreate from './components/TrackPost/TrackPostCreate';
+import TrackShow from './components/trackshow/TrackShow';
 
 import { getCurrentUser } from './store/session';
 import FootBar from './components/FootBar/FootBar';
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
         path: 'createTrackPost',
         element: <TrackPostCreate />,
       },
+      {
+        path: 'trackShow/1',
+        element: <TrackShow/>
+      }
     ],
   },
 ]);
