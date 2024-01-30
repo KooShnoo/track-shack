@@ -22,13 +22,15 @@ function NavBar() {
     } else {
       return (
         <div className="links-auth">
+          <Link id="about-button" to={'/about'}>
+            About
+          </Link>
           <Link id="signup-button" to={'/signup'}>
             Signup
           </Link>
           <Link id="login-button" to={'/login'}>
             Login
           </Link>
-          
         </div>
       );
     }
