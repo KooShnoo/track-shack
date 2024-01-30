@@ -1,6 +1,7 @@
 import AudioResponse from '../audioResponse/AudioResponse';
 import TrackMasterDisplay from '../trackMasterDisplay/TrackMasterDisplay';
 import './trackShow.css';
+import CommentsContainer from '../commentsContainer/CommentsContainer';
 
 const TrackShow = () => {
   return (
@@ -15,6 +16,9 @@ const TrackShow = () => {
           <AudioResponse />
           <AudioResponse />
         </div>
+      </div>
+      <div className="right-container">
+        <CommentsContainer/>
       </div>
     </div>
   );

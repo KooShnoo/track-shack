@@ -3,6 +3,7 @@
     height: 83.5vh;
     border: 1px solid red;
     min-width: 1250px;
+    display: flex;
 }
 
 .left-container {
@@ -21,3 +22,4 @@
     width: 100%;
     border: 1px purple solid
 }
+
