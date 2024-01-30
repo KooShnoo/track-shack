@@ -1,3 +1,8 @@
+@font-face {
+  font-family: CentralAve;
+  src: url('../../../public/fonts/central-avenue-bold-pro.woff2') format('woff2')
+}
+
 .nav-bar {
   border: 1px solid blue;
   width: 100%;
@@ -7,8 +12,9 @@
   /* align-items: center; */
 }
 
-#nav-header {
+#logo {
   font-size: 50px;
+  font-family: 'CentralAve';
   text-decoration: none;
   color: black;
 }
