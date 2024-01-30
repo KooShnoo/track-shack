@@ -16,8 +16,11 @@ const TrackMasterDisplay = () => {
             </p>
           </div>
           <div className="buttons-container">
-            <div className="download-stems">
-              <span>Download Stems</span>
+            <div className="download-stems-container">
+                <div className="download-stems-button">
+              <span className="download-stems">Download Stems</span>
+
+                </div>
             </div>
           </div>
         </div>
