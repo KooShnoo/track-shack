@@ -8,7 +8,7 @@ import Splash from './components/Splash/Splash';
 import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
-import TrackPostCreate from './components/TrackPost/TrackPostCreate';
+import TrackPostCreate from './components/TrackPostCreate/TrackPostCreate.jsx';
 import TrackShow from './components/trackshow/TrackShow';
 
 import { getCurrentUser } from './store/session';

@@ -6,7 +6,7 @@ import { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 const TrackPostCreate = () => {
-  // const currentUser = useSelector(state => state.session.user)
+  const currentUser = useSelector(state => state.session.user)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ const TrackPostCreate = () => {
   const [stems, setStems] = useState(null);
   const [image, setImage] = useState(null)
   const [errors, setErrors] = useState(null)
-  const [authorId, setAuthorId] = useState(null)
+
 
 
   // useEffect(() => {
