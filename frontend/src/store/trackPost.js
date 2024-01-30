@@ -2,10 +2,18 @@ import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
 
 
+
 export const getTracks = () => async dispatch => {
+    try {
         const res = await jwtFetch('api/trackPosts');
-        const tracks = await res.json()
-        dispatch(receiveTracks(tracks))
+        if(res.ok) {
+            const tracks = await res.json()
+            dispatch(receiveTracks(tracks))
+        }
+    } catch (err) {
+        let errors = err.json()
+        dispatch()
+    }
 }
 
 export const getTrack = (trackId) => async dispatch => {
@@ -26,6 +34,20 @@ export const createTrack = (trackPost) => async dispatch => {
 }
 
 
+export const trackErrorsSlice = createSlice({
+    name: 'trackErrors',
+    initialState: {errors: null},
+    reducers: {
+        recieveErrors: (state, action) => {
+            state.errors = action.errors
+        },
+        clearErrors: (state, action) => {
+            state.errors = null 
+        }
+    }
+})
+
+
 const trackPostsSlice = createSlice({
     name: 'trackPosts',
     initialState: {},
@@ -43,5 +65,7 @@ const trackPostsSlice = createSlice({
 })
 
 export const {receiveTracks, receiveTrack, clearTracks} = trackPostsSlice.actions
+
+export const trackErrorsReducer = trackErrorsSlice.reducer
 
 export default trackPostsSlice.reducer
