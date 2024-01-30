@@ -6,7 +6,7 @@ import CommentsContainer from '../commentsContainer/CommentsContainer';
 const TrackShow = () => {
   return (
     <div className="track-show-page">
-      <div className="left-container">
+      <div className="track-left-container">
         <div className="master-project">
           <TrackMasterDisplay />
         </div>
@@ -17,8 +17,8 @@ const TrackShow = () => {
           <AudioResponse />
         </div>
       </div>
-      <div className="right-container">
-        <CommentsContainer/>
+      <div className="track-right-container">
+        <CommentsContainer />
       </div>
     </div>
   );

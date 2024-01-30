@@ -1,34 +1,34 @@
-.track-show-page{
-    width: 100%;
-    height: 85vh;
-    /* height: 100%; */
-    border: 1px solid red;
-    min-width: 1250px;
-    display: flex;
+.track-show-page {
+  width: 100%;
+  height: 85vh;
+  /* height: 100%; */
+  border: 1px solid red;
+  min-width: 1250px;
+  display: flex;
 }
 
-.left-container {
-    width: 60%;
-    height: 100%;
-    border-radius: 1px solid purple;
-    margin: 0;
+.track-left-container {
+  width: 60%;
+  height: 100%;
+  border-radius: 1px solid purple;
+  margin: 0;
 }
 
 .track-show-page .right-container {
-    width: 40%;
+  width: 40%;
 }
 
 .master-project {
-    height: 50%;
-    width: 100%;
+  height: 50%;
+  width: 100%;
 }
 
 .audio-responses-container {
-    height: 50%;
-    width: 100%;
-    border: 1px purple solid
+  height: 50%;
+  width: 100%;
+  border: 1px purple solid;
 }
 
 .track-show-page .right-container {
-    margin: 0;
+  margin: 0;
 }

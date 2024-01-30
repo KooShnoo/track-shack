@@ -25,11 +25,6 @@
   width: 50%;
 }
 
-.left-container:hover,
-.right-container:hover {
-  border: solid, var(--color-one), 10px;
-}
-
 .right-container {
   border-radius: 10px;
   box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.3);
@@ -39,6 +34,11 @@
   height: 100%;
   width: 50%;
   overflow: auto;
+}
+
+.left-container:hover,
+.right-container:hover {
+  border: solid, var(--color-one), 10px;
 }
 
 .feed-container {
