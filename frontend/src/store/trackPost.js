@@ -56,12 +56,8 @@ export const postTrack = async (trackPost, albumpic, master, stems) => {
 }
 
 export const getTrack = (trackId) => async dispatch => {
-        const res = await jwtFetch(`api/trackPosts/${trackId}`);
-        const track = await res.json()
-
-
-
-
+    const res = await jwtFetch(`/api/trackPosts/${trackId}`);
+    const track = await res.json()
         dispatch(receiveTrack(track))
 }
 

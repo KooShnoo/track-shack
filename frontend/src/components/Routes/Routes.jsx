@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 export const AuthRoute = ({ component: Component, ...props }) => {
   const loggedIn = useSelector((state) => !!state.session.user);
   const state = useSelector((state) => state.session.user);
-  console.log(state);
+
 
   return !loggedIn ? (
     <Component {...props} />

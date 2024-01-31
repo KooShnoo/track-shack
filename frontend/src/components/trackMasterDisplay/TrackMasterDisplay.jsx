@@ -1,18 +1,15 @@
 import "./trackMasterDisplay.css";
 
-const TrackMasterDisplay = () => {
+const TrackMasterDisplay = ({track}) => {
   return (
       <div className="track-master-container">
         <div className="title-description">
           <div className="title">
-            <h1>TITLE</h1>
+            <h1>{track?.title}</h1>
           </div>
           <div className="description-container">
             <p className="description">
-              Descriptionnnnnnn hihihifhlkdfaldsjflkasjfl asdjf
-              lkasd;fjasld;kfjlkasdjflasd
-              flkasdjfla;skdjflkasdjflkadsjfladsjfladsjl;fajsdl;kfjal;sdkfj
-              l;kasdj fl;kasdjfl;kasdjf{" "}
+             {track?.description}
             </p>
           </div>
           <div className="buttons-container">
@@ -25,7 +22,7 @@ const TrackMasterDisplay = () => {
           </div>
         </div>
         <div className="image-container">
-          <img src="../../../DnG2.png" alt="" className="art" />
+          <img src={track?.albumArtSrc} alt="" className="art" />
         </div>
       </div>
   );

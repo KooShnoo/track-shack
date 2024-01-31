@@ -38,8 +38,6 @@ const TrackPostCreate = () => {
     );
 
       if(trackPostId) {
-        console.log('CRASH AND BURN', trackPostId)
-        // dispatch(receiveTrack(response))
         navigate(`/trackPosts/${trackPostId}`)
       } else {
         console.log(trackPostId)
