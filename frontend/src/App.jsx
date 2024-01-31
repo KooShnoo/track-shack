@@ -12,7 +12,6 @@ import TrackPostCreate from './components/TrackPostCreate/TrackPostCreate.jsx';
 import TrackShow from './components/trackshow/TrackShow';
 
 import { getCurrentUser } from './store/session';
-import FootBar from './components/FootBar/FootBar';
 
 const Layout = () => {
   return (
@@ -20,7 +19,6 @@ const Layout = () => {
       <NavBar />
       <MainPage />
       <Outlet />
-      {/* <FootBar /> */}
     </>
   );
 };

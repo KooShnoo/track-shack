@@ -6,14 +6,10 @@ import CommentsContainer from '../commentsContainer/CommentsContainer';
 const TrackShow = () => {
   return (
     <div className="track-show-page">
-      <div className="track-left-container">
-        <div className="master-project">
-          <TrackMasterDisplay />
-        </div>
+      <div className="left-track-container">
+        <h1>looking for little guitar boys</h1>
+        <TrackMasterDisplay />
         <div className="audio-responses-container">
-          <AudioResponse />
-          <AudioResponse />
-          <AudioResponse />
           <AudioResponse />
         </div>
       </div>
