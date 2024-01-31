@@ -27,6 +27,7 @@
   height: 50%;
   width: 100%;
   border: 1px purple solid;
+  overflow: auto;
 }
 
 .track-show-page .right-container {
