@@ -1,40 +1,122 @@
 .commentContainer {
-    height: 150px;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid black
+  height: 150px;
+  width: 100%;
+  max-width: 40rem;
+  box-sizing: border-box;
 }
 
-.commentContainer .title-container {
-    margin-top: 15px;
-    height: 30px;
-    width: 100%;
+button:hover,
+button:focus,
+button:active {
+  cursor: pointer;
+  background-color: #ecf0f1;
 }
 
-.commentContainer .title-text {
-    font-size: 16px;
-    margin-left: 20px;
+.comment-thread {
+  width: 700px;
+  max-width: 40rem;
+  margin: auto;
+  padding: 0 30px;
+  background-color: transparent;
+  border: 1px solid transparent;
 }
 
-.commentContainer .comment-body {
-    margin-left: 20px;
+.comment-info > p {
+  margin: 0;
 }
 
-.createCommentContainer {
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    /* bottom: 1000; */
-    top: 1000;
-    z-index: 2;
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
-.createCommentContainer .comment-text {
-    /* width: 100%; */
-    resize: none;
+/* Comment */
+
+.comment {
+  position: relative;
+  margin: 20px auto;
 }
 
+.comment-heading {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font-size: 14px;
+}
 
+.comment-info {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.comment-info > a {
+  font-family: manrope;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.comment-author:hover {
+  text-decoration: underline;
+}
+
+.replies {
+  margin-left: 20px;
+}
+
+/* Adjustments for the comment border links */
+
+.comment-border-link {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 5px;
+  height: calc(100% - 50px);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+}
+
+.comment-border-link:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-body {
+  padding: 0 20px;
+}
+
+.replies {
+  margin-left: 28px;
+}
+
+details.comment summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.comment-heading::after {
+  position: absolute;
+  right: 2.7rem;
+  color: var(--color-four);
+}
+
+.comment-heading:hover::after {
+  color: rgb(21, 21, 23);
+}
+
+details.comment[open] .comment-heading::after {
+  font-size: 0.85rem;
+  font-family: manrope;
+  content: 'Click to hide';
+}
+
+details.comment:not([open]) .comment-heading::after {
+  font-size: 0.8rem;
+  font-family: manrope;
+  content: 'Click to show';
+}
