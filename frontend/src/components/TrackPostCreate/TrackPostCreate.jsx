@@ -16,10 +16,10 @@ const TrackPostCreate = () => {
   const [description, setDescription] = useState("");
   const [audioFile, setAudioFile] = useState(null);
   const [stems, setStems] = useState(null);
-  const [image, setImage] = useState(null)
-  const [errors, setErrors] = useState(null)
+  const [image, setImage] = useState(null);
+  const [errors, setErrors] = useState(null);
 
-
+  
 
   // useEffect(() => {
   //   setAuthorId(currentUser.id)
@@ -55,7 +55,7 @@ const TrackPostCreate = () => {
   return (
     <div className="createPage">
       <div className="TrackPostCreateContainer">
-        <h1>Create A New TRACK For Your SHACK</h1>
+        <h1>Post a new Track!</h1>
         <p className="label">Title</p>
         <p className="descriptor">
           (Name the track headed for the shack!)
@@ -115,9 +115,9 @@ const TrackPostCreate = () => {
           <div className="file-input-container">
             <div className="master">
               <label className="audio-label" htmlFor="audioFile">
-                Upload Master!
+                <p>Upload Master</p>
                 <input
-                  className="track-input file"
+                  className="track-input-file"
                   type="file"
                   id="audioFile"
                   onChange={(e) => setAudioFile(e.target.files[0])}
@@ -127,17 +127,22 @@ const TrackPostCreate = () => {
           </div>
           <div className="file-input-container">
             <div className="image">
-                <label htmlFor="image" className="audio-label">Upload Artwork!
-                <input type="file" id="image" className="track-input file" onChange={e => setImage(e.target.files[0])} />
-                </label>
+              <label htmlFor="image" className="audio-label">
+                <p>Upload Artwork</p>
+                <input 
+                  type="file" 
+                  id="image" 
+                  className="track-input-file" 
+                  onChange={e => setImage(e.target.files[0])} />
+              </label>
             </div>
           </div>
           <div className="file-input-container">
             <div className="stems">
               <label className="audio-label" htmlFor="stems">
-                Upload Stems!
+                <p>Upload Stems</p>
                 <input
-                  className="track-input file"
+                  className="track-input-file"
                   type="file"
                   id="stems"
                   onChange={(e) => setStems(e.target.files[0])}
