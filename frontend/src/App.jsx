@@ -13,7 +13,6 @@ import TrackShow from './components/trackshow/TrackShow';
 import About from './components/about/About.jsx';
 
 import { getCurrentUser } from './store/session';
-import FootBar from './components/FootBar/FootBar';
 
 const Layout = () => {
   return (
@@ -21,7 +20,6 @@ const Layout = () => {
       <NavBar />
       <MainPage />
       <Outlet />
-      {/* <FootBar /> */}
     </>
   );
 };

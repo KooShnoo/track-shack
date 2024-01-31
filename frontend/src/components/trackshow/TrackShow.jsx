@@ -22,14 +22,10 @@ const TrackShow = () => {
 
   return (
     <div className="track-show-page">
-      <div className="track-left-container">
-        <div className="master-project">
-          <TrackMasterDisplay track={track}/>
-        </div>
+      <div className="left-track-container">
+        <h1>looking for little guitar boys</h1>
+        <TrackMasterDisplay track={track}/>
         <div className="audio-responses-container">
-          <AudioResponse />
-          <AudioResponse />
-          <AudioResponse />
           <AudioResponse />
         </div>
       </div>

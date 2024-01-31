@@ -13,28 +13,12 @@ button:active {
 }
 
 .comment-thread {
-  width: 700px;
+  width: 620px;
   max-width: 40rem;
-  margin: auto;
   padding: 0 30px;
   background-color: transparent;
   border: 1px solid transparent;
 }
-
-.comment-info > p {
-  margin: 0;
-}
-
-.sr-only {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-/* Comment */
 
 .comment {
   position: relative;
@@ -45,7 +29,6 @@ button:active {
   display: flex;
   align-items: center;
   height: 50px;
-  font-size: 14px;
 }
 
 .comment-info {
@@ -66,8 +49,6 @@ button:active {
 .replies {
   margin-left: 20px;
 }
-
-/* Adjustments for the comment border links */
 
 .comment-border-link {
   display: block;
