@@ -55,7 +55,10 @@ const TrackPostCreate = () => {
   return (
     <div className="createPage">
       <div className="TrackPostCreateContainer">
-        <h1>Post a new Track!</h1>
+        <div id="create-form-header">
+          <h1>Post a new Track!</h1>
+          <button type="submit" onClick={handleSubmit}>Create Track</button>
+        </div>
         <p className="label">Title</p>
         <p className="descriptor">
           (Name the track headed for the shack!)

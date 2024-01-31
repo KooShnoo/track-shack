@@ -8,6 +8,24 @@
   font-family: Manrope;
 }
 
+#create-form-header {
+  /* border : 1px solid blue; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 5%;
+}
+#create-form-header > button {
+  font-size: 16px;
+  font-family: Manrope;
+  background-color: rgb(220,135,40);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  color: white;
+  border-radius: 15px;
+  border: none;
+
+}
+
 .TrackPostCreateContainer {
   border: none;
   width: 100%;
