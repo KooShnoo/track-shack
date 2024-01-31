@@ -1,6 +1,14 @@
+import { useState } from 'react';
+import TrackPostCreate from '../TrackPostCreate/TrackPostCreate';
 import './Splash.css';
 
 const SplashPage = () => {
+  const [toggleForm, setToggleForm] = useState(false);
+
+  const handleCreateForm = () => { 
+    setToggleForm(!toggleForm);
+  };
+
   return (
     <div className="splash-base">
       <div className="splash-container">
@@ -19,11 +27,15 @@ const SplashPage = () => {
               ></i>
             </button>
           </form>
+          <div>
+            <button onClick={handleCreateForm}>Post a Track</button>
+          </div>
           <div className="feed-container">
             <p>The index list of posts will go here</p>
           </div>
         </div>
         <div className="right-container">
+          {toggleForm && <TrackPostCreate />}
           <p>trending posts will go here?</p>
         </div>
       </div>

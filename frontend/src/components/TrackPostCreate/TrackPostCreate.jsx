@@ -49,9 +49,9 @@ const TrackPostCreate = () => {
   return (
     <div className="createPage">
       <div className="TrackPostCreateContainer">
-        <h1>Create A New TRACK For Your SHACK</h1>
-        <div onClick={handleSubmit} className="submit-button">
-          <h1>SUBMITTTTTTTTTTT</h1>
+        <div id="create-form-header">
+          <h1>Post a new Track!</h1>
+          <button type="submit" onClick={handleSubmit}>Create Track</button>
         </div>
         <p className="label">Title</p>
         <p className="descriptor">(Name the track headed for the shack!)</p>
@@ -106,9 +106,9 @@ const TrackPostCreate = () => {
           <div className="file-input-container">
             <div className="master">
               <label className="audio-label" htmlFor="audioFile">
-                Upload Master!
+                <p>Upload Master</p>
                 <input
-                  className="track-input file"
+                  className="track-input-file"
                   type="file"
                   id="audioFile"
                   onChange={(e) => setAudioFile(e.target.files[0])}
@@ -119,22 +119,21 @@ const TrackPostCreate = () => {
           <div className="file-input-container">
             <div className="image">
               <label htmlFor="image" className="audio-label">
-                Upload Artwork!
-                <input
-                  type="file"
-                  id="image"
-                  className="track-input file"
-                  onChange={(e) => setImage(e.target.files[0])}
-                />
+                <p>Upload Artwork</p>
+                <input 
+                  type="file" 
+                  id="image" 
+                  className="track-input-file" 
+                  onChange={e => setImage(e.target.files[0])} />
               </label>
             </div>
           </div>
           <div className="file-input-container">
             <div className="stems">
               <label className="audio-label" htmlFor="stems">
-                Upload Stems!
+                <p>Upload Stems</p>
                 <input
-                  className="track-input file"
+                  className="track-input-file"
                   type="file"
                   id="stems"
                   onChange={(e) => setStems(e.target.files[0])}
