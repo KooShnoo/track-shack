@@ -19,7 +19,7 @@ const Layout = () => {
   return (
     <>
       <NavBar />
-      <MainPage />
+      {/* <MainPage /> */}
       <Outlet />
       {/* <FootBar /> */}
     </>

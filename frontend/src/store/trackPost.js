@@ -1,3 +1,4 @@
+// @ts-check
 import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -15,6 +16,44 @@ export const getTracks = () => async dispatch => {
         dispatch()
     }
 }
+
+/**
+ * @param {File} file 
+ * @param {string} url 
+ */
+const awsUploadFile = (url, file) => {
+    fetch(url, {
+        method: 'PUT',
+        headers: {['Content-Length']: file.size.toString()},
+        body: file
+    });
+}
+
+/**
+ * 
+ * @param {import('../../../backend/src/models/TrackPost').ITrackPostSchema} trackPost 
+ * @param {File?} albumpic 
+ * @param {File} master 
+ * @param {File} stems 
+ */
+const postTrack = async (trackPost, albumpic, master, stems) => { 
+    const res = await (async () => {
+        try {
+            return await jwtFetch('api/trackPosts/', {method: 'POST', body: JSON.stringify(trackPost)});
+        } catch {
+            return null;
+        }})();
+    if (!res) return null;
+    /** @type {import('../../../backend/src/models/TrackPost').TpResponseForUpload | {error: string}} */
+    const soba = await res.json()
+    if ('error' in soba) return null;
+    await Promise.all([
+        awsUploadFile(soba.audioMasterUploadURL, master),
+        awsUploadFile(soba.audioStemsUploadURL, stems),
+        soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
+    ]);
+}
+window.postTrack = postTrack
 
 export const getTrack = (trackId) => async dispatch => {
         const res = await jwtFetch(`api/trackPosts/${trackId}`);
@@ -39,7 +78,7 @@ export const trackErrorsSlice = createSlice({
     initialState: {errors: null},
     reducers: {
         recieveErrors: (state, action) => {
-            state.errors = action.errors
+            state.errors = action.payload.errors
         },
         clearErrors: (state, action) => {
             state.errors = null 
@@ -50,13 +89,15 @@ export const trackErrorsSlice = createSlice({
 
 const trackPostsSlice = createSlice({
     name: 'trackPosts',
-    initialState: {},
+    initialState: {
+        trackPosts: {}
+    },
     reducers: {
         receiveTracks: (state, action) => {
-            state.trackPosts = action.trackPosts
+            state.trackPosts = action.payload.trackPosts
         },
         receiveTrack: (state, action) => {
-            state.trackPosts[trackPost.id] = action.trackPost 
+            state.trackPosts[action.payload.trackPost.id] = action.payload.trackPost 
         },
         clearTracks: (state, action) => {
             state.trackPosts = {}

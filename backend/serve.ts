@@ -4,11 +4,11 @@
  * Module dependencies.
  */
 
-import app  from './app.ts';
+import app  from './src/app.ts';
 import debug  from 'debug';
 import http  from 'http';
 import mongoose from 'mongoose';
-import { dbLogger, serverLogger } from './loggers.ts';
+import { dbLogger, serverLogger } from './src/loggers.ts';
 
 const db = process.env.MONGO_URI!;
 

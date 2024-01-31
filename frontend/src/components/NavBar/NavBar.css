@@ -1,6 +1,6 @@
 @font-face {
   font-family: CentralAve;
-  src: url('../../../public/fonts/central-avenue-bold-pro.woff2')
+  src: url('/fonts/central-avenue-bold-pro.woff2')
     format('woff2');
 }
 
