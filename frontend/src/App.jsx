@@ -21,7 +21,7 @@ const Layout = () => {
       <NavBar />
       <MainPage />
       <Outlet />
-      <FootBar />
+      {/* <FootBar /> */}
     </>
   );
 };

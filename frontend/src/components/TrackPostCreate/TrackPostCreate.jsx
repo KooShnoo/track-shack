@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./TrackPostCreate.css";
-import { createTrack } from "../../store/trackPost";
+import { createTrack, receiveTrack } from "../../store/trackPost";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import { postTrack } from "../../store/trackPost";
+
 
 const TrackPostCreate = () => {
   const currentUser = useSelector(state => state.session.user)
@@ -12,54 +14,49 @@ const TrackPostCreate = () => {
   const navigate = useNavigate()
 
   const [title, setTitle] = useState("");
-  const [subTitle, setSubtitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
   const [description, setDescription] = useState("");
   const [audioFile, setAudioFile] = useState(null);
   const [stems, setStems] = useState(null);
   const [image, setImage] = useState(null)
   const [errors, setErrors] = useState(null)
 
+  const handleSubmit = async () => {
 
+    let trackPostId = await postTrack(
+      {
+        title,
+        subtitle,
+        description,
+        audioMasterSrc: audioFile.name,
+        audioStemsSrc: stems.name,
+        albumArtSrc: image?.name || null,
+      },
+      image || null,
+      audioFile,
+      stems
+    );
 
-  // useEffect(() => {
-  //   setAuthorId(currentUser.id)
-  // }, [dispatch])
-  
-  // if(!currentUser) {
-  //   navigate("/")
-  // }
-
-  const handleSubmit = () => {
-
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("subTitle", subTitle);
-    formData.append('description', description);
-    formData.append('audioFile', audioFile);
-    formData.append('stems', stems);
-    formData.append('image', image);
-
-
-      let response = dispatch(createTrack(formData))
-      if(response.ok) {
-        console.log('creation successfull')
-        //redirect to show page
+      if(trackPostId) {
+        console.log('CRASH AND BURN', trackPostId)
+        // dispatch(receiveTrack(response))
+        navigate(`/trackPosts/${trackPostId}`)
       } else {
-        console.log(response)
+        console.log(trackPostId)
       }
 
-}
-
+  }
 
 
   return (
     <div className="createPage">
       <div className="TrackPostCreateContainer">
         <h1>Create A New TRACK For Your SHACK</h1>
+        <div onClick={handleSubmit} className="submit-button">
+          <h1>SUBMITTTTTTTTTTT</h1>
+        </div>
         <p className="label">Title</p>
-        <p className="descriptor">
-          (Name the track headed for the shack!)
-        </p>
+        <p className="descriptor">(Name the track headed for the shack!)</p>
         <div className="inputContainer">
           <textarea
             className="track-input"
@@ -71,9 +68,7 @@ const TrackPostCreate = () => {
           />
         </div>
         <p className="label">SubTitle</p>
-        <p className="descriptor">
-          (Let us know what your project needs!)
-        </p>
+        <p className="descriptor">(Let us know what your project needs!)</p>
         <div className="inputContainer">
           <textarea
             className="track-input"
@@ -84,9 +79,7 @@ const TrackPostCreate = () => {
           />
         </div>
         <p className="label">Description</p>
-        <p className="descriptor">
-          (Tell us about your project!)
-        </p>
+        <p className="descriptor">(Tell us about your project!)</p>
         <div className="inputContainer description">
           <textarea
             className="track-input"
@@ -127,9 +120,15 @@ const TrackPostCreate = () => {
           </div>
           <div className="file-input-container">
             <div className="image">
-                <label htmlFor="image" className="audio-label">Upload Artwork!
-                <input type="file" id="image" className="track-input file" onChange={e => setImage(e.target.files[0])} />
-                </label>
+              <label htmlFor="image" className="audio-label">
+                Upload Artwork!
+                <input
+                  type="file"
+                  id="image"
+                  className="track-input file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+              </label>
             </div>
           </div>
           <div className="file-input-container">

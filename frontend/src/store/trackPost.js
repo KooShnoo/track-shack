@@ -1,7 +1,6 @@
-// @ts-check
+
 import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
-
 
 
 export const getTracks = () => async dispatch => {
@@ -36,7 +35,7 @@ const awsUploadFile = (url, file) => {
  * @param {File} master 
  * @param {File} stems 
  */
-const postTrack = async (trackPost, albumpic, master, stems) => { 
+export const postTrack = async (trackPost, albumpic, master, stems) => { 
     const res = await (async () => {
         try {
             return await jwtFetch('api/trackPosts/', {method: 'POST', body: JSON.stringify(trackPost)});
@@ -52,12 +51,17 @@ const postTrack = async (trackPost, albumpic, master, stems) => {
         awsUploadFile(soba.audioStemsUploadURL, stems),
         soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
     ]);
+    return soba.id
+
 }
-window.postTrack = postTrack
 
 export const getTrack = (trackId) => async dispatch => {
         const res = await jwtFetch(`api/trackPosts/${trackId}`);
         const track = await res.json()
+
+
+
+
         dispatch(receiveTrack(track))
 }
 
@@ -89,18 +93,17 @@ export const trackErrorsSlice = createSlice({
 
 const trackPostsSlice = createSlice({
     name: 'trackPosts',
-    initialState: {
-        trackPosts: {}
-    },
+    initialState: {},
     reducers: {
         receiveTracks: (state, action) => {
-            state.trackPosts = action.payload.trackPosts
+            return action.payload.trackPosts
         },
         receiveTrack: (state, action) => {
-            state.trackPosts[action.payload.trackPost.id] = action.payload.trackPost 
+            // debugger
+            return {...state , [action.payload._id]: action.payload}
         },
         clearTracks: (state, action) => {
-            state.trackPosts = {}
+            return {}
         }
     }
 })
