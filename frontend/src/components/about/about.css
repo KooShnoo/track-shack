@@ -1,0 +1,52 @@
+.nerd-container {
+    height: 150px;
+    width: 600px;
+    box-sizing: border-box;
+    display: flex;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+
+.nerd-container .title-bio-container {
+    height: 100px;
+    width: 60%;
+}
+
+.nerd-container .img-container {
+    height: 150px;
+    width: 40%;
+}
+
+.nerd-container .links-container {
+    height: 30px;
+}
+
+.nerd-container h1 {
+    font-size: 26px;
+    margin-bottom: 40px;
+    /* padding-top: 10px; */
+}
+
+.nerd-container p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.nerd-container .links-container {
+    display: flex;
+}
+
+.nerd-container a {
+    margin-left: 10px;
+}
+
+.nerd-container .img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nerd-container img {
+    width: 150px;
+    height: 150px;
+}

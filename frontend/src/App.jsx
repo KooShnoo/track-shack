@@ -10,6 +10,7 @@ import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 import TrackPostCreate from './components/TrackPostCreate/TrackPostCreate.jsx';
 import TrackShow from './components/trackshow/TrackShow';
+import About from './components/about/About.jsx';
 
 import { getCurrentUser } from './store/session';
 import FootBar from './components/FootBar/FootBar';
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         path: 'trackShow/1',
         element: <TrackShow />,
       },
+      {
+        path: 'about',
+        element: <About/>
+      }
     ],
   },
 ]);
