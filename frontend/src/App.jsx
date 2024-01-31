@@ -21,7 +21,7 @@ const Layout = () => {
       <NavBar />
       <MainPage />
       <Outlet />
-      <FootBar />
+      {/* <FootBar /> */}
     </>
   );
 };
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         element: <TrackPostCreate />,
       },
       {
-        path: 'trackShow/1',
+        path: 'trackPosts/:trackId',
         element: <TrackShow />,
       },
       {

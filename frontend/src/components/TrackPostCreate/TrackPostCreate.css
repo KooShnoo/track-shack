@@ -188,6 +188,10 @@
   font-size: 15px;
 }
 
+.submit-button:hover {
+  cursor: pointer;
+} 
+
 
 
 

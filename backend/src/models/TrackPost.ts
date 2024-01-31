@@ -1,5 +1,6 @@
 import mongoose, {Document, ObjectId, SchemaTypes} from 'mongoose';
 import { getFileUrl, getUploadUrl } from '../api_s3.ts';
+import { serverLogger } from '../loggers.ts';
 const {ObjectId, String} = SchemaTypes;
 const Schema = mongoose.Schema;
 
@@ -16,7 +17,8 @@ export interface ITrackPostSchema {
   neededInstrumentTags?: typeof neededInstrumentTags[number][];
   genreTags?: typeof genreTags[number][];
   author: ObjectId
-  // responses: ObjectId[]
+  // responses: [ReponseSchema]
+  // comments: [commentsSchema]
 }
 
 export type ITrackPost = ITrackPostSchema & Document
@@ -40,7 +42,7 @@ const trackPostSchema = new Schema<ITrackPost>(
 
 /** formats a track post for a response */
 export async function tpResponse(tp: ITrackPost) {
-  tp = tp.toObject();
+  // tp = tp.toObject();
   const [albumArtURL,  audioMasterURL,  audioStemsURL] = await Promise.all([
     tp.albumArtSrc && getFileUrl(tp.albumArtSrc),  
     getFileUrl(tp.audioMasterSrc),  
@@ -49,6 +51,7 @@ export async function tpResponse(tp: ITrackPost) {
   tp.albumArtSrc = albumArtURL;
   tp.audioMasterSrc = audioMasterURL;
   tp.audioStemsSrc = audioStemsURL;
+  serverLogger('plogo', tp)
   return tp;
 }
 
