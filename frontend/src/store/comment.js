@@ -18,7 +18,7 @@ export const createComment = (comment, trackId) => async dispatch => {
         }
     } catch (err) {
         let error = await err.json()
-        debugger
+        // debugger
         console.log('ERRORS IN COMMENT THUNK', error)
         dispatch(receiveSessionErrors(error)) 
     }

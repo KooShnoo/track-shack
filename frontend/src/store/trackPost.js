@@ -96,13 +96,14 @@ const trackPostsSlice = createSlice({
             return {...state, ...action.payload}
         },
         receiveTrack: (state, action) => {
-            // debugger
+            debugger
             return {[action.payload._id]: action.payload}
         },
         clearTracks: () => {
             return {}
         },
             receiveComment: (state, action) => {
+            // debugger
             state[action.payload[1]].comments.push(action.payload[0])
         }
     }
