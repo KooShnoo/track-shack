@@ -18,7 +18,7 @@ export interface ITrackPostSchema {
   genreTags?: typeof genreTags[number][];
   author: ObjectId
   // responses: [ReponseSchema]
-  // comments: [objectIds]
+  comments: [ObjectId]
 }
 
 export type ITrackPost = ITrackPostSchema & Document
@@ -36,6 +36,7 @@ const trackPostSchema = new Schema<ITrackPost>(
     genreTags: {type: [String], enum: genreTags},
     author: {type: ObjectId, ref: 'User', required: true},
     // responses: {type: [ObjectId]}
+    comments: {type: [ObjectId], ref: 'Comment', default: []}
   }, 
   {timestamps: true}
 );

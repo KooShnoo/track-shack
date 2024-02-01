@@ -81,7 +81,7 @@ export const trackErrorsSlice = createSlice({
         recieveErrors: (state, action) => {
             state.errors = action.payload.errors
         },
-        clearErrors: (state, action) => {
+        clearErrors: (state) => {
             state.errors = null 
         }
     }
@@ -93,20 +93,22 @@ const trackPostsSlice = createSlice({
     initialState: {},
     reducers: {
         receiveTracks: (state, action) => {
-            debugger
             return {...state, ...action.payload}
         },
         receiveTrack: (state, action) => {
             // debugger
-            return {...state , [action.payload._id]: action.payload}
+            return {[action.payload._id]: action.payload}
         },
-        clearTracks: (state, action) => {
+        clearTracks: () => {
             return {}
+        },
+            receiveComment: (state, action) => {
+            state[action.payload[1]].comments.push(action.payload[0])
         }
     }
 })
 
-export const {receiveTracks, receiveTrack, clearTracks} = trackPostsSlice.actions
+export const {receiveTracks, receiveTrack, clearTracks, receiveComment} = trackPostsSlice.actions
 
 export const trackErrorsReducer = trackErrorsSlice.reducer
 

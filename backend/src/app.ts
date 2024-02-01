@@ -11,6 +11,8 @@ import usersRouter from './routes/api/users.ts';
 import csrfRouter from './routes/api/csrf.ts';
 import './passport.ts';
 import { trackPostRouter } from './routes/api/trackPosts.ts';
+// @ts-expect-error this is a js file
+import { commentsRouter } from './routes/api/comments.js';
 import omit from 'lodash.omit';
 import { ProcessingError } from './validations/errors.ts';
 
@@ -51,6 +53,7 @@ app.use(
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/trackPosts', trackPostRouter);
+app.use('/api/comments', commentsRouter);
 
 // unhandled
 app.use((req, res, next) => {

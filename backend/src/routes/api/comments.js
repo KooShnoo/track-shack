@@ -3,11 +3,13 @@ import { Error } from 'mongoose';
 import Comment from '../../models/Comment';
 import {noticePostTrackPostNoUser} from '../../validations/errors.ts';
 import {restoreUser} from '../../passport.ts';
+import TrackPost from "../../models/TrackPost.ts";
+import { serverErrorLogger } from "../../loggers.ts";
 
 
 const router = express.Router();
 
-router.get('/comments/:trackPostId', async (req, res) => {
+router.get('/:trackPostId', async (req, res) => {
   try {
     const trackPostId = req.params.trackPostId;
     const comments = await Comment.find({ trackPostId: trackPostId });
@@ -19,28 +21,30 @@ router.get('/comments/:trackPostId', async (req, res) => {
   }
 });
 
-router.post('/comments/:trackPostId', restoreUser, async (req, res) => {
+router.post('/:trackPostId', restoreUser, async (req, res) => {
+  console.log('HELLO FROM COMMENTS ROUTER');
   if (!req.user){
     const errors = {session: noticePostTrackPostNoUser};
     return res.status(401).json(errors);
   } 
-
-  const comment = Comment.new({...req.body, author: req.user});  
+  const comment = new Comment({...req.body, author: req.user});  
   try {
     await comment.save();
-    // const trackPostId = req.params.trackPostId;
-    // const trackPost = await trackPost.find({id: trackPostId})
-    // trackPost.comments.push(comment)
-    // await trackPost.save()
+    const trackPostId = req.params.trackPostId;
+    const trackPost = await TrackPost.findById( trackPostId);
+    serverErrorLogger('YOOOOOOOOOO',trackPost)
+    trackPost.comments.push(comment._id);
+    await trackPost.save();
     res.json(comment);
   } catch (error) {
+    serverErrorLogger(error)
     res.status(422).json(error);
   }
 
   // res.status(200).json(comment.toObject())
 });
 
-router.delete('/comments/:commentId', async (req, res) => {
+router.delete('/:commentId', async (req, res) => {
   try {
     const commentId = req.params.commentId; 
     const deletedComment = await Comment.findByIdAndDelete(commentId);
@@ -54,3 +58,5 @@ router.delete('/comments/:commentId', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+export {router as commentsRouter};

@@ -27,9 +27,9 @@ const commentSchema = new mongoose.Schema({
         required: true,
         maxlength: 500 
     },
-    replies: {type: [Reply], default: []}
+    // replies: {type: [Reply], default: []}
 
 }, {timestamps: true }); 
 
-module.exports = mongoose.model("Comment", commentSchema);
+export default mongoose.model("Comment", commentSchema);
 
