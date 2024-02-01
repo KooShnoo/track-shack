@@ -19,7 +19,7 @@ const SplashPage = () => {
   return (
     <div className="splash-base">
       <div className="splash-container">
-        <div className="left-container">
+        <div className={`left-container ${toggleForm ? 'centered' : ''}`}>
           <form id="search-container" action="" /* onSubmit={handleSearch} */>
             <input
               id="search-bar"
@@ -45,9 +45,11 @@ const SplashPage = () => {
             {<TrackPostsIndex />}
           </div>
         </div>
-        <div className="right-container">
-          {toggleForm && <TrackPostCreate />}
-        </div>
+        {toggleForm && (
+          <div className="right-container">
+            <TrackPostCreate />
+          </div>
+        )}
       </div>
     </div>
   );
