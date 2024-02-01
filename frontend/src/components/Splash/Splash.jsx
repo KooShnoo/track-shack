@@ -27,11 +27,13 @@ const SplashPage = () => {
               ></i>
             </button>
           </form>
-          <div>
-            <button onClick={handleCreateForm}>Post a Track</button>
+          <div className='user-options-container'>
+            <div>
+              <button id="create-form-button" onClick={handleCreateForm}>Post a Track</button>
+            </div>
           </div>
           <div className="feed-container">
-            <p>The index list of posts will go here</p>
+            {/* <p>The index list of posts will go here</p> */}
           </div>
         </div>
         <div className="right-container">

@@ -15,6 +15,7 @@
   justify-content: space-between;
   padding-right: 5%;
 }
+
 #create-form-header > button {
   font-size: 16px;
   font-family: Manrope;
@@ -23,7 +24,10 @@
   color: white;
   border-radius: 15px;
   border: none;
+}
 
+#create-form-header > button:active {
+  background-color: #e19724;
 }
 
 .TrackPostCreateContainer {
@@ -120,8 +124,9 @@
 }
 
 .file-input-container {
-  margin-top: 20px;
   /* border: 2px solid red; */
+  margin-top: 20px;
+  margin-left: 10px;
   width: 99%;
   display: flex;
 }
