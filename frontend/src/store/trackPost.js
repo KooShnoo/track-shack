@@ -6,6 +6,7 @@ export const selectPostsArray = (state) => Object.values(state.trackPosts);
 
 
 export const getTracks = () => async dispatch => {
+    debugger
     try {
         const res = await jwtFetch('api/trackPosts');
         if(res.ok) {
@@ -13,8 +14,8 @@ export const getTracks = () => async dispatch => {
             dispatch(receiveTracks(tracks))
         }
     } catch (err) {
-        let errors = err.json()
-        console.log('FROM GET TRACKS THUNK', errors)
+        // let errors = await err.json()
+        console.log('FROM GET TRACKS THUNK', err)
         // dispatch()
     }
 }
