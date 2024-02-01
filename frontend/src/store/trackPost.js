@@ -2,6 +2,8 @@
 import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
 
+export const selectPostsArray = (state) => Object.values(state.trackPosts);
+
 
 export const getTracks = () => async dispatch => {
     try {
