@@ -2,13 +2,7 @@ import './trackMasterDisplay.css';
 import FaceSmall from './Face_Small.jpg';
 import AudioPlayer from '../audio/AudioPlayer';
 
-
-
-
-const TrackMasterDisplay = ({track}) => {
-
-  if (track) console.log('TRACK MASTER DISPLAY IMAGE SOURCE', track.albumArtSrc)
-
+const TrackMasterDisplay = ({ track }) => {
   return (
     <div>
       <div className="track-info-container">
@@ -21,11 +15,13 @@ const TrackMasterDisplay = ({track}) => {
             <img src={track?.albumArtSrc} alt="" />
           </div>
         </div>
-        <div className="button-container">
-          <AudioPlayer src={track?.audioMasterSrc} />
-          <a className='download-button' download href={track?.audioStemsSrc}>
-            <button>Download</button>
-          </a>
+        <div className="audio-button-container">
+          <div className="audio-player-container">
+            <AudioPlayer src={track?.audioMasterSrc} />
+            <a className="download-button" download href={track?.audioStemsSrc}>
+              <button>Download</button>
+            </a>
+          </div>
         </div>
       </div>
     </div>

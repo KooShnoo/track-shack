@@ -31,6 +31,7 @@ export interface ITrackPostSchema {
   audioStemsSrc        : string;
   neededInstrumentTags : (typeof neededInstrumentTags)[number][];
   genreTags            : (typeof genreTags)[number][];
+  // note that this is sometimes a lie. it gets populated sometimes.
   author               : ObjectId;
   responses            : ObjectId[];
   comments             : [ObjectId]
