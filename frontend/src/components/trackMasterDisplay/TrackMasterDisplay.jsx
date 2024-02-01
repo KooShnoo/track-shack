@@ -2,6 +2,9 @@ import './trackMasterDisplay.css';
 import FaceSmall from './Face_Small.jpg';
 import AudioPlayer from '../audio/AudioPlayer';
 
+
+
+
 const TrackMasterDisplay = ({track}) => {
   return (
     <div>
@@ -15,11 +18,11 @@ const TrackMasterDisplay = ({track}) => {
             <img src={FaceSmall} alt="" />
           </div>
         </div>
-        <div className="audio-button-container">
-          <div className="audio-player-container">
-            <AudioPlayer />
+        <div className="button-container">
+          <AudioPlayer src={track?.audioMasterSrc} />
+          <a className='download-button' download href={track?.audioStemsSrc}>
             <button>Download</button>
-          </div>
+          </a>
         </div>
       </div>
     </div>

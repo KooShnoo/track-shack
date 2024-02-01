@@ -2,7 +2,7 @@ import "./comment.css";
 import CommentThread from "./CommentThread/CommentThread";
 
 const Comment = ({ comments }) => {
-  console.log("IN COMMENT", comments);
+
   return (
     <div className="comment-thread">
       {comments?.map((comment) => {
