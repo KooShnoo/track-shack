@@ -32,12 +32,10 @@ router.post('/:trackPostId', restoreUser, async (req, res) => {
     await comment.save();
     const trackPostId = req.params.trackPostId;
     const trackPost = await TrackPost.findById( trackPostId);
-    serverErrorLogger('YOOOOOOOOOO',trackPost)
     trackPost.comments.push(comment._id);
     await trackPost.save();
     res.json(comment);
   } catch (error) {
-    serverErrorLogger(error)
     res.status(422).json(error);
   }
 

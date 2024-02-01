@@ -10,7 +10,6 @@ export const createComment = (comment, trackId) => async dispatch => {
             body: JSON.stringify(comment)
         })
         if(res.ok) {
-            debugger
             let data = await res.json()
             dispatch(receiveComment([data, trackId]))
         } else {

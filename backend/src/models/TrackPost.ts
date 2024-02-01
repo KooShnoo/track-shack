@@ -34,6 +34,7 @@ const trackPostSchema = new Schema<ITrackPost>(
     audioStemsSrc: {type: String, required: true},
     neededInstrumentTags: {type: [String], enum: neededInstrumentTags},
     genreTags: {type: [String], enum: genreTags},
+    //should we change author to just the username instead of full object?
     author: {type: ObjectId, ref: 'User', required: true},
     // responses: {type: [ObjectId]}
     comments: {type: [ObjectId], ref: 'Comment', default: []}
@@ -52,7 +53,6 @@ export async function tpResponse(tp: ITrackPost) {
   tp.albumArtSrc = albumArtURL;
   tp.audioMasterSrc = audioMasterURL;
   tp.audioStemsSrc = audioStemsURL;
-  serverLogger('plogo', tp)
   return tp;
 }
 

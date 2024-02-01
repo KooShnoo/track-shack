@@ -4,21 +4,21 @@ import TrackPost, { ITrackPost, tpResponse, tpResponseForUpload } from "../../mo
 import { serverErrorLogger, serverLogger } from "../../loggers.ts";
 import { restoreUser } from "../../passport.ts";
 import { PostTrackPostErrors, noticePostTrackPostNoUser } from "../../validations/errors.ts";
-import {getFileUrl} from '../../api_s3.ts'
+import {getFileUrl} from '../../api_s3.ts';
 import { resolve } from "path";
 
 const router = express.Router();
 
 const resolveUrls = async (tp:ITrackPost) => {
-   if(tp.albumArtSrc) tp.albumArtSrc = await getFileUrl(tp.albumArtSrc)
-    tp.audioMasterSrc = await getFileUrl(tp.audioMasterSrc) 
-    tp.audioStemsSrc = await getFileUrl(tp.audioStemsSrc)  
-}
+   if(tp.albumArtSrc) tp.albumArtSrc = await getFileUrl(tp.albumArtSrc);
+    tp.audioMasterSrc = await getFileUrl(tp.audioMasterSrc) ;
+    tp.audioStemsSrc = await getFileUrl(tp.audioStemsSrc);  
+};
 
 
 router.get('/', async (req, res, _next) => {
   const tps = await TrackPost.find();
-  tps.forEach(resolveUrls)
+  tps.forEach(resolveUrls);
   // mapping of trackpost ids to trackposts
   const tpMap = tps.reduce( (acc: Record<number, ITrackPost>, tp) => {
     acc[tp.id] = tp;
@@ -29,11 +29,14 @@ router.get('/', async (req, res, _next) => {
 
 
 router.get('/:trackId', async (req, res, _next) => {
-  const tp = await TrackPost.findById(req.params.trackId);
-  serverLogger('oogi', tp)
+  const tp = await TrackPost.findById(req.params.trackId).populate({
+    path: 'comments',
+    populate: { path: 'author' }
+  });
+
   if (!tp) return res.status(404).json({error: "no such track post"});
-  // await resolveUrls(tp)
-  serverLogger('oogas', tp)
+  //populate the comments array with the full comments objects, replacing the object Id's
+  serverLogger('oogas', tp);
   res.json(await tpResponse(tp));
 });
 
