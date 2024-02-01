@@ -13,6 +13,10 @@ import { logger } from 'redux-logger';
 
 const middlewareArray = [thunk, logger];
 
+
+// window.dispatch = dispatch
+// window.createComment = createComment;
+
 const rootReducer = combineReducers({
     session: sessionReducer,
     errors: errorsReducer,

@@ -2,7 +2,6 @@ import './trackMasterDisplay.css';
 import FaceSmall from './Face_Small.jpg';
 
 const TrackMasterDisplay = ({track}) => {
-  console.log('TRACK', track)
   return (
     <div>
       <div className="track-info-container">
