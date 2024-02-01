@@ -46,7 +46,9 @@
   margin-left: 1rem;
 }
 
-.audio-player-container a > button {
+.audio-player-button {
+  text-decoration: none;
+
   display: flex;
   align-items: center;
   border: none;
@@ -66,7 +68,13 @@
   min-width: 120px;
 }
 
+.audio-button-container:hover,
+.audio-player:hover {
+  cursor: pointer;
+}
+
 .audio-player-button:hover {
+  cursor: pointer;
   background: rgb(249, 163, 64);
   box-shadow: 5px 15px 30px 10px rgba(123, 86, 44, 0.541);
 }

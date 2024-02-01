@@ -10,7 +10,6 @@ body {
 }
 
 .wave-three {
-  z-index: -1;
   position: absolute;
   bottom: -10px;
   width: 6400px;
@@ -20,7 +19,6 @@ body {
     swell 3s ease -5.25s infinite forwards;
 }
 .wave-four {
-  z-index: -1;
   position: absolute;
   bottom: -400px;
   width: 6400px;
