@@ -43,14 +43,13 @@
 }
 
 .feed-container {
-
-  border-radius: 20px;
+  /* border: 2px solid yellow; */
   margin-top: 20px;
   margin-left: 15px;
   height: 84%;
   width: 95%;
   overflow: auto;
-  background-color: rgb(237, 211, 176, 0.3);
+  /* background-color: rgb(237, 211, 176, 0.3); */
 
 }
 
