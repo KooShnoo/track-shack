@@ -36,7 +36,9 @@ const SplashPage = () => {
           </form>
           <div className='user-options-container'>
             <div>
-              <button id="create-form-button" onClick={handleCreateForm}>Post a Track</button>
+              <button id="create-form-button" onClick={handleCreateForm}>
+                Post a Track
+              </button>
             </div>
           </div>
           <div className="feed-container">
@@ -45,7 +47,6 @@ const SplashPage = () => {
         </div>
         <div className="right-container">
           {toggleForm && <TrackPostCreate />}
-          <p>trending posts will go here?</p>
         </div>
       </div>
     </div>
