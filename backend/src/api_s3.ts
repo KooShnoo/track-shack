@@ -22,7 +22,11 @@ export async function getUploadUrl(filename: string) {
 
 /** gets a presigned url for a file from s3. */
 export async function getFileUrl(filename: string) {
-  const getCommand = new GetObjectCommand({Bucket: BUCKET, Key: filename});
+  const getCommand = new GetObjectCommand({
+    Bucket: BUCKET, 
+    Key: filename, 
+    ResponseContentDisposition: `attachment; filename="${filename}"`,
+});
   const url = await getSignedUrl(client, getCommand);
   return url;
 }

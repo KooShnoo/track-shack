@@ -139,13 +139,6 @@ form > .errors {
   align-items: center;
 }
 
-p,
-h1,
-h2,
-h3 {
+body {
   font-family: Manrope;
-}
-
-label {
-  font-size: Manrope;
 }
