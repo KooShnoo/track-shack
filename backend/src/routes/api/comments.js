@@ -22,7 +22,6 @@ router.get('/:trackPostId', async (req, res) => {
 });
 
 router.post('/:trackPostId', restoreUser, async (req, res) => {
-  console.log('HELLO FROM COMMENTS ROUTER');
   if (!req.user){
     const errors = {session: noticePostTrackPostNoUser};
     return res.status(401).json(errors);
@@ -52,7 +51,6 @@ router.delete('/:commentId', async (req, res) => {
       return res.status(404).send('Comment not found');
     }
   } catch (error) {
-    console.log(error);
     res.status(500).send('Internal Server Error');
   }
 });

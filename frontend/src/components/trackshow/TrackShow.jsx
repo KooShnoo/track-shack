@@ -11,7 +11,7 @@ const TrackShow = () => {
   const dispatch = useDispatch();
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
-
+  console.log('IN TRACK SHOW', trackId)
 
   useEffect(()=> {
     dispatch(getTrack(trackId))

@@ -13,7 +13,6 @@ const SplashPage = () => {
   };
 
   useEffect(() => {
-    console.log('YOOOOOOO')
     dispatch(getTracks())
   },[dispatch])
 

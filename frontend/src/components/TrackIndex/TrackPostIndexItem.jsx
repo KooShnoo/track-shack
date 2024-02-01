@@ -6,20 +6,21 @@ import './TrackPostIndexItem.css';
 
 
 const TrackPostsIndexItem = ({trackPost}) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getTrack(trackPost.id));
-  }, [dispatch, trackPost.id]);
+  // useEffect(() => {
+  //   console.log('INDEX ITEM', trackPost._id)
+  //   dispatch(getTrack(trackPost.id));
+  // }, [dispatch, trackPost.id]);
 
   return (
     <div className='post-card-container'>
       <img id='album-img' src={trackPost?.albumArtSrc} alt="album cover" />
       <div id='post-contents'>
-        <Link to={`trackPosts/${trackPost?.id}`} ><h1>{trackPost?.title}</h1></Link>
+        <Link to={`trackPosts/${trackPost?._id}`} ><h1>{trackPost?.title}</h1></Link>
         <p>{trackPost?.subtitle}</p>
       </div>
-      <Link to={`trackPosts/${trackPost?.id}`} >
+      <Link to={`trackPosts/${trackPost?._id}`} >
         <button id='show-page-button'>Go to Project <i class="fa-solid fa-arrow-right-long"></i></button>
       </Link>
     </div>
