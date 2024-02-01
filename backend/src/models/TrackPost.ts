@@ -74,6 +74,9 @@ export async function tpResponse(tp: ITrackPost | ITrackPostReply) {
   if ("albumArtSrc" in tp) tp.albumArtSrc = albumArtURL;
   tp.audioMasterSrc = audioMasterURL;
   tp.audioStemsSrc = audioStemsURL;
+  // i am bad at typescript :)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if ('subtitle' in tp) tp.responses = await Promise.all(tp.responses.map(tpResponse as any));
   return tp;
 }
 
