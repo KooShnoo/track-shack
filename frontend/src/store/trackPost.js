@@ -21,7 +21,7 @@ export const getTracks = () => async dispatch => {
  * @param {File} file 
  * @param {string} url 
  */
-const awsUploadFile = (url, file) => {
+export const awsUploadFile = (url, file) => {
     fetch(url, {
         method: 'PUT',
         headers: {['Content-Length']: file.size.toString()},
@@ -53,7 +53,6 @@ export const postTrack = async (trackPost, albumpic, master, stems) => {
         soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
     ]);
     return soba.id
-
 }
 
 export const getTrack = (trackId) => async dispatch => {

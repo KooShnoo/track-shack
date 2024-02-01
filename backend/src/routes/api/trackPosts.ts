@@ -1,24 +1,17 @@
 import express from "express";
 import { Error } from 'mongoose';
 import TrackPost, { ITrackPost, tpResponse, tpResponseForUpload } from "../../models/TrackPost.ts";
-import { serverErrorLogger, serverLogger } from "../../loggers.ts";
+import { serverErrorLogger } from "../../loggers.ts";
 import { restoreUser } from "../../passport.ts";
 import { PostTrackPostErrors, noticePostTrackPostNoUser } from "../../validations/errors.ts";
-import {getFileUrl} from '../../api_s3.ts';
-import { resolve } from "path";
+import { postReplyHandler } from "./trackPostReply.ts";
 
 const router = express.Router();
 
-const resolveUrls = async (tp:ITrackPost) => {
-   if(tp.albumArtSrc) tp.albumArtSrc = await getFileUrl(tp.albumArtSrc);
-    tp.audioMasterSrc = await getFileUrl(tp.audioMasterSrc) ;
-    tp.audioStemsSrc = await getFileUrl(tp.audioStemsSrc);  
-};
 
-
-router.get('/', async (req, res, _next) => {
+router.get('/', async (req, res, next) => {
   const tps = await TrackPost.find();
-  tps.forEach(resolveUrls);
+  await Promise.all(tps.map(tpResponse));
   // mapping of trackpost ids to trackposts
   const tpMap = tps.reduce( (acc: Record<number, ITrackPost>, tp) => {
     acc[tp.id] = tp;
@@ -28,15 +21,12 @@ router.get('/', async (req, res, _next) => {
 });
 
 
-router.get('/:trackId', async (req, res, _next) => {
+router.get('/:trackId', async (req, res, next) => {
   const tp = await TrackPost.findById(req.params.trackId).populate({
     path: 'comments',
     populate: {path: 'author'}
   });
-
   if (!tp) return res.status(404).json({error: "no such track post"});
-
-  serverLogger('oogas', tp);
   res.json(await tpResponse(tp));
 });
 
@@ -59,5 +49,7 @@ router.post('/', restoreUser,  async (req, res, next) => {
   const response = await tpResponseForUpload(tp);
   res.status(201).json(response);
 });
+
+router.post('/:trackId/reply', restoreUser, postReplyHandler);
 
 export {router as trackPostRouter};

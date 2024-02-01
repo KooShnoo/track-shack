@@ -19,7 +19,7 @@ const Layout = () => {
   return (
     <>
       <NavBar />
-      <MainPage />
+      {/* <MainPage /> */}
       <Outlet />
     </>
   );
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         path: "/",
         element: (
           <>
-            <AuthRoute component={MainPage} />
+            {/* <AuthRoute component={MainPage} /> */}
             <Splash />
           </>
         ),

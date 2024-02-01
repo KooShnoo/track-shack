@@ -58,7 +58,6 @@ app.use('/api/comments', commentsRouter);
 // unhandled
 app.use((req, res, next) => {
   const err: Error = new Error('Not Found');
-  serverErrorLogger(err);
   res.status(404);
   res.json({
     message: err.message,
