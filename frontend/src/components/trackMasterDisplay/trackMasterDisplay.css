@@ -36,9 +36,11 @@
   height: 100%;
 }
 
-.track-master-container .title {
+.track-info-container .title {
   margin-top: 10px;
   margin-bottom: 30px;
+  font-size: 30px;
+
 }
 
 .track-master-container .description {
@@ -54,3 +56,4 @@
   justify-content: center;
   align-items: center;
 }
+
