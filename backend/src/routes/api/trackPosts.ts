@@ -10,8 +10,11 @@ const router = express.Router();
 
 
 router.get('/', async (req, res, next) => {
-  const tps = await TrackPost.find();
-  await Promise.all(tps.map(tpResponse));
+  const tps = await TrackPost.find().populate('author').populate('responses').populate('comments'); //.populate([{
+  //   path: 'comments',
+  //   populate: {path: 'author'}
+  // }, {path: 'responses'}]);
+  await Promise.all(tps.map(tp => tpResponse(tp, true)));
   // mapping of trackpost ids to trackposts
   const tpMap = tps.reduce( (acc: Record<number, ITrackPost>, tp) => {
     acc[tp.id] = tp;

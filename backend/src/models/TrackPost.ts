@@ -62,7 +62,7 @@ const trackPostSchema = new Schema<ITrackPost>(
 );
 
 /** formats a track post for a response */
-export async function tpResponse(tp: ITrackPost | ITrackPostReply) {
+export async function tpResponse(tp: ITrackPost | ITrackPostReply, resolveResponses = false) {
   const [albumArtURL, audioMasterURL, audioStemsURL] = await Promise.all([
     // this is kinda ugly but it just means `if (tp.albumArtSrc) getFileUrl(tp.albumArtSrc)`
     "albumArtSrc" in tp && tp.albumArtSrc
@@ -76,7 +76,7 @@ export async function tpResponse(tp: ITrackPost | ITrackPostReply) {
   tp.audioStemsSrc = audioStemsURL;
   // i am bad at typescript :)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if ('subtitle' in tp) tp.responses = await Promise.all(tp.responses.map(tpResponse as any));
+  if ('subtitle' in tp && resolveResponses) tp = {...tp, responses: await Promise.all(tp.responses.map(tpResponse as any))} as any;
   return tp;
 }
 
