@@ -13,7 +13,6 @@ import { awsUploadFile } from './trackPost';
 export const postTrackReply = async (trackPostId, trackPostReply, master, stems) => { 
   const res = await (async () => {
       try {
-        debugger
           return await jwtFetch(`/api/trackPosts/${trackPostId}/reply`, {method: 'POST', body: JSON.stringify(trackPostReply)});
       } catch (error){
         //   return null;
