@@ -13,7 +13,7 @@
   margin-left: 1rem;
 }
 
-.audio-player-container > button {
+.audio-player-container a > button {
   display: flex;
   align-items: center;
   border: none;
@@ -33,12 +33,12 @@
   min-width: 120px;
 }
 
-.audio-player-container:hover > button {
+.audio-player-container:hover a > button {
   background: rgb(249, 163, 64);
   box-shadow: 5px 15px 30px 10px rgba(123, 86, 44, 0.541);
 }
 
-.audio-player-container:active > button {
+.audio-player-container:active a > button {
   background: rgb(197, 129, 51);
   box-shadow: 5px 15px 30px rgba(208, 139, 60, 0.541);
 }
