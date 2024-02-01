@@ -26,6 +26,44 @@
   margin-left: 2rem;
 }
 
+.track-info-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.track-items {
+  max-width: 900px;
+  max-height: 200px;
+  margin-top: 4rem;
+  display: flex;
+}
+
+.description-container {
+  border: solid 2px var(--color-four);
+  padding: 1rem 1rem 1rem 1rem;
+  color: white;
+  font-size: 1.1rem;
+  max-width: 70%;
+}
+
+.image-container {
+  border: solid 5px var(--color-four);
+  max-height: 200px;
+  max-width: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container > img {
+  aspect-ratio: 1/1;
+  max-width:100%;
+  object-fit: cover;
+}
+
 .button-container {
   width: 100%;
   display: flex;

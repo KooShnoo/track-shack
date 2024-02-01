@@ -1,5 +1,8 @@
-import './comment.css';
-import CommentThread from './CommentThread/CommentThread';
+import "./comment.css";
+import CommentThread from "./CommentThread/CommentThread";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 const Comment = ({ comments }) => {
   return (
@@ -10,7 +13,7 @@ const Comment = ({ comments }) => {
             id={comment?._id}
             author={comment?.author?.username}
             key={comment?._id}
-            timeAgo={comment?.createdAt}
+            timeAgo={dayjs(comment?.createdAt).fromNow()}
             content={comment?.body}
           />
         );

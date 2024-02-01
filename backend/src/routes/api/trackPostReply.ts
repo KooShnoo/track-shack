@@ -1,6 +1,6 @@
 import { Error } from 'mongoose';
 import { RequestHandler } from "express";
-import TrackPost, { tpResponse } from "../../models/TrackPost.ts";
+import TrackPost, { tpResponse, tpResponseForUpload } from "../../models/TrackPost.ts";
 import TrackPostReply, { ITrackPostReply } from "../../models/TrackPostReply.ts";
 import { serverErrorLogger } from "../../loggers.ts";
 import { PostTrackPostErrors, noticePostTrackPostNoUser } from "../../validations/errors.ts";
@@ -23,6 +23,6 @@ export const postReplyHandler: RequestHandler = async (req, res, next) => {
     res.status(422).json(err);
     return;
   }
-  const response = await tpResponse(reply);
+  const response = await tpResponseForUpload(reply);
   res.status(201).json(response);
 };

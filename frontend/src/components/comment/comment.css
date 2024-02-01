@@ -13,10 +13,7 @@ button:active {
 }
 
 .comment-thread {
-  width: 620px;
   max-width: 40rem;
-  padding: 0 30px;
-  background-color: transparent;
   border: 1px solid transparent;
 }
 
@@ -81,8 +78,7 @@ details.comment summary {
 }
 
 .comment-heading::after {
-  position: absolute;
-  right: 2.7rem;
+  margin-left: auto;
   color: var(--color-four);
 }
 
