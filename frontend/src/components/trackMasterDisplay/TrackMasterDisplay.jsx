@@ -15,9 +15,11 @@ const TrackMasterDisplay = ({track}) => {
             <img src={FaceSmall} alt="" />
           </div>
         </div>
-        <div className="button-container">
-          <AudioPlayer />
-          <button>Download</button>
+        <div className="audio-button-container">
+          <div className="audio-player-container">
+            <AudioPlayer />
+            <button>Download</button>
+          </div>
         </div>
       </div>
     </div>
