@@ -39,12 +39,12 @@ function NavBar() {
   };
 
   return (
-    <di className="nav-bar">
+    <div className="nav-bar">
       <Link id="logo" to={'/'}>
         <i className="fa-solid fa-compact-disc fa-spin"></i>TRACKshack
       </Link>
       {getLinks()}
-    </di>
+    </div>
   );
 }
 
