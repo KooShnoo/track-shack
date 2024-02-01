@@ -3,15 +3,17 @@ import TrackMasterDisplay from '../trackMasterDisplay/TrackMasterDisplay';
 import './trackShow.css';
 import CommentsContainer from '../commentsContainer/CommentsContainer';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getTrack } from '../../store/trackPost';
 import { useParams } from 'react-router-dom';
+import AudioResponseForm from '../audioResponseForm/AudioResponseForm';
 
 const TrackShow = () => {
   const dispatch = useDispatch();
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
   console.log('IN TRACK SHOW', trackId)
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(()=> {
     dispatch(getTrack(trackId))
@@ -26,7 +28,9 @@ const TrackShow = () => {
         </div>
       </div>
       <div className="track-right-container">
-        <CommentsContainer trackId={trackId} />
+        <button onClick={()=> setShowForm(true)}>Create Audio Reply</button>
+        <button onClick={()=> setShowForm(false)}>Create Comment</button>
+        {showForm ? <AudioResponseForm trackId={trackId} />: <CommentsContainer trackId={trackId} />}
       </div>
     </div>
   );

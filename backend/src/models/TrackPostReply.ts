@@ -3,7 +3,6 @@ import { neededInstrumentTags } from "./TrackPost.ts";
 const {ObjectId, String} = SchemaTypes;
 
 export interface ITrackPostReplySchema {
-  title          : string
   description    : string
   audioMasterSrc : string
   audioStemsSrc  : string
@@ -15,11 +14,10 @@ export type ITrackPostReply = ITrackPostReplySchema & Document
 
 const trackPostReplySchema = new Schema<ITrackPostReply>(
   {
-  title         : {type: String, required: true},
   description   : {type: String, required: true},
   audioMasterSrc: {type: String, required: true},
   audioStemsSrc : {type: String, required: true},
-  instrumentTag : {type: String, enum: neededInstrumentTags, required: true},
+  instrumentTag : {type: String, enum: neededInstrumentTags},
   author        : {type: ObjectId, ref: 'User', required: true},
 }, 
 {timestamps: true}

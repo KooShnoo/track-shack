@@ -25,6 +25,7 @@ async function jwtFetch(url, options = {}) {
   //   options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
   // }
 
+
   //DAVID's ADJUSTMENT
   if (options.method.toUpperCase() !== 'GET' && !(options.body instanceof FormData)) {
     // If the body is not FormData, set the "Content-Type" header to "application/json"
@@ -37,7 +38,7 @@ async function jwtFetch(url, options = {}) {
 
   // Call fetch with the url and the updated options hash.
   const res = await fetch(url, options);
-
+  debugger
   // If the response status code is 400 or above, then throw an error with the
   // error being the response.
   if (res.status >= 400) throw res;
