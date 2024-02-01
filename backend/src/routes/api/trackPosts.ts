@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
   // }, {path: 'responses'}]);
   await Promise.all(tps.map(tp => tpResponse(tp, true)));
   // mapping of trackpost ids to trackposts
-  const tpMap = tps.reduce( (acc: Record<number, ITrackPost>, tp) => {
+  const tpMap = tps.reduce((acc: Record<number, ITrackPost>, tp) => {
     acc[tp.id] = tp;
     return acc;
   }, {});
@@ -31,7 +31,8 @@ router.get('/:trackId', async (req, res, next) => {
       populate: {path: 'author'}
     }, {path: 'responses'}]);
     if (!tp) return res.status(404).json({error: "no such track post"});
-    return res.json(await tpResponse(tp));
+    await tpResponse(tp, true);
+    return res.json(tp);
   } catch {
     return res.status(404).json({error: "no such track post"});
   }
