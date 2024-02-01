@@ -46,15 +46,19 @@
 
 .image-container {
   border: solid 5px var(--color-four);
-  max-height: 300px;
-  max-width: 300px;
+  max-height: 200px;
+  max-width: 200px;
   min-width: 200px;
   min-height: 200px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .image-container > img {
-  object-fit: contain;
+  aspect-ratio: 1/1;
+  max-width:100%;
+  object-fit: cover;
 }
 
 .button-container {
