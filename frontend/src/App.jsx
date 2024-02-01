@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-import { AuthRoute } from "./components/Routes/Routes";
-import NavBar from "./components/NavBar/NavBar";
-import Splash from "./components/Splash/Splash";
-import MainPage from "./components/MainPage/MainPage";
-import LoginForm from "./components/SessionForms/LoginForm";
-import SignupForm from "./components/SessionForms/SignupForm";
-import TrackPostCreate from "./components/TrackPostCreate/TrackPostCreate.jsx";
-import TrackShow from "./components/trackshow/TrackShow";
-import About from "./components/about/About.jsx";
-import createComment from "./components/createComment/CreateComment.jsx";
+import { AuthRoute } from './components/Routes/Routes';
+import NavBar from './components/NavBar/NavBar';
+import Splash from './components/Splash/Splash';
+import MainPage from './components/MainPage/MainPage';
+import LoginForm from './components/SessionForms/LoginForm';
+import SignupForm from './components/SessionForms/SignupForm';
+import TrackPostCreate from './components/TrackPostCreate/TrackPostCreate.jsx';
+import TrackShow from './components/trackshow/TrackShow';
+import About from './components/about/About.jsx';
+import createComment from './components/createComment/CreateComment.jsx';
 
-import { getCurrentUser } from "./store/session";
+import { getCurrentUser } from './store/session';
 
 const Layout = () => {
   return (
     <>
       <NavBar />
-      {/* <MainPage /> */}
+      <MainPage />
       <Outlet />
     </>
   );
@@ -30,32 +30,32 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: (
           <>
-            {/* <AuthRoute component={MainPage} /> */}
+            <AuthRoute component={MainPage} />
             <Splash />
           </>
         ),
       },
       {
-        path: "login",
+        path: 'login',
         element: <AuthRoute component={LoginForm} />,
       },
       {
-        path: "signup",
+        path: 'signup',
         element: <AuthRoute component={SignupForm} />,
       },
       {
-        path: "createTrackPost",
+        path: 'createTrackPost',
         element: <TrackPostCreate />,
       },
       {
-        path: "trackPosts/:trackId",
+        path: 'trackPosts/:trackId',
         element: <TrackShow />,
       },
       {
-        path: "about",
+        path: 'about',
         element: <About />,
       },
     ],
