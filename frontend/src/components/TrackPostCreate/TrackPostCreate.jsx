@@ -37,11 +37,11 @@ const TrackPostCreate = () => {
       stems
     );
 
-      if(trackPostId) {
-        navigate(`/trackPosts/${trackPostId}`)
-      } else {
-        console.log(trackPostId)
-      }
+    if(trackPostId) {
+      navigate(`/trackPosts/${trackPostId}`)
+    } else {
+      console.log(trackPostId)
+    }
 
   }
 
