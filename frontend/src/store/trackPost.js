@@ -95,7 +95,7 @@ const trackPostsSlice = createSlice({
     initialState: {},
     reducers: {
         receiveTracks: (state, action) => {
-            debugger
+            // debugger
             return {...state, ...action.payload}
         },
         receiveTrack: (state, action) => {

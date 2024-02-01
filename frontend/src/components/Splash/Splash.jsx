@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import TrackPostCreate from '../TrackPostCreate/TrackPostCreate';
+import TrackPostsIndex from '../TrackIndex/TrackPostsIndex';
 import './Splash.css';
 import { useDispatch } from 'react-redux';
 import { getTracks } from '../../store/trackPost';
@@ -40,7 +41,7 @@ const SplashPage = () => {
             </div>
           </div>
           <div className="feed-container">
-            {/* <p>The index list of posts will go here</p> */}
+            {<TrackPostsIndex />}
           </div>
         </div>
         <div className="right-container">
