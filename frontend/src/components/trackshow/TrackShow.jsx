@@ -12,8 +12,6 @@ const TrackShow = () => {
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
 
-  if (track) console.log('YIKOOOOOO', track);
-
   useEffect(() => {
     dispatch(getTrack(trackId));
   }, [dispatch]);

@@ -18,7 +18,7 @@ export interface ITrackPostSchema {
   genreTags?: typeof genreTags[number][];
   author: ObjectId
   // responses: [ReponseSchema]
-  // comments: [commentsSchema]
+  // comments: [objectIds]
 }
 
 export type ITrackPost = ITrackPostSchema & Document

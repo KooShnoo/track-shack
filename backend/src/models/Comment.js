@@ -1,4 +1,4 @@
-import mongoose, { model } from 'mongoose'
+import mongoose, { model } from 'mongoose';
 
 
 const replySchema = new mongoose.Schema({
@@ -11,24 +11,15 @@ const replySchema = new mongoose.Schema({
         maxlength: 500,
         required: true 
     }
-})
+});
 
-const Reply = mongoose.model("Reply", replySchema)
+const Reply = mongoose.model("Reply", replySchema);
 
 
 const commentSchema = new mongoose.Schema({
-    username: {
-        type: String, 
-        required: true 
-    },
-   authorId: {
+    author: {
         type: mongoose.Schema.Types.ObjectId, // Change to ObjectId for relational key
         ref: 'User', // Reference to the User model, replace with your actual model name
-        required: true 
-    },
-    trackPostId: {
-        type: mongoose.Schema.Types.ObjectId, // Change to ObjectId for relational key
-        ref: 'TrackPost', // Reference to the TrackPost model, replace with your actual model name
         required: true 
     },
     body: {
@@ -40,5 +31,5 @@ const commentSchema = new mongoose.Schema({
 
 }, {timestamps: true }); 
 
-module.exports = mongoose.model("Comment", commentSchema)
+module.exports = mongoose.model("Comment", commentSchema);
 
