@@ -37,7 +37,7 @@
   height: 2.5rem;
 }
 
-.button-container > button {
+.comment-button {
   border: none;
   font-family: manrope;
   display: flex;
@@ -57,8 +57,7 @@
   min-width: 120px;
 }
 
-
-.comment-body > button {
+.reply-button {
   margin-top: 10px;
   border: none;
   font-family: manrope;
@@ -77,14 +76,13 @@
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-.button-container:hover > button,
-.comment-body:hover > button {
+.comment-button:hover,
+.reply-button:hover {
   background: rgb(249, 163, 64);
   box-shadow: 5px 15px 30px 10px rgba(123, 86, 44, 0.541);
 }
-
-.button-container:active > button,
-.comment-body:active > button {
+.comment-button:active,
+.reply-button:active {
   background: rgb(197, 129, 51);
   box-shadow: 5px 15px 30px rgba(208, 139, 60, 0.541);
 }

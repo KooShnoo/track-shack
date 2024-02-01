@@ -4,20 +4,18 @@ import './createComment.css';
 import { createComment } from '../../store/comment';
 import { useState } from 'react';
 
-
 const CreateComment = () => {
-  const dispatch = useDispatch()
-  const [body, setBody] = useState('')
-  const trackPosts = useSelector(state => state.trackPosts)
-  
-  const handleSubmit = async () => {
-    if(trackPosts) {
-      const trackId = Object.keys(trackPosts)[0]
-      dispatch(createComment({body: body}, trackId))
-      setBody('')
-    }
-  }
+  const dispatch = useDispatch();
+  const [body, setBody] = useState('');
+  const trackPosts = useSelector((state) => state.trackPosts);
 
+  const handleSubmit = async () => {
+    if (trackPosts) {
+      const trackId = Object.keys(trackPosts)[0];
+      dispatch(createComment({ body: body }, trackId));
+      setBody('');
+    }
+  };
 
   return (
     <div className="createCommentContainer">
@@ -33,7 +31,9 @@ const CreateComment = () => {
           onChange={(e) => setBody(e.target.value)}
         ></textarea>
         <div className="button-container">
-          <button onClick={handleSubmit}>Comment!</button>
+          <button className="comment-button" onClick={handleSubmit}>
+            Comment!
+          </button>
         </div>
       </div>
     </div>

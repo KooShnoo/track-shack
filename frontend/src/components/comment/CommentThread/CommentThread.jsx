@@ -15,7 +15,9 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
 
       <div className="comment-body">
         <p>{content}</p>
-        <button type="button">Reply</button>
+        <button className="reply-button" type="button">
+          Reply
+        </button>
       </div>
       {/* Add nested CommentThread components for replies if needed */}
     </details>

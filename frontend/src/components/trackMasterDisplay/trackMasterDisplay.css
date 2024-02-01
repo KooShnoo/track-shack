@@ -66,12 +66,12 @@
   min-width: 120px;
 }
 
-.audio-player-container:hover a > button {
+.audio-player-button:hover {
   background: rgb(249, 163, 64);
   box-shadow: 5px 15px 30px 10px rgba(123, 86, 44, 0.541);
 }
 
-.audio-player-container:active a > button {
+.audio-player-button:active {
   background: rgb(197, 129, 51);
   box-shadow: 5px 15px 30px rgba(208, 139, 60, 0.541);
 }
