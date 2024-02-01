@@ -7,26 +7,23 @@ import { useEffect } from 'react';
 import { getTrack } from '../../store/trackPost';
 import { useParams } from 'react-router-dom';
 
-
 const TrackShow = () => {
-
   const dispatch = useDispatch();
-  const {trackId} = useParams()
-  const track = useSelector(state => state.trackPosts[trackId])
+  const { trackId } = useParams();
+  const track = useSelector((state) => state.trackPosts[trackId]);
 
-  if(track) console.log('YIKOOOOOO', track)
+  if (track) console.log('YIKOOOOOO', track);
 
-  useEffect(()=> {
-    dispatch(getTrack(trackId))
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getTrack(trackId));
+  }, [dispatch]);
 
   return (
     <div className="track-show-page">
       <div className="left-track-container">
-        <h1>looking for little guitar boys</h1>
-        <TrackMasterDisplay track={track}/>
+        <TrackMasterDisplay track={track} />
         <div className="audio-responses-container">
-          <AudioResponse />
+          <AudioResponse src={'empty'} />
         </div>
       </div>
       <div className="track-right-container">
