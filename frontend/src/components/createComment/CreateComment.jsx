@@ -14,6 +14,7 @@ const CreateComment = () => {
     if(trackPosts) {
       const trackId = Object.keys(trackPosts)[0]
       dispatch(createComment({body: body}, trackId))
+      setBody('')
     }
   }
 
