@@ -1,28 +1,26 @@
-import { useState } from "react";
-import "./TrackPostCreate.css";
-import { createTrack, receiveTrack } from "../../store/trackPost";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect} from "react";
-import { useNavigate } from "react-router-dom";
-import { postTrack } from "../../store/trackPost";
-
+import { useState } from 'react';
+import './TrackPostCreate.css';
+import { createTrack, receiveTrack } from '../../store/trackPost';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { postTrack } from '../../store/trackPost';
 
 const TrackPostCreate = () => {
-  const currentUser = useSelector(state => state.session.user)
+  const currentUser = useSelector((state) => state.session.user);
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState('');
+  const [description, setDescription] = useState('');
   const [audioFile, setAudioFile] = useState(null);
   const [stems, setStems] = useState(null);
-  const [image, setImage] = useState(null)
-  const [errors, setErrors] = useState(null)
+  const [image, setImage] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   const handleSubmit = async () => {
-
     let trackPostId = await postTrack(
       {
         title,
@@ -37,21 +35,21 @@ const TrackPostCreate = () => {
       stems
     );
 
-    if(trackPostId) {
-      navigate(`/trackPosts/${trackPostId}`)
+    if (trackPostId) {
+      navigate(`/trackPosts/${trackPostId}`);
     } else {
-      console.log(trackPostId)
+      console.log(trackPostId);
     }
-
-  }
-
+  };
 
   return (
     <div className="createPage">
       <div className="TrackPostCreateContainer">
         <div id="create-form-header">
           <h1>Post a new Track!</h1>
-          <button type="submit" onClick={handleSubmit}>Create Track</button>
+          <button type="submit" onClick={handleSubmit}>
+            Create Track
+          </button>
         </div>
         <p className="label">Title</p>
         <p className="descriptor">(Name the track headed for the shack!)</p>
@@ -120,11 +118,12 @@ const TrackPostCreate = () => {
             <div className="image">
               <label htmlFor="image" className="audio-label">
                 <p>Upload Artwork</p>
-                <input 
-                  type="file" 
-                  id="image" 
-                  className="track-input-file" 
-                  onChange={e => setImage(e.target.files[0])} />
+                <input
+                  type="file"
+                  id="image"
+                  className="track-input-file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
               </label>
             </div>
           </div>
