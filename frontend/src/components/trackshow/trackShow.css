@@ -1,5 +1,5 @@
 .track-show-page {
-  margin-top: 3rem;
+  margin-top: 1rem;
   height: 80vh;
   display: flex;
   margin-left: 6rem;
@@ -32,6 +32,7 @@
   margin-right: 2rem;
 }
 .track-items {
+  margin-top: 4rem;
   display: flex;
 }
 
@@ -40,6 +41,7 @@
   padding: 1rem 1rem 1rem 1rem;
   color: white;
   font-size: 1.1rem;
+  min-width: 580px;
 }
 
 .image-container {
