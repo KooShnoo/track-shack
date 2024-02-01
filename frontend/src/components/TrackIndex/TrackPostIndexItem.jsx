@@ -1,17 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { getTrack } from '../../store/trackPost';
 import './TrackPostIndexItem.css';
 
 
 const TrackPostsIndexItem = ({trackPost}) => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   console.log('INDEX ITEM', trackPost._id)
-  //   dispatch(getTrack(trackPost.id));
-  // }, [dispatch, trackPost.id]);
 
   return (
     <div className='post-card-container'>
@@ -21,7 +12,7 @@ const TrackPostsIndexItem = ({trackPost}) => {
         <p>{trackPost?.subtitle}</p>
       </div>
       <Link to={`trackPosts/${trackPost?._id}`} >
-        <button id='show-page-button'>Go to Project <i class="fa-solid fa-arrow-right-long"></i></button>
+        <button id='show-page-button'>Go to Project <i className="fa-solid fa-arrow-right-long"></i></button>
       </Link>
     </div>
   );

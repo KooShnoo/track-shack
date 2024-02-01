@@ -6,6 +6,9 @@ import AudioPlayer from '../audio/AudioPlayer';
 
 
 const TrackMasterDisplay = ({track}) => {
+
+  if (track) console.log('TRACK MASTER DISPLAY IMAGE SOURCE', track.albumArtSrc)
+
   return (
     <div>
       <div className="track-info-container">
@@ -15,7 +18,7 @@ const TrackMasterDisplay = ({track}) => {
             <p className="body">{track?.description}</p>
           </div>
           <div className="image-container">
-            <img src={FaceSmall} alt="" />
+            <img src={track?.albumArtSrc} alt="" />
           </div>
         </div>
         <div className="button-container">

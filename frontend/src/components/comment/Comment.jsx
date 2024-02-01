@@ -7,7 +7,7 @@ const Comment = ({ comments }) => {
       {comments?.map((comment) => {
           return <CommentThread
             id={comment?._id}
-            author={comment?.author.username}
+            author={comment?.author?.username}
             key={comment?._id}
             timeAgo={comment?.createdAt}
             content={comment?.body}
