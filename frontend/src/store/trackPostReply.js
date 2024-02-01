@@ -19,12 +19,13 @@ export const postTrackReply = async (trackPostId, trackPostReply, master, stems)
       }})();
   if (!res) return null;
   /** @type {import('../../../backend/src/models/TrackPost').TpReplyResponseForUpload | {error: string}} */
-  const soba = await res.json()
-  if ('error' in soba) return null;
+  const response = await res.json()
+  if ('error' in response) return null;
   await Promise.all([
-      awsUploadFile(soba.audioMasterUploadURL, master),
-      awsUploadFile(soba.audioStemsUploadURL, stems),
+      awsUploadFile(response.audioMasterUploadURL, master),
+      awsUploadFile(response.audioStemsUploadURL, stems),
       // soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
   ]);
-  return soba.id
+  return response.trackPostReply 
 }
+

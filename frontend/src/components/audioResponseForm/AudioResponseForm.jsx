@@ -1,44 +1,34 @@
-import { useState } from 'react';
-import './TrackPostCreate.css';
-import { createTrack, receiveTrack } from '../../store/trackPost';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { postTrack } from '../../store/trackPost';
+import { useState } from "react";
+import "./TrackPostCreate.css";
+// import { useNavigate } from "react-router-dom";
+// import { postTrack } from "../../store/trackPost";
+import { postTrackReply } from "../../store/trackPostReply";
+import { receiveAudioReply } from "../../store/trackPost";
 
-const TrackPostCreate = () => {
-  const currentUser = useSelector((state) => state.session.user);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-  const [description, setDescription] = useState('');
+const AudioResponseForm = () => {
+  const [description, setDescription] = useState("");
   const [audioFile, setAudioFile] = useState(null);
   const [stems, setStems] = useState(null);
-  const [image, setImage] = useState(null);
-  // const [errors, setErrors] = useState(null);
+  const dispatch = useDispatch()
+
 
   const handleSubmit = async () => {
-    let trackPostId = await postTrack(
-      {
-        title,
-        subtitle,
-        description,
-        audioMasterSrc: audioFile.name,
-        audioStemsSrc: stems.name,
-        albumArtSrc: image?.name || null,
-      },
-      image || null,
-      audioFile,
-      stems
-    );
+    try {
+        const audioResponse = await postTrackReply(
+          {
+            description,
+            audioMasterSrc: audioFile.name,
+            audioStemsSrc: stems.name,
+          },
+          audioFile,
+          stems
+        );
+        if(audioResponse) {
+          dispatch(receiveAudioReply(audioResponse))
+        }
 
-    if (trackPostId) {
-      navigate(`/trackPosts/${trackPostId}`);
-    } else {
-      console.log(trackPostId);
+    } catch (error) {
+        console.log('AUDIO RESPONSE', error)
     }
   };
 
@@ -46,7 +36,7 @@ const TrackPostCreate = () => {
     <div className="createPage">
       <div className="TrackPostCreateContainer">
         <div id="create-form-header">
-          <h1>Post a new Track!</h1>
+          <h1>Create an Audio Response!</h1>
           <button type="submit" onClick={handleSubmit}>
             Create Track
           </button>
@@ -54,26 +44,9 @@ const TrackPostCreate = () => {
         <p className="label">Title</p>
         <p className="descriptor">(Name the track headed for the shack!)</p>
         <div className="inputContainer">
-          <textarea
-            className="track-input"
-            rows="2"
-            cols="100"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
         </div>
         <p className="label">SubTitle</p>
         <p className="descriptor">(Let us know what your project needs!)</p>
-        <div className="inputContainer">
-          <textarea
-            className="track-input"
-            rows="2"
-            cols="100"
-            id="subtitle"
-            onChange={(e) => setSubtitle(e.target.value)}
-          />
-        </div>
         <p className="label">Description</p>
         <p className="descriptor">(Tell us about your project!)</p>
         <div className="inputContainer description">
@@ -146,4 +119,4 @@ const TrackPostCreate = () => {
   );
 };
 
-export default TrackPostCreate;
+export default AudioResponseForm;

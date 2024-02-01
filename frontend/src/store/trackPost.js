@@ -104,11 +104,15 @@ const trackPostsSlice = createSlice({
         },
             receiveComment: (state, action) => {
             state[action.payload[1]].comments.push(action.payload[0])
+        },
+        receiveAudioReply: (state, action) => {
+            debugger
+            state.responses[action.payload._id] = action.payload
         }
     }
 })
 
-export const {receiveTracks, receiveTrack, clearTracks, receiveComment} = trackPostsSlice.actions
+export const {receiveTracks, receiveTrack, clearTracks, receiveComment, receiveAudioReply} = trackPostsSlice.actions
 
 export const trackErrorsReducer = trackErrorsSlice.reducer
 
