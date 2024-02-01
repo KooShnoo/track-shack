@@ -31,11 +31,11 @@ router.get('/', async (req, res, _next) => {
 router.get('/:trackId', async (req, res, _next) => {
   const tp = await TrackPost.findById(req.params.trackId).populate({
     path: 'comments',
-    populate: { path: 'author' }
+    populate: {path: 'author'}
   });
 
   if (!tp) return res.status(404).json({error: "no such track post"});
-  //populate the comments array with the full comments objects, replacing the object Id's
+
   serverLogger('oogas', tp);
   res.json(await tpResponse(tp));
 });

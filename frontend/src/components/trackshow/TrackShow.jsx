@@ -12,9 +12,10 @@ const TrackShow = () => {
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
 
-  useEffect(() => {
-    dispatch(getTrack(trackId));
-  }, [dispatch]);
+
+  useEffect(()=> {
+    dispatch(getTrack(trackId))
+  },[dispatch, trackId])
 
   return (
     <div className="track-show-page">
@@ -25,7 +26,7 @@ const TrackShow = () => {
         </div>
       </div>
       <div className="track-right-container">
-        <CommentsContainer />
+        <CommentsContainer trackId={trackId} />
       </div>
     </div>
   );

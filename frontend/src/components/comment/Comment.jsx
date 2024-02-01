@@ -1,27 +1,19 @@
-import './comment.css';
-import CommentThread from './CommentThread/CommentThread';
+import "./comment.css";
+import CommentThread from "./CommentThread/CommentThread";
 
-const Comment = () => {
+const Comment = ({ comments }) => {
+  console.log("IN COMMENT", comments);
   return (
     <div className="comment-thread">
-      <CommentThread
-        id="comment-one"
-        author="commentor one"
-        timeAgo="4 days ago"
-        content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ab eos minus delectus iusto aut nihil voluptatum, aliquam illo pariatur officia ipsum. Vel, eius veritatis quidem sit sed voluptas et!"
-      />
-      <CommentThread
-        id="comment-two"
-        author="jiggbly two"
-        timeAgo="4 days ago"
-        content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ab eos minus delectus iusto aut nihil voluptatum, aliquam illo pariatur officia ipsum. Vel, eius veritatis quidem sit sed voluptas et!"
-      />
-      <CommentThread
-        id="comment-three"
-        author="stumpleton three"
-        timeAgo="4 days ago"
-        content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ab eos minus delectus iusto aut nihil voluptatum, aliquam illo pariatur officia ipsum. Vel, eius veritatis quidem sit sed voluptas et!"
-      />
+      {comments?.map((comment) => {
+          return <CommentThread
+            id={comment._id}
+            author={comment.author.username}
+            key={comment._id}
+            timeAgo={comment.createdAt}
+            content={comment.body}
+          />
+      })}
     </div>
   );
 };
