@@ -12,7 +12,8 @@ export const getTracks = () => async dispatch => {
         }
     } catch (err) {
         let errors = err.json()
-        dispatch()
+        console.log('FROM GET TRACKS THUNK', errors)
+        // dispatch()
     }
 }
 
@@ -92,7 +93,8 @@ const trackPostsSlice = createSlice({
     initialState: {},
     reducers: {
         receiveTracks: (state, action) => {
-            return action.payload.trackPosts
+            debugger
+            return {...state, ...action.payload}
         },
         receiveTrack: (state, action) => {
             // debugger

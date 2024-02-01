@@ -2,8 +2,7 @@ import './trackMasterDisplay.css';
 import FaceSmall from './Face_Small.jpg';
 import AudioPlayer from '../audio/AudioPlayer';
 
-const TrackMasterDisplay = ({ track }) => {
-  console.log('TRACK', track);
+const TrackMasterDisplay = ({track}) => {
   return (
     <div>
       <div className="track-info-container">

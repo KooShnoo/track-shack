@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TrackPostCreate from '../TrackPostCreate/TrackPostCreate';
 import './Splash.css';
+import { useDispatch } from 'react-redux';
+import { getTracks } from '../../store/trackPost';
 
 const SplashPage = () => {
   const [toggleForm, setToggleForm] = useState(false);
-
+  const dispatch = useDispatch()
   const handleCreateForm = () => { 
     setToggleForm(!toggleForm);
   };
+
+  useEffect(() => {
+    console.log('YOOOOOOO')
+    dispatch(getTracks())
+  },[dispatch])
 
   return (
     <div className="splash-base">
