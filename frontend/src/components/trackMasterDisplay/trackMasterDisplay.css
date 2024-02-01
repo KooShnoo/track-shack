@@ -1,3 +1,36 @@
+.track-info-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.track-items {
+  margin-top: 4rem;
+  display: flex;
+}
+
+.description-container {
+  border: solid 2px var(--color-four);
+  padding: 1rem 1rem 1rem 1rem;
+  color: white;
+  font-size: 1.1rem;
+  max-width: 100%;
+}
+
+.image-container {
+  border: solid 5px var(--color-four);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.image-container > img {
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  object-fit: cover;
+}
+
 .audio-button-container {
   display: flex;
   flex-direction: column;
