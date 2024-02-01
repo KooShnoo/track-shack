@@ -16,11 +16,11 @@ const TrackPostsIndexItem = ({trackPost}) => {
     <div className='post-card-container'>
       <img id='album-img' src={trackPost?.albumArtSrc} alt="album cover" />
       <div id='post-contents'>
-        <h5>{trackPost?.title}</h5>
+        <Link to={`trackPosts/${trackPost?.id}`} ><h1>{trackPost?.title}</h1></Link>
         <p>{trackPost?.subtitle}</p>
       </div>
-      <Link to={`trackPosts/${trackPost?.id}`} className='show-button'>
-        <button>Go to Track</button>
+      <Link to={`trackPosts/${trackPost?.id}`} >
+        <button id='show-page-button'>Go to Project <i class="fa-solid fa-arrow-right-long"></i></button>
       </Link>
     </div>
   );
