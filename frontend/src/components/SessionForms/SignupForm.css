@@ -1,6 +1,6 @@
 .signup-form{
   border: 2px solid blue;
-
+   position: relative;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
