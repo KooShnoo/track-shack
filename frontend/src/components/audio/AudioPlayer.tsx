@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './AudioPlayer.css';
-import pause from '../../../public/pause.svg';
-import play from '../../../public/play.svg';
+import pause from '/pause.svg';
+import play from '/play.svg';
 
 const AudioPlayer = ({ src }) => {
   const [isPlaying, setIsPlaying] = useState(false);

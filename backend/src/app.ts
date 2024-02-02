@@ -31,13 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // auth
 app.use(passport.initialize());
 
-// Security Middleware
-if (!isProduction) {
-  // Enable CORS only in development because React will be on the React
-  // development server (http://localhost:5173). (In production, the Express 
-  // server will serve the React files statically.)
-  app.use(cors());
-}
+app.use(cors());
 
 app.use(
   csurf({

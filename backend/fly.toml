@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for track-shack on 2024-02-01T20:24:43-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+# don't forget to run `cat .ENV | fly secrets import`, we expect .env to have something like:
+# DEBUG=backend:*
+# MONGO_URI=mongodb+srv:// blach blach
+# SECRET_OR_KEY=blach blach 394fh3j4==
+# AWS_ACCESS_KEY_ID=blah blah
+# AWS_SECRET_ACCESS_KEY=/blah blah + blah blah
+
+app = 'track-shack'
+primary_region = 'sjc'
+
+[build]
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024

@@ -30,7 +30,7 @@ const About = () => {
             </div>
             <div className="img-container">
               <img
-                src="../../../public/aboutPageAssets/David2.jpeg"
+                src="/aboutPageAssets/David2.jpeg"
                 alt="photo"
               />
             </div>
@@ -52,7 +52,7 @@ const About = () => {
             </div>
             <div className="img-container">
               <img
-                src="../../../public/aboutPageAssets/David2.jpeg"
+                src="/aboutPageAssets/David2.jpeg"
                 alt="photo"
               />
             </div>
@@ -74,7 +74,7 @@ const About = () => {
             </div>
             <div className="img-container">
               <img
-                src="../../../public/aboutPageAssets/David2.jpeg"
+                src="/aboutPageAssets/David2.jpeg"
                 alt="photo"
               />
             </div>
@@ -96,7 +96,7 @@ const About = () => {
             </div>
             <div className="img-container">
               <img
-                src="../../../public/aboutPageAssets/David2.jpeg"
+                src="/aboutPageAssets/David2.jpeg"
                 alt="photo"
               />
             </div>
