@@ -14,6 +14,7 @@ const TrackShow = () => {
   const track = useSelector((state) => state.trackPosts[trackId]);
   console.log('IN TRACK SHOW', trackId)
   const [showForm, setShowForm] = useState(false)
+  const audioResponses = track?.responses
 
   useEffect(()=> {
     dispatch(getTrack(trackId))
@@ -24,7 +25,7 @@ const TrackShow = () => {
       <div className="left-track-container">
         <TrackMasterDisplay track={track} />
         <div className="audio-responses-container">
-          <AudioResponse src={'empty'} />
+          {audioResponses?.map(response => <AudioResponse response={response} key={response._id}/>)}
         </div>
       </div>
       <div className="track-right-container">

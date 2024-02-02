@@ -1,11 +1,28 @@
 .audio-responses-container {
-  /* height: 100px; */
+  height: 300px;
   /* width: 100%; */
   display: flex;
+  flex-direction: column;
   margin-top: 2rem;
   margin-left: 2rem;
   margin-right: 2rem;
   justify-content: left;
+  overflow: auto;
+}
+.leftSide {
+  width: 75%;
+}
+
+.audio-response-container {
+  display: flex;
+}
+
+.dl-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
 }
 
 .response-text {
@@ -19,3 +36,5 @@
   /* font-family: manrope; */
   font-size: 1.2rem;
 }
+
+

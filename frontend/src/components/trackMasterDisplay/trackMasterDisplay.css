@@ -3,11 +3,16 @@
   flex-direction: column;
   margin-left: 2rem;
   margin-right: 2rem;
+  max-width: 100%;
+  min-width: 50%;
+  /* flex-wrap: wrap; */
 }
 
 .track-items {
   margin-top: 4rem;
   display: flex;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .description-container {
@@ -26,6 +31,7 @@
 }
 
 .image-container > img {
+  /* flex-shrink: 1; */
   aspect-ratio: 1/1;
   max-width: 100%;
   object-fit: cover;
@@ -44,6 +50,8 @@
   justify-content: space-between;
   align-items: center;
   margin-left: 1rem;
+  /* width: 1000px; */
+  box-sizing: border-box;
 }
 
 .audio-player-button {
@@ -82,4 +90,9 @@
 .audio-player-button:active {
   background: rgb(197, 129, 51);
   box-shadow: 5px 15px 30px rgba(208, 139, 60, 0.541);
+}
+
+.description-container .body {
+  overflow: hidden;
+
 }

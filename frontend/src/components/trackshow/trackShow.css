@@ -7,7 +7,7 @@
   margin-right: 6rem;
 }
 
-.left-track-container {
+.track-show-page .left-track-container {
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
@@ -16,6 +16,7 @@
   backdrop-filter: blur(11px);
   min-height: 100px;
   max-width: 60%;
+  min-width: 50%;
 }
 
 .left-track-container > h1 {
