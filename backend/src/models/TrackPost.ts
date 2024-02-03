@@ -116,7 +116,8 @@ export async function tpResponseForUpload(
   } else {
     return {
       id: tp.id,
-      trackPostReply: tp,
+      // damn i should not have used union types like this, yeesh. lesson learned. this is not how you do generics in js :/
+      trackPostReply: await tpResponse(tp) as ITrackPostReply,
       ...(albumArtUploadURL && { albumArtUploadURL }),
       audioMasterUploadURL,
       audioStemsUploadURL,
