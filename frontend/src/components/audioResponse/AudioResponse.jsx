@@ -4,7 +4,7 @@ import AudioPlayer from '../audio/AudioPlayer';
 
 const AudioResponse = ({response}) => {
 
-  if (response) console.log(response)
+  // if (response) console.log(response)
 
   return (
     <div className="audio-response-container">

@@ -1,15 +1,10 @@
 import { useState } from 'react';
 import './TrackPostCreate.css';
-import { createTrack, receiveTrack } from '../../store/trackPost';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postTrack } from '../../store/trackPost';
 
 const TrackPostCreate = () => {
-  const currentUser = useSelector((state) => state.session.user);
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');

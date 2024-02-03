@@ -11,7 +11,7 @@ const Comment = ({ comments }) => {
         return (
           <CommentThread
             id={comment?._id}
-            author={comment?.author?.username}
+            author={comment?.author}
             key={comment?._id}
             timeAgo={dayjs(comment?.createdAt).fromNow()}
             content={comment?.body}

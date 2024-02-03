@@ -1,4 +1,13 @@
+import {useSelector} from 'react-redux'
+
+
 const CommentThread = ({ id, author, timeAgo, content }) => {
+  const currentUser = useSelector(state => state.session.user)
+
+  // console.log('AUTHOR', id)
+  console.log('CURRENTUSER', currentUser?._id === author?._id)
+
+
   return (
     <details open className="comment" id={id}>
       <a href={`#${id}`} className="comment-border-link">
@@ -7,11 +16,13 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
       <summary>
         <div className="comment-heading">
           <div className="comment-info">
-            <a href="#">{author}</a>
+            <a href="#">{author?.username}</a>
             <p>{`${timeAgo}`}</p>
           </div>
         </div>
       </summary>
+
+        {currentUser?._id === author?._id && <p>DELETE</p>}
 
       <div className="comment-body">
         <p>{content}</p>

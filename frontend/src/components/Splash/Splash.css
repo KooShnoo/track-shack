@@ -45,7 +45,8 @@
   margin-left: 10px;
   margin-right: 10px;
   width: 50%;
-  overflow: auto;
+  height: 788px;
+  overflow: scroll;
   /* transition: transform 0.5s ease;  */
 }
 
