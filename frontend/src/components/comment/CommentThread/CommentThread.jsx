@@ -1,12 +1,13 @@
-import {useSelector} from 'react-redux'
-
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { deleteComment } from "../../../store/comment";
+import { useDispatch } from "react-redux";
 
 const CommentThread = ({ id, author, timeAgo, content }) => {
-  const currentUser = useSelector(state => state.session.user)
-
-  // console.log('AUTHOR', id)
-  console.log('CURRENTUSER', currentUser?._id === author?._id)
-
+  const currentUser = useSelector((state) => state.session.user);
+  const params = useParams();
+  const dispatch = useDispatch()
+  console.log(params);
 
   return (
     <details open className="comment" id={id}>
@@ -22,7 +23,17 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
         </div>
       </summary>
 
-        {currentUser?._id === author?._id && <p>DELETE</p>}
+      {currentUser?._id === author?._id && (
+        <p
+          className="delete"
+          onClick={()=> {
+            console.log("HIHIHIHIH");
+            dispatch(deleteComment(id, params.trackId));
+          }}
+        >
+          DELETE
+        </p>
+      )}
 
       <div className="comment-body">
         <p>{content}</p>

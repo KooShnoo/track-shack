@@ -6,7 +6,6 @@ export const selectPostsArray = (state) => Object.values(state.trackPosts);
 
 
 export const getTracks = () => async dispatch => {
-    debugger
     try {
         const res = await jwtFetch('api/trackPosts');
         if(res.ok) {
@@ -103,17 +102,20 @@ const trackPostsSlice = createSlice({
         clearTracks: () => {
             return {}
         },
-            receiveComment: (state, action) => {
+        receiveComment: (state, action) => {
             state[action.payload[1]].comments.push(action.payload[0])
         },
         receiveAudioReply: (state, action) => {
-            debugger
             state.responses[action.payload._id] = action.payload
+        },
+        removeComment: (state, action) => {
+            debugger
+            delete state[action.payload[1]][action.payload[0]] 
         }
     }
 })
 
-export const {receiveTracks, receiveTrack, clearTracks, receiveComment, receiveAudioReply} = trackPostsSlice.actions
+export const {receiveTracks, receiveTrack, clearTracks, receiveComment, removeComment, receiveAudioReply} = trackPostsSlice.actions
 
 export const trackErrorsReducer = trackErrorsSlice.reducer
 

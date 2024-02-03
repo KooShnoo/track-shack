@@ -48,7 +48,7 @@ router.delete('/:commentId', async (req, res) => {
 
     if (!deletedComment) {
       // If the comment with the specified ID was not found
-      return res.status(404).send('Comment not found');
+      return res.status(404).send('Comment not deleted');
     }
   } catch (error) {
     res.status(500).send('Internal Server Error');

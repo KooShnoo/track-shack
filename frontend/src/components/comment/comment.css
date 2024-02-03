@@ -97,3 +97,7 @@ details.comment:not([open]) .comment-heading::after {
   font-family: manrope;
   content: 'Click to show';
 }
+
+.comment .delete:hover {
+  cursor: pointer;
+}
