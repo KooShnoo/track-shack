@@ -1,12 +1,12 @@
-import {useSelector} from 'react-redux'
-
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { deleteComment } from '../../../store/comment';
+import { useDispatch } from 'react-redux';
 
 const CommentThread = ({ id, author, timeAgo, content }) => {
-  const currentUser = useSelector(state => state.session.user)
-
-  // console.log('AUTHOR', id)
-  console.log('CURRENTUSER', currentUser?._id === author?._id)
-
+  const currentUser = useSelector((state) => state.session.user);
+  const {trackId} = useParams();
+  const dispatch = useDispatch()
 
   return (
     <details open className="comment" id={id}>
@@ -22,13 +22,36 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
         </div>
       </summary>
 
-        {currentUser?._id === author?._id && <p>DELETE</p>}
+      {currentUser?._id === author?._id && (
+        <p
+          className="delete"
+          onClick={()=> {
+            dispatch(deleteComment(id, trackId));
+          }}
+        >
+          DELETE
+        </p>
+      )}
 
       <div className="comment-body">
         <p>{content}</p>
-        <button className="reply-button" type="button">
-          Reply
-        </button>
+        <div className="comment-body-buttons">
+          <button
+            className="reply-button"
+            type="button"
+            onClick={() => {
+              console.log('HIHIHIHIH');
+              dispatch(deleteComment(id, trackId));
+            }}
+          >
+            Reply
+          </button>
+          {currentUser?._id === author?._id && (
+            <button className="delete-button" type="button">
+              Delete
+            </button>
+          )}
+        </div>
       </div>
       {/* Add nested CommentThread components for replies if needed */}
     </details>

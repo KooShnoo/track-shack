@@ -1,20 +1,13 @@
-.commentContainer {
-  height: 150px;
-  width: 100%;
-  max-width: 40rem;
-  box-sizing: border-box;
-}
-
 button:hover,
 button:focus,
 button:active {
   cursor: pointer;
-  background-color: #ecf0f1;
 }
 
 .comment-thread {
   max-width: 40rem;
   border: 1px solid transparent;
+  /* overflow: auto; */
 }
 
 .comment {
@@ -96,4 +89,8 @@ details.comment:not([open]) .comment-heading::after {
   font-size: 0.8rem;
   font-family: manrope;
   content: 'Click to show';
+}
+
+.comment .delete:hover {
+  cursor: pointer;
 }

@@ -36,8 +36,8 @@
   align-items: center;
   background-color: var(--color-four);
   height: 2.5rem;
-border-bottom-right-radius: 0.5rem;
-border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
 .comment-button {
@@ -60,8 +60,14 @@ border-bottom-left-radius: 0.5rem;
   min-width: 120px;
 }
 
+.comment-body-buttons {
+  display: flex;
+}
+
+.delete-button,
 .reply-button {
   margin-top: 10px;
+  margin-right: 5px;
   border: none;
   font-family: manrope;
   display: flex;
@@ -75,16 +81,18 @@ border-bottom-left-radius: 0.5rem;
   border-radius: 15px;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   height: 20px;
-  width: 50px;
+  width: 60px;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
+.delete-button:hover,
 .comment-button:hover,
 .reply-button:hover {
   background: rgb(249, 163, 64);
   box-shadow: 5px 15px 30px 10px rgba(123, 86, 44, 0.541);
 }
-.comment-button:active,
+
+.delete-button:active .comment-button:active,
 .reply-button:active {
   background: rgb(197, 129, 51);
   box-shadow: 5px 15px 30px rgba(208, 139, 60, 0.541);

@@ -3,15 +3,16 @@
   flex-direction: column;
   margin-left: 2rem;
   margin-right: 2rem;
-  max-width: 100%;
+  max-width: 1000px;
   min-width: 50%;
-  /* flex-wrap: wrap; */
+  margin-top: 4rem;
+  box-sizing: border-box;
 }
 
 .track-items {
-  margin-top: 4rem;
   display: flex;
-  width: 100%;
+  max-width: 100%;
+  max-height: 400px;
   box-sizing: border-box;
 }
 
@@ -28,12 +29,15 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+
+  max-height: 300px;
+  max-width: 300px;
+  min-width: 100px;
+  min-height: 100px;
 }
 
 .image-container > img {
-  /* flex-shrink: 1; */
   aspect-ratio: 1/1;
-  max-width: 100%;
   object-fit: cover;
 }
 
@@ -43,6 +47,7 @@
   justify-content: center;
   background-color: var(--color-four);
   height: 4rem;
+  max-width: 100%;
 }
 
 .audio-player-container {
@@ -94,5 +99,4 @@
 
 .description-container .body {
   overflow: hidden;
-
 }

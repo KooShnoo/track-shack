@@ -9,15 +9,24 @@
   align-items: center;
   background-color: rgb(237, 211, 176, 0.3);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.4s ease;
+}
+
+.post-card-container:hover {
+  transition: box-shadow 0.4s ease;
+  box-shadow: 0px 15px 10px rgba(124, 93, 57, 0.541);
+  background-color: rgb(255 247 236 / 47%);
+  cursor: pointer;
 }
 
 #album-img {
+  min-width: 80px;
   min-height: 80px;
   max-height: 80px;
   margin-right: 15px;
   margin-left: 15px;
-  /* border: 2px solid green; */
   border-radius: 5px;
+  box-shadow: 0px 6px 10px rgba(156, 119, 77, 0.741);
 }
 
 #post-contents {
@@ -27,11 +36,11 @@
   width: 100%;
 }
 
-#post-contents  h1 {
+#post-contents h1 {
   font-size: 16px;
   font-weight: 500;
   padding: 5px;
-  text-decoration: underline; 
+  text-decoration: underline;
   color: black;
 }
 
@@ -42,18 +51,18 @@
 }
 
 #show-page-button {
-  height: 60px;
-  weight: 60px;
+  height: 70px;
+  width: 70px;
   margin-right: 15px;
   margin-left: 15px;
   border-radius: 50%;
   border: none;
   background: var(--color-four);
-  color: rgb(216,216,216);
+  color: rgb(216, 216, 216);
 }
 
 #show-page-button:hover {
-  background: rgb(106, 106, 201);
-  box-shadow: 5px 15px 30px 10px rgba(208, 139, 60, 0.541);
+  background: rgb(134 134 151);
+  transition: box-shadow 0.4s ease;
+  /* box-shadow: 0px 5px 30px 5px rgb(163, 139, 107); */
 }
-

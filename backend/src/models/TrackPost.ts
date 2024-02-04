@@ -1,5 +1,5 @@
 import mongoose, { Document, ObjectId, Schema, SchemaTypes } from "mongoose";
-import { getFileUrl, getUploadUrl } from "../api_s3.ts";
+import { deleteFile, getFileUrl, getUploadUrl } from "../api_s3.ts";
 import { ITrackPostReply, ITrackPostReplySchema } from "./TrackPostReply.ts";
 const { ObjectId, String } = SchemaTypes;
 
@@ -123,6 +123,14 @@ export async function tpResponseForUpload(
       audioStemsUploadURL,
     };
   }
+}
+
+export async function tpDelete(tp: ITrackPost | ITrackPostReply) {
+  await Promise.all([
+    deleteFile(tp.audioStemsSrc),
+    deleteFile(tp.audioMasterSrc),
+    "albumArtSrc" in tp && tp.albumArtSrc && deleteFile(tp.albumArtSrc),
+  ]);
 }
 
 export default mongoose.model<ITrackPost>("TrackPost", trackPostSchema);

@@ -46,12 +46,12 @@ router.delete('/:commentId', async (req, res) => {
     const commentId = req.params.commentId; 
     const deletedComment = await Comment.findByIdAndDelete(commentId);
 
-    if (!deletedComment) {
+    if (deletedComment) {
       // If the comment with the specified ID was not found
-      return res.status(404).send('Comment not found');
+      return res.status(200).send('Comment Deleted!');
     }
   } catch (error) {
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Internal Server Error When Deleting');
   }
 });
 

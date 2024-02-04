@@ -1,5 +1,5 @@
-import "./trackMasterDisplay.css";
-import AudioPlayer from "../audio/AudioPlayer";
+import './trackMasterDisplay.css';
+import AudioPlayer from '../audio/AudioPlayer';
 
 const TrackMasterDisplay = ({ track }) => {
   return (
@@ -9,6 +9,7 @@ const TrackMasterDisplay = ({ track }) => {
           <h1 className="title">{track?.title}</h1>
           <p className="body">{track?.description}</p>
         </div>
+
         <div className="image-container">
           <img src={track?.albumArtSrc} alt="" />
         </div>
