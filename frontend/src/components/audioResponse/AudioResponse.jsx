@@ -16,7 +16,7 @@ const AudioResponse = ({response, trackId}) => {
     <div className="audio-response-container">
       <div className="leftSide">
         <div className="response-text">
-          {currentUserId === response.author && <h1 onClick={handleDelete} >DELETE</h1>}
+          {currentUserId === response.author._id && <h1 onClick={handleDelete}>DELETE</h1>}
           <h1>{response?.description}</h1>
         </div>
         <AudioPlayer src={response?.audioMasterSrc} />

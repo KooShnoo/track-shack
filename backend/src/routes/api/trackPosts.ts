@@ -29,7 +29,10 @@ router.get('/:trackId', async (req, res, next) => {
     const tp = await TrackPost.findById(req.params.trackId).populate([{
       path: 'comments',
       populate: {path: 'author'}
-    }, {path: 'responses'}]);
+    }, {
+      path: 'responses',
+      populate: {path: 'author'}
+    }]);
     if (!tp) return res.status(404).json({error: "no such track post"});
     await tpResponse(tp, true);
     return res.json(tp);
