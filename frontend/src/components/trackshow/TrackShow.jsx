@@ -5,32 +5,56 @@ import CommentsContainer from '../commentsContainer/CommentsContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getTrack } from '../../store/trackPost';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AudioResponseForm from '../audioResponseForm/AudioResponseForm';
+import { deleteTrack } from '../../store/trackPost';
+
 
 const TrackShow = () => {
   const dispatch = useDispatch();
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
-  console.log('IN TRACK SHOW', trackId);
   const [showForm, setShowForm] = useState(false);
   const audioResponses = track?.responses;
+  const currentUserId = useSelector(state => state.session.user?._id)
+  const navigate = useNavigate()
+
+  if(currentUserId) console.log('USER ID', currentUserId, track?.author)
 
   useEffect(() => {
     dispatch(getTrack(trackId));
   }, [dispatch, trackId]);
 
+  const handleDeleteTrack = () => {
+    debugger
+    console.log('vussup')
+    let result = dispatch(deleteTrack(trackId))
+    if (result) navigate('/')
+  }
+
+
   return (
     <div className="track-show-page">
       <div className="left-track-container">
+      {currentUserId === track?.author && (
+        <div>
+          <p>EDIT</p> <p onClick={handleDeleteTrack}>DELETE</p>
+        </div>
+      )}
         <TrackMasterDisplay track={track} />
         <div className="audio-responses-container">
-          {audioResponses?.map(response => <AudioResponse response={response} trackId={trackId} key={response._id}/>)}
+          {audioResponses?.map((response) => (
+            <AudioResponse
+              response={response}
+              trackId={trackId}
+              key={response._id}
+            />
+          ))}
         </div>
       </div>
       <div className="track-right-container">
         <div className="track-right-header">
-          {' '}
+          {" "}
           <button className="comment-button" onClick={() => setShowForm(true)}>
             Create Audio Reply
           </button>
