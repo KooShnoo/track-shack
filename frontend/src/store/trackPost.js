@@ -120,8 +120,9 @@ const trackPostsSlice = createSlice({
             state[action.payload[0]].comments.splice(index, 1)
         },
         removeAudioReply: (state, action) => {
-            debugger
-            state = state[action.payload[1].responses.filter(reply => reply._id !== action.payload[0])]
+            debugger // {replyID, trackId}
+            const {replyID, trackId} = action.payload
+            state[trackId].responses = state[trackId].responses.filter(reply => reply._id !== replyID);
         }
     }
 })

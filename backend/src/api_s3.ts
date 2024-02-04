@@ -1,6 +1,6 @@
 import { fromEnv } from "@aws-sdk/credential-providers";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, GetObjectCommand, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 
 const REGION = 'us-east-1';
 const BUCKET = 'track-shack';
@@ -29,5 +29,17 @@ export async function getFileUrl(filename: string) {
 });
   const url = await getSignedUrl(client, getCommand);
   return url;
+}
+
+
+/** gets a presigned url for a file from s3. */
+export async function deleteFile(filename: string) {
+  try {
+    const deleteCommand = new DeleteObjectCommand({Bucket: BUCKET, Key: filename});
+    await client.send(deleteCommand);
+    return;
+  } catch(err) {
+    return err;
+  }
 }
 
