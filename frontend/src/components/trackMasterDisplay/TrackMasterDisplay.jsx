@@ -2,6 +2,8 @@ import './trackMasterDisplay.css';
 import AudioPlayer from '../audio/AudioPlayer';
 
 const TrackMasterDisplay = ({ track }) => {
+
+  console.log('TRACK', track?.albumArtSrc)
   return (
     <div className="track-info-container">
       <div className="track-items">

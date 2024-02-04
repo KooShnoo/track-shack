@@ -8,7 +8,7 @@ import { getTrack } from '../../store/trackPost';
 import { useNavigate, useParams } from 'react-router-dom';
 import AudioResponseForm from '../audioResponseForm/AudioResponseForm';
 import { deleteTrack } from '../../store/trackPost';
-
+import TrackPostEdit from '../audioResponseForm/TrackPostEdit/TrackPostEdit';
 
 const TrackShow = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ const TrackShow = () => {
   }, [dispatch, trackId]);
 
   const handleDeleteTrack = () => {
-    debugger
     console.log('vussup')
     let result = dispatch(deleteTrack(trackId))
     if (result) navigate('/')
@@ -36,11 +35,12 @@ const TrackShow = () => {
   return (
     <div className="track-show-page">
       <div className="left-track-container">
-      {currentUserId === track?.author && (
-        <div>
-          <p>EDIT</p> <p onClick={handleDeleteTrack}>DELETE</p>
-        </div>
-      )}
+        {currentUserId === track?.author && (
+          <div>
+            <p onClick={() => setShowForm("edit")}>EDIT</p>{" "}
+            <p onClick={handleDeleteTrack}>DELETE</p>
+          </div>
+        )}
         <TrackMasterDisplay track={track} />
         <div className="audio-responses-container">
           {audioResponses?.map((response) => (
@@ -55,18 +55,18 @@ const TrackShow = () => {
       <div className="track-right-container">
         <div className="track-right-header">
           {" "}
-          <button className="comment-button" onClick={() => setShowForm(true)}>
+          <button className="comment-button" onClick={() => setShowForm('audioReply')}>
             Create Audio Reply
           </button>
-          <button className="comment-button" onClick={() => setShowForm(false)}>
+          <button className="comment-button" onClick={() => setShowForm('comments')}>
             Create Comment
           </button>
         </div>
-        {showForm ? (
+        {showForm === "audioReply" && (
           <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />
-        ) : (
-          <CommentsContainer trackId={trackId} />
         )}
+        {showForm === "comments" && <CommentsContainer trackId={trackId} />}
+        {showForm === 'edit' && <TrackPostEdit/>}
       </div>
     </div>
   );
