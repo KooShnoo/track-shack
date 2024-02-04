@@ -18,6 +18,7 @@ export interface UserLoginErrors extends ProcessingError {
 }
 
 export const noticePostTrackPostNoUser = "You must be signed in to post a track";
+export const noticeDeleteTrackPostNoUser = "You must be signed in to delete a track";
 export interface PostTrackPostErrors {
   session?: typeof noticePostTrackPostNoUser
 }

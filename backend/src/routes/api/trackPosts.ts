@@ -3,8 +3,9 @@ import { Error } from 'mongoose';
 import TrackPost, { ITrackPost, tpResponse, tpResponseForUpload } from "../../models/TrackPost.ts";
 import { serverErrorLogger } from "../../loggers.ts";
 import { restoreUser } from "../../passport.ts";
-import { PostTrackPostErrors, noticePostTrackPostNoUser } from "../../validations/errors.ts";
-import { postReplyHandler } from "./trackPostReply.ts";
+import { PostTrackPostErrors, noticePostTrackPostNoUser, noticeDeleteTrackPostNoUser } from "../../validations/errors.ts";
+import { deleteReplyHandler, postReplyHandler } from "./trackPostReply.ts";
+import TrackPostReply from "../../models/TrackPostReply.ts";
 
 const router = express.Router();
 
@@ -39,7 +40,7 @@ router.get('/:trackId', async (req, res, next) => {
 });
 
 
-router.post('/', restoreUser,  async (req, res, next) => {
+router.post('/', restoreUser, async (req, res, next) => {
   if (!req.user){
     const errors: PostTrackPostErrors = {session: noticePostTrackPostNoUser};
     return res.status(401).json(errors);
@@ -51,13 +52,29 @@ router.post('/', restoreUser,  async (req, res, next) => {
     if (err instanceof Error.ValidationError) {
       serverErrorLogger('invalid');
     }
-    res.status(422).json(err);
-    return;
+    return res.status(422).json(err);
   }
   const response = await tpResponseForUpload(tp);
   res.status(201).json(response);
 });
 
-router.post('/:trackId/reply', restoreUser, postReplyHandler);
+router.delete('/:trackId', restoreUser, async (req, res, next) => {
+  if (!req.user){
+    const errors = {session: noticeDeleteTrackPostNoUser};
+    return res.status(401).json(errors);
+  } 
+  try {
+    const tp = await TrackPost.findByIdAndDelete(req.params.trackId);
+    if (!tp) {
+      return res.status(404).json({error: `Cannot find trackPost ${req.params.trackId}`});
+    }
+  } catch(err) {
+    return res.status(422).json(err);
+  }
+});
+
+router.post('/:replyId/reply', restoreUser, postReplyHandler);
+
+router.delete('/:replyId/reply', restoreUser, deleteReplyHandler);
 
 export {router as trackPostRouter};

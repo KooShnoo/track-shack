@@ -5,10 +5,17 @@ import { useDispatch } from 'react-redux';
 
 const CommentThread = ({ id, author, timeAgo, content }) => {
   const currentUser = useSelector((state) => state.session.user);
+<<<<<<< HEAD
   const params = useParams();
   const dispatch = useDispatch();
   console.log(params);
 
+=======
+  const {trackId} = useParams();
+  const dispatch = useDispatch()
+ 
+  if(id) console.log(id)
+>>>>>>> dc72bd9248927c8f532742f4bbebd166d194a8aa
   return (
     <details open className="comment" id={id}>
       <a href={`#${id}`} className="comment-border-link">
@@ -22,6 +29,22 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
           </div>
         </div>
       </summary>
+<<<<<<< HEAD
+=======
+
+      {currentUser?._id === author?._id && (
+        <p
+          className="delete"
+          onClick={()=> {
+            console.log("HIHIHIHIH");
+            dispatch(deleteComment(id, trackId));
+          }}
+        >
+          DELETE
+        </p>
+      )}
+
+>>>>>>> dc72bd9248927c8f532742f4bbebd166d194a8aa
       <div className="comment-body">
         <p>{content}</p>
         <div className="comment-body-buttons">

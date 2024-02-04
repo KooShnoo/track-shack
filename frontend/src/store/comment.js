@@ -26,16 +26,18 @@ export const createComment = (comment, trackId) => async dispatch => {
 
 export const deleteComment = (commentId, trackId) => async dispatch => {
     try {
-        const res = await jwtFetch(`/comments/${commentId}`, {
+        const res = await jwtFetch(`/api/comments/${commentId}`, {
             method: 'DELETE'
         })
         debugger
         if(!res.ok) {
             throw res 
         } else {
+        
             dispatch(removeComment([trackId, commentId]))
         }
     } catch (error) {
+        debugger
         console.log('Comment Deletion Error:', error )
     }   
 }
