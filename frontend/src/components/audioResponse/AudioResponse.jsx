@@ -9,7 +9,7 @@ const AudioResponse = ({response, trackId}) => {
 
   console.log('RESPONSE ID', response?._id)
   const handleDelete = ()=> {
-      dispatch(deleteTrackReply([response?._id, trackId]))
+      dispatch(deleteTrackReply(response?._id, trackId))
   }
 
   return (
