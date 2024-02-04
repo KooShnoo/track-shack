@@ -25,9 +25,7 @@ const TrackShow = () => {
       <div className="left-track-container">
         <TrackMasterDisplay track={track} />
         <div className="audio-responses-container">
-          {audioResponses?.map((response) => (
-            <AudioResponse response={response} key={response._id} />
-          ))}
+          {audioResponses?.map(response => <AudioResponse response={response} trackId={trackId} key={response._id}/>)}
         </div>
       </div>
       <div className="track-right-container">

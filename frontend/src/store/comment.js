@@ -18,8 +18,6 @@ export const createComment = (comment, trackId) => async dispatch => {
         }
     } catch (err) {
         let error = await err.json()
-        // debugger
-        console.log('ERRORS IN COMMENT THUNK', error)
         dispatch(receiveSessionErrors(error)) 
     }
 }
@@ -29,7 +27,6 @@ export const deleteComment = (commentId, trackId) => async dispatch => {
         const res = await jwtFetch(`/api/comments/${commentId}`, {
             method: 'DELETE'
         })
-        debugger
         if(!res.ok) {
             throw res 
         } else {
@@ -37,7 +34,6 @@ export const deleteComment = (commentId, trackId) => async dispatch => {
             dispatch(removeComment([trackId, commentId]))
         }
     } catch (error) {
-        debugger
         console.log('Comment Deletion Error:', error )
     }   
 }

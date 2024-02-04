@@ -117,12 +117,16 @@ const trackPostsSlice = createSlice({
                     return true 
                 }
             })
-            delete state[action.payload[0]].comments.splice(index, 1)
+            state[action.payload[0]].comments.splice(index, 1)
+        },
+        removeAudioReply: (state, action) => {
+            debugger
+            state = state[action.payload[1].responses.filter(reply => reply._id !== action.payload[0])]
         }
     }
 })
 
-export const {receiveTracks, receiveTrack, clearTracks, receiveComment, removeComment, receiveAudioReply} = trackPostsSlice.actions
+export const {receiveTracks, receiveTrack, clearTracks, receiveComment, removeComment, receiveAudioReply, removeAudioReply} = trackPostsSlice.actions
 
 export const trackErrorsReducer = trackErrorsSlice.reducer
 

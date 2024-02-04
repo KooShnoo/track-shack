@@ -13,8 +13,7 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
 =======
   const {trackId} = useParams();
   const dispatch = useDispatch()
- 
-  if(id) console.log(id)
+
 >>>>>>> dc72bd9248927c8f532742f4bbebd166d194a8aa
   return (
     <details open className="comment" id={id}>
@@ -36,7 +35,6 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
         <p
           className="delete"
           onClick={()=> {
-            console.log("HIHIHIHIH");
             dispatch(deleteComment(id, trackId));
           }}
         >

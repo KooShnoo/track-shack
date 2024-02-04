@@ -46,7 +46,6 @@ router.delete('/:commentId', async (req, res) => {
     const commentId = req.params.commentId; 
     const deletedComment = await Comment.findByIdAndDelete(commentId);
 
-    console.log('IN ROUTE RESULT', deletedComment);
     if (deletedComment) {
       // If the comment with the specified ID was not found
       return res.status(200).send('Comment Deleted!');
