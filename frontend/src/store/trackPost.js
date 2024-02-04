@@ -110,7 +110,14 @@ const trackPostsSlice = createSlice({
             state[action.payload[1]].responses.push(action.payload[0])
         },
         removeComment: (state, action) => {
-            delete state[action.payload[1]][action.payload[0]] 
+            let index;
+            state[action.payload[0]].comments.forEach((comment, i) => {
+                if(comment._id === action.payload[1]) {
+                    index = i
+                    return true 
+                }
+            })
+            delete state[action.payload[0]].comments.splice(index, 1)
         }
     }
 })
