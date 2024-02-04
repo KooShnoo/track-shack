@@ -68,6 +68,7 @@ router.delete('/:trackId', restoreUser, async (req, res, next) => {
     if (!tp) {
       return res.status(404).json({error: `Cannot find trackPost ${req.params.trackId}`});
     }
+    return res.json(tp);
   } catch(err) {
     return res.status(422).json(err);
   }

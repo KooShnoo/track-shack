@@ -32,7 +32,6 @@ export const postTrackReply = async (trackPostId, trackPostReply, master, stems)
 
 export const deleteTrackReply = ([replyID, trackId]) => async dispatch => {
   try {
-    debugger
     const res = await jwtFetch(`/api/trackPosts/${replyID}/reply`, {method: 'DELETE'})
     if(res.ok) {
       dispatch(removeAudioReply([replyID, trackId]))
