@@ -1,6 +1,5 @@
-.signup-form{
-  border: 2px solid blue;
-   position: relative;
+.signup-form {
+  position: relative;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -11,7 +10,7 @@
   overflow: hidden;
 }
 
-#signup-header{
+#signup-header {
   margin-top: 30px;
   font-size: 30px;
 }

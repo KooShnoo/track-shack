@@ -16,28 +16,27 @@ const TrackShow = () => {
   const track = useSelector((state) => state.trackPosts[trackId]);
   const [showForm, setShowForm] = useState(false);
   const audioResponses = track?.responses;
-  const currentUserId = useSelector(state => state.session.user?._id)
-  const navigate = useNavigate()
+  const currentUserId = useSelector((state) => state.session.user?._id);
+  const navigate = useNavigate();
 
-  if(currentUserId) console.log('USER ID', currentUserId, track?.author)
+  if (currentUserId) console.log('USER ID', currentUserId, track?.author);
 
   useEffect(() => {
     dispatch(getTrack(trackId));
   }, [dispatch, trackId]);
 
   const handleDeleteTrack = () => {
-    console.log('vussup')
-    let result = dispatch(deleteTrack(trackId))
-    if (result) navigate('/')
-  }
-
+    console.log('vussup');
+    let result = dispatch(deleteTrack(trackId));
+    if (result) navigate('/');
+  };
 
   return (
     <div className="track-show-page">
       <div className="left-track-container">
         {currentUserId === track?.author && (
           <div>
-            <p onClick={() => setShowForm("edit")}>EDIT</p>{" "}
+            <p onClick={() => setShowForm('edit')}>EDIT</p>{' '}
             <p onClick={handleDeleteTrack}>DELETE</p>
           </div>
         )}
@@ -54,23 +53,25 @@ const TrackShow = () => {
       </div>
       <div className="track-right-container">
         <div className="track-right-header">
-<<<<<<< HEAD
-          <button className="comment-button" onClick={() => setShowForm(true)}>
-=======
-          {" "}
-          <button className="comment-button" onClick={() => setShowForm('audioReply')}>
->>>>>>> debb431af03d9479405ee0a67efe323590d05c18
+          {' '}
+          <button
+            className="comment-button"
+            onClick={() => setShowForm('audioReply')}
+          >
             Create Audio Reply
           </button>
-          <button className="comment-button" onClick={() => setShowForm('comments')}>
+          <button
+            className="comment-button"
+            onClick={() => setShowForm('comments')}
+          >
             Create Comment
           </button>
         </div>
-        {showForm === "audioReply" && (
+        {showForm === 'audioReply' && (
           <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />
         )}
-        {showForm === "comments" && <CommentsContainer trackId={trackId} />}
-        {showForm === 'edit' && <TrackPostEdit/>}
+        {showForm === 'comments' && <CommentsContainer trackId={trackId} />}
+        {showForm === 'edit' && <TrackPostEdit />}
       </div>
     </div>
   );
