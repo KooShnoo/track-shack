@@ -11,11 +11,15 @@ const TrackPostsIndexItem = ({trackPost}) => {
         <Link to={`trackPosts/${trackPost?._id}`} ><h1>{trackPost?.title}</h1></Link>
         <p>{trackPost?.subtitle}</p>
       </div>
-      <Link to={`trackPosts/${trackPost?._id}`} >
-        <button id='show-page-button'>Go to Project <i className="fa-solid fa-arrow-right-long"></i></button>
-      </Link>
+      <div className='post-show-link'>
+        <Link to={`trackPosts/${trackPost?._id}`} >
+          <button id='show-page-button'></button>
+        </Link>
+      </div>
     </div>
   );
 };
+
+{/* <i className="fa-solid fa-arrow-right-long"></i> */}
 
 export default TrackPostsIndexItem;
