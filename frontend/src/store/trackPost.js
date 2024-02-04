@@ -63,6 +63,20 @@ export const getTrack = (trackId) => async dispatch => {
         dispatch(receiveTrack(track))
 }
 
+export const deleteTrack = trackId => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/trackPosts/${trackId}`, {method: 'DELETE'})
+        if(!res.ok) {
+            throw res;
+        } else {
+            dispatch(removeTrack(trackId))
+        }
+    } catch (err) {
+        console.log(err)
+        return false
+    }
+}
+
 export const createTrack = (trackPost) => async dispatch => {
     try {
         const res = await jwtFetch(`api/trackPosts`, {
@@ -102,6 +116,9 @@ const trackPostsSlice = createSlice({
         clearTracks: () => {
             return {}
         },
+        removeTrack: (state, action) => {
+            delete state[action.payload]
+        },
         receiveComment: (state, action) => {
             state[action.payload[1]].comments.push(action.payload[0])
         },
@@ -117,12 +134,16 @@ const trackPostsSlice = createSlice({
                     return true 
                 }
             })
-            delete state[action.payload[0]].comments.splice(index, 1)
+            state[action.payload[0]].comments.splice(index, 1)
+        },
+        removeAudioReply: (state, action) => {
+            const {replyID, trackId} = action.payload
+            state[trackId].responses = state[trackId].responses.filter(reply => reply._id !== replyID);
         }
     }
 })
 
-export const {receiveTracks, receiveTrack, clearTracks, receiveComment, removeComment, receiveAudioReply} = trackPostsSlice.actions
+export const {receiveTracks, receiveTrack, clearTracks, receiveComment, removeComment, receiveAudioReply, removeAudioReply, removeTrack} = trackPostsSlice.actions
 
 export const trackErrorsReducer = trackErrorsSlice.reducer
 

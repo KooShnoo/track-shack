@@ -1,26 +1,37 @@
-import { useState } from 'react';
-import './TrackPostCreate.css';
-import { useNavigate } from 'react-router-dom';
-import { postTrack } from '../../store/trackPost';
+import { useEffect, useState } from "react";
+import "../../TrackPostCreate/TrackPostCreate.css";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+// import { postTrack } from "../../store/trackPost";
 
-const TrackPostCreate = ({onClose}) => {
-
-  const navigate = useNavigate();
-
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-  const [description, setDescription] = useState('');
+const TrackPostEdit = ({ onClose }) => {
+  const { trackId } = useParams();
+  const track = useSelector((state) => state.trackPosts[trackId]);
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [description, setDescription] = useState("");
   const [audioFile, setAudioFile] = useState(null);
   const [stems, setStems] = useState(null);
   const [image, setImage] = useState(null);
   const [toggleForm, setToggleForm] = useState(true);
-  // const [errors, setErrors] = useState(null);
-  const handleCreateForm = () => {
+
+  useEffect(() => {
+    if (track) {
+      setTitle(track.title);
+      setSubtitle(track.subtitle);
+      setDescription(track.description);
+      setAudioFile(track.audioMasterSrc);
+      setStems(track.audioStemsSrc);
+      setImage(track.albumArtSrc);
+    }
+  }, [track]);
+
+  const handleEditForm = () => {
     setToggleForm(!toggleForm);
     if (!toggleForm) {
-      setTitle('');
-      setSubtitle('');
-      setDescription('');
+      setTitle("");
+      setSubtitle("");
+      setDescription("");
       setAudioFile(null);
       setStems(null);
       setImage(null);
@@ -29,25 +40,24 @@ const TrackPostCreate = ({onClose}) => {
   };
 
   const handleSubmit = async () => {
-    let trackPostId = await postTrack(
-      {
-        title,
-        subtitle,
-        description,
-        audioMasterSrc: audioFile.name,
-        audioStemsSrc: stems.name,
-        albumArtSrc: image?.name || null,
-      },
-      image || null,
-      audioFile,
-      stems
-    );
-
-    if (trackPostId) {
-      navigate(`/trackPosts/${trackPostId}`);
-    } else {
-      console.log(trackPostId);
-    }
+    // let trackPostId = await postTrack(
+    //   {
+    //     title,
+    //     subtitle,
+    //     description,
+    //     audioMasterSrc: audioFile.name,
+    //     audioStemsSrc: stems.name,
+    //     albumArtSrc: image?.name || null,
+    //   },
+    //   image || null,
+    //   audioFile,
+    //   stems
+    // );
+    // if (trackPostId) {
+    //   navigate(`/trackPosts/${trackPostId}`);
+    // } else {
+    //   console.log(trackPostId);
+    // }
   };
 
   return (
@@ -56,7 +66,9 @@ const TrackPostCreate = ({onClose}) => {
         <div className="TrackPostCreateContainer">
           <div id="create-form-header">
             <h1>Post a new Track!</h1>
-            <button id="close-form-button" onClick={handleCreateForm}><i className="fa-solid fa-arrow-left"></i></button>
+            <button id="close-form-button" onClick={handleEditForm}>
+              <i className="fa-solid fa-arrow-left"></i>
+            </button>
           </div>
           <p className="label">Title</p>
           <p className="descriptor">(Name the track headed for the shack!)</p>
@@ -78,6 +90,7 @@ const TrackPostCreate = ({onClose}) => {
               rows="2"
               cols="100"
               id="subtitle"
+              value={subtitle}
               onChange={(e) => setSubtitle(e.target.value)}
             />
           </div>
@@ -89,6 +102,7 @@ const TrackPostCreate = ({onClose}) => {
               id="description"
               rows="4"
               cols="100"
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
@@ -102,8 +116,8 @@ const TrackPostCreate = ({onClose}) => {
             <div className="file-descriptor">
               <p className="stems-text">
                 ( Upload your stems so collaborators can download them and use
-                them to evolve the project. Don&apos;t forget to include a version of
-                the master too)
+                them to evolve the project. Don&apos;t forget to include a
+                version of the master too)
               </p>
             </div>
           </div>
@@ -113,6 +127,7 @@ const TrackPostCreate = ({onClose}) => {
                 <label className="audio-label" htmlFor="audioFile">
                   <p>Upload Master</p>
                   <input
+                    // value={audioFile}
                     className="track-input-file"
                     type="file"
                     id="audioFile"
@@ -126,6 +141,7 @@ const TrackPostCreate = ({onClose}) => {
                 <label htmlFor="image" className="audio-label">
                   <p>Upload Artwork</p>
                   <input
+                    // value={image}
                     type="file"
                     id="image"
                     className="track-input-file"
@@ -139,6 +155,7 @@ const TrackPostCreate = ({onClose}) => {
                 <label className="audio-label" htmlFor="stems">
                   <p>Upload Stems</p>
                   <input
+                    // value={stems}
                     className="track-input-file"
                     type="file"
                     id="stems"
@@ -147,7 +164,11 @@ const TrackPostCreate = ({onClose}) => {
                 </label>
               </div>
             </div>
-            <button id='create-track-button'type="submit" onClick={handleSubmit}>
+            <button
+              id="create-track-button"
+              type="submit"
+              onClick={handleSubmit}
+            >
               Create Track
             </button>
           </div>
@@ -157,4 +178,4 @@ const TrackPostCreate = ({onClose}) => {
   );
 };
 
-export default TrackPostCreate;
+export default TrackPostEdit;

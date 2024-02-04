@@ -31,7 +31,7 @@ const AudioResponseForm = ({trackId, setShowForm}) => {
         }
 
     } catch (error) {
-        console.log('AUDIO RESPONSE', error)
+      console.log(error)
     }
   };
 

@@ -8,7 +8,6 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
   const { trackId } = useParams();
   const dispatch = useDispatch();
 
-  if (id) console.log(id);
   return (
     <details open className="comment" id={id}>
       <a href={`#${id}`} className="comment-border-link">
@@ -22,6 +21,18 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
           </div>
         </div>
       </summary>
+
+      {currentUser?._id === author?._id && (
+        <p
+          className="delete"
+          onClick={() => {
+            dispatch(deleteComment(id, trackId));
+          }}
+        >
+          DELETE
+        </p>
+      )}
+
       <div className="comment-body">
         <p>{content}</p>
         <div className="comment-body-buttons">
@@ -30,7 +41,7 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
             type="button"
             onClick={() => {
               console.log('HIHIHIHIH');
-              dispatch(deleteComment(id, params.trackId));
+              dispatch(deleteComment(id, trackId));
             }}
           >
             Reply

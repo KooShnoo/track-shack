@@ -1,7 +1,7 @@
 import { Error } from 'mongoose';
 import { RequestHandler } from "express";
-import TrackPost, { tpResponse, tpResponseForUpload } from "../../models/TrackPost.ts";
-import TrackPostReply, { ITrackPostReply } from "../../models/TrackPostReply.ts";
+import TrackPost, { tpDelete, tpResponseForUpload } from "../../models/TrackPost.ts";
+import TrackPostReply from "../../models/TrackPostReply.ts";
 import { serverErrorLogger } from "../../loggers.ts";
 import { PostTrackPostErrors, noticeDeleteTrackPostNoUser, noticePostTrackPostNoUser } from "../../validations/errors.ts";
 
@@ -37,6 +37,8 @@ export const deleteReplyHandler: RequestHandler = async (req, res, next) => {
     if (!reply) {
       return res.status(404).json({error: `Cannot find trackPostReply ${req.params.replyId}`});
     }
+    await tpDelete(reply);
+    return res.json(reply);
   } catch(err) {
     return res.status(422).json(err);
   }

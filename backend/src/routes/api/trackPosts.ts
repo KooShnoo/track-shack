@@ -1,11 +1,10 @@
 import express from "express";
 import { Error } from 'mongoose';
-import TrackPost, { ITrackPost, tpResponse, tpResponseForUpload } from "../../models/TrackPost.ts";
+import TrackPost, { ITrackPost, tpDelete, tpResponse, tpResponseForUpload } from "../../models/TrackPost.ts";
 import { serverErrorLogger } from "../../loggers.ts";
 import { restoreUser } from "../../passport.ts";
 import { PostTrackPostErrors, noticePostTrackPostNoUser, noticeDeleteTrackPostNoUser } from "../../validations/errors.ts";
 import { deleteReplyHandler, postReplyHandler } from "./trackPostReply.ts";
-import TrackPostReply from "../../models/TrackPostReply.ts";
 
 const router = express.Router();
 
@@ -30,7 +29,10 @@ router.get('/:trackId', async (req, res, next) => {
     const tp = await TrackPost.findById(req.params.trackId).populate([{
       path: 'comments',
       populate: {path: 'author'}
-    }, {path: 'responses'}]);
+    }, {
+      path: 'responses',
+      populate: {path: 'author'}
+    }]);
     if (!tp) return res.status(404).json({error: "no such track post"});
     await tpResponse(tp, true);
     return res.json(tp);
@@ -68,6 +70,8 @@ router.delete('/:trackId', restoreUser, async (req, res, next) => {
     if (!tp) {
       return res.status(404).json({error: `Cannot find trackPost ${req.params.trackId}`});
     }
+    await tpDelete(tp);
+    return res.json(tp);
   } catch(err) {
     return res.status(422).json(err);
   }
