@@ -23,7 +23,9 @@ const AudioResponseForm = ({trackId}) => {
           stems
         );
         if(audioResponse) {
-          dispatch(receiveAudioReply(audioResponse))
+          dispatch(receiveAudioReply([audioResponse, trackId]))
+          debugger
+          console.log('AudioResponse!!!!', audioResponse)
         }
 
     } catch (error) {

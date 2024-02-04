@@ -106,7 +106,9 @@ const trackPostsSlice = createSlice({
             state[action.payload[1]].comments.push(action.payload[0])
         },
         receiveAudioReply: (state, action) => {
-            state.responses[action.payload._id] = action.payload
+            debugger
+            //send trackPostId
+            state[action.payload[1]].responses.push(action.payload[0])
         },
         removeComment: (state, action) => {
             debugger
