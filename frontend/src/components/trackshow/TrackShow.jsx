@@ -32,7 +32,6 @@ const TrackShow = () => {
       </div>
       <div className="track-right-container">
         <div className="track-right-header">
-          {' '}
           <button className="comment-button" onClick={() => setShowForm(true)}>
             Create Audio Reply
           </button>

@@ -1,10 +1,8 @@
 import './audioResponse.css';
 import AudioPlayer from '../audio/AudioPlayer';
 
-
-const AudioResponse = ({response}) => {
-
-  if (response) console.log('response', response)
+const AudioResponse = ({ response }) => {
+  if (response) console.log('response', response);
 
   return (
     <div className="audio-response-container">
@@ -16,7 +14,9 @@ const AudioResponse = ({response}) => {
       </div>
       <div className="dl-button-container">
         <a href={response?.audioStemsSrc} className="button-anchor">
-          <button onClick>download</button>
+          <button onClick className="audio-player-button">
+            Download
+          </button>
         </a>
       </div>
     </div>

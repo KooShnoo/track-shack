@@ -4,15 +4,15 @@
   margin-left: 2rem;
   margin-right: 2rem;
   max-width: 1000px;
-  min-width: 50%;
+  height: 400px;
   margin-top: 4rem;
   box-sizing: border-box;
 }
 
 .track-items {
   display: flex;
-  max-width: 100%;
-  max-height: 400px;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
 }
 
@@ -21,7 +21,7 @@
   padding: 1rem 1rem 1rem 1rem;
   color: white;
   font-size: 1.1rem;
-  max-width: 100%;
+  width: 700px;
 }
 
 .image-container {
@@ -29,11 +29,8 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
-
-  max-height: 300px;
-  max-width: 300px;
-  min-width: 100px;
-  min-height: 100px;
+  height: 330px;
+  width: 330px;
 }
 
 .image-container > img {
@@ -48,6 +45,7 @@
   background-color: var(--color-four);
   height: 4rem;
   max-width: 100%;
+  padding: 8px 8px 8px 8px;
 }
 
 .audio-player-container {
@@ -55,27 +53,28 @@
   justify-content: space-between;
   align-items: center;
   margin-left: 1rem;
-  /* width: 1000px; */
   box-sizing: border-box;
+}
+
+.audio-player-container > a,
+.audio-player-button,
+.dl-button-container > a {
+  text-decoration: none;
 }
 
 .audio-player-button {
   text-decoration: none;
-
   display: flex;
   align-items: center;
   border: none;
   font-family: manrope;
   justify-content: center;
-  text-decoration: none;
   font-size: 14px;
   background: rgb(125, 123, 121);
   color: white;
-  text-decoration: none;
   border-radius: 15px;
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
   margin-right: 1rem;
-
   min-height: 30px;
   max-height: 30px;
   min-width: 120px;
@@ -89,7 +88,6 @@
 .audio-player-button:hover {
   cursor: pointer;
   background: rgb(249, 163, 64);
-  box-shadow: 5px 15px 30px 10px rgba(123, 86, 44, 0.541);
 }
 
 .audio-player-button:active {
