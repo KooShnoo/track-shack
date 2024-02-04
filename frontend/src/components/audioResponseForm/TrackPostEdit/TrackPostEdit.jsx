@@ -65,10 +65,10 @@ const TrackPostEdit = ({ onClose }) => {
       {toggleForm && (
         <div className="TrackPostCreateContainer">
           <div id="create-form-header">
-            <h1>Post a new Track!</h1>
-            <button id="close-form-button" onClick={handleEditForm}>
+            <h1>Edit Your Track!</h1>
+            {/* <button id="close-form-button" onClick={handleEditForm}>
               <i className="fa-solid fa-arrow-left"></i>
-            </button>
+            </button> */}
           </div>
           <p className="label">Title</p>
           <p className="descriptor">(Name the track headed for the shack!)</p>
@@ -169,7 +169,7 @@ const TrackPostEdit = ({ onClose }) => {
               type="submit"
               onClick={handleSubmit}
             >
-              Create Track
+              Post Track
             </button>
           </div>
         </div>

@@ -35,9 +35,9 @@ const TrackShow = () => {
     <div className="track-show-page">
       <div className="left-track-container">
         {currentUserId === track?.author && (
-          <div>
-            <p onClick={() => setShowForm('edit')}>EDIT</p>{' '}
-            <p onClick={handleDeleteTrack}>DELETE</p>
+          <div className='left-button-container'>
+            <button id='edit-track-button' onClick={() => setShowForm('edit')}>Edit Track</button>{' '}
+            <button id='delete-track-button' onClick={handleDeleteTrack}>Delete Track</button>
           </div>
         )}
         <TrackMasterDisplay track={track} />
