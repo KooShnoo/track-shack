@@ -5,14 +5,17 @@
   margin-right: 2rem;
   max-width: 100%;
   min-width: 50%;
+  margin-top: 4rem;
+  box-sizing: border-box;
+
   /* flex-wrap: wrap; */
 }
 
 .track-items {
-  margin-top: 4rem;
   display: flex;
   width: 100%;
-  box-sizing: border-box;
+  max-width: 900px;
+  max-height: 200px;
 }
 
 .description-container {
@@ -43,6 +46,7 @@
   justify-content: center;
   background-color: var(--color-four);
   height: 4rem;
+  max-width: 900px;
 }
 
 .audio-player-container {
@@ -94,5 +98,4 @@
 
 .description-container .body {
   overflow: hidden;
-
 }
