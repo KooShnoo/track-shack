@@ -7,9 +7,14 @@ import { getTracks } from '../../store/trackPost';
 
 const SplashPage = () => {
   const [toggleForm, setToggleForm] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   const handleCreateForm = () => { 
     setToggleForm(!toggleForm);
+  };
+
+  const handleCloseForm = () => {
+    setToggleForm(false);
   };
 
   useEffect(() => {
@@ -47,10 +52,11 @@ const SplashPage = () => {
         </div>
         {toggleForm && (
           <div className="right-container">
-            <TrackPostCreate />
+            <TrackPostCreate onClose={handleCloseForm}/>
           </div>
         )}
       </div>
+      <div className='spacer'></div>
     </div>
   );
 };
