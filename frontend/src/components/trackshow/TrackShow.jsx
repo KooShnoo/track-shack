@@ -31,7 +31,7 @@ const TrackShow = () => {
       <div className="track-right-container">
         <button onClick={()=> setShowForm(true)}>Create Audio Reply</button>
         <button onClick={()=> setShowForm(false)}>Create Comment</button>
-        {showForm ? <AudioResponseForm trackId={trackId} />: <CommentsContainer trackId={trackId} />}
+        {showForm ? <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />: <CommentsContainer trackId={trackId} />}
       </div>
     </div>
   );

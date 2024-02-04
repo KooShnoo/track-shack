@@ -4,7 +4,7 @@ import { postTrackReply } from "../../store/trackPostReply";
 import { receiveAudioReply } from "../../store/trackPost";
 import { useDispatch } from "react-redux";
 
-const AudioResponseForm = ({trackId}) => {
+const AudioResponseForm = ({trackId, setShowForm}) => {
   const [description, setDescription] = useState("");
   const [audioFile, setAudioFile] = useState(null);
   const [stems, setStems] = useState(null);
@@ -24,8 +24,10 @@ const AudioResponseForm = ({trackId}) => {
         );
         if(audioResponse) {
           dispatch(receiveAudioReply([audioResponse, trackId]))
-          debugger
-          console.log('AudioResponse!!!!', audioResponse)
+          setDescription('')
+          setAudioFile(null)
+          setStems(null)
+          setShowForm('')
         }
 
     } catch (error) {
