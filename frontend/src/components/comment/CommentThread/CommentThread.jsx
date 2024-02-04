@@ -29,7 +29,6 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
             dispatch(deleteComment(id, trackId));
           }}
         >
-          DELETE
         </p>
       )}
 
