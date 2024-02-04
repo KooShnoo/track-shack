@@ -43,23 +43,6 @@
   width: 70%;
 }
 
-.image-container {
-  border: solid 5px var(--color-four);
-  max-height: 200px;
-  max-width: 200px;
-  min-width: 30%;
-  min-height: 200px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-}
-
-.image-container > img {
-  aspect-ratio: 1/1;
-  max-width: 100%;
-  object-fit: cover;
-}
-
 .button-container {
   width: 100%;
   display: flex;
@@ -78,4 +61,10 @@
   height: 100%;
   min-width: 40%;
   overflow: off;
+}
+
+.track-right-header {
+  display: flex;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }

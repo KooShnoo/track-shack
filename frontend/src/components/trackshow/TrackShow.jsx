@@ -12,26 +12,39 @@ const TrackShow = () => {
   const dispatch = useDispatch();
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
-  console.log('IN TRACK SHOW', trackId)
-  const [showForm, setShowForm] = useState(false)
-  const audioResponses = track?.responses
+  console.log('IN TRACK SHOW', trackId);
+  const [showForm, setShowForm] = useState(false);
+  const audioResponses = track?.responses;
 
-  useEffect(()=> {
-    dispatch(getTrack(trackId))
-  },[dispatch, trackId])
+  useEffect(() => {
+    dispatch(getTrack(trackId));
+  }, [dispatch, trackId]);
 
   return (
     <div className="track-show-page">
       <div className="left-track-container">
         <TrackMasterDisplay track={track} />
         <div className="audio-responses-container">
-          {audioResponses?.map(response => <AudioResponse response={response} key={response._id}/>)}
+          {audioResponses?.map((response) => (
+            <AudioResponse response={response} key={response._id} />
+          ))}
         </div>
       </div>
       <div className="track-right-container">
-        <button onClick={()=> setShowForm(true)}>Create Audio Reply</button>
-        <button onClick={()=> setShowForm(false)}>Create Comment</button>
-        {showForm ? <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />: <CommentsContainer trackId={trackId} />}
+        <div className="track-right-header">
+          {' '}
+          <button className="comment-button" onClick={() => setShowForm(true)}>
+            Create Audio Reply
+          </button>
+          <button className="comment-button" onClick={() => setShowForm(false)}>
+            Create Comment
+          </button>
+        </div>
+        {showForm ? (
+          <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />
+        ) : (
+          <CommentsContainer trackId={trackId} />
+        )}
       </div>
     </div>
   );

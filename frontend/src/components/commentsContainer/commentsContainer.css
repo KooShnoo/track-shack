@@ -1,27 +1,27 @@
 .commentsContainer {
-    padding: 1rem;
-    height: 100%;
-    box-sizing: border-box;
-    width: 100%;
-    overflow: auto;
+  padding: 1rem;
+  max-height: 700px;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: auto;
 }
 
 .show-modal-container {
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  align-items: center;
 }
 
 .create-button-container {
-    height: 25px;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: aqua;
+  height: 25px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
 }
 
 .create-button-container h1:hover {
-    cursor: pointer;
+  cursor: pointer;
 }

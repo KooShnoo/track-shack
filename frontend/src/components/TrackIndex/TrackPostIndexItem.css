@@ -20,12 +20,13 @@
 }
 
 #album-img {
+  min-width: 80px;
   min-height: 80px;
   max-height: 80px;
   margin-right: 15px;
   margin-left: 15px;
-  /* border: 2px solid green; */
   border-radius: 5px;
+  box-shadow: 0px 6px 10px rgba(156, 119, 77, 0.741);
 }
 
 #post-contents {
@@ -63,5 +64,5 @@
 #show-page-button:hover {
   background: rgb(134 134 151);
   transition: box-shadow 0.4s ease;
-  box-shadow: 0px 8px 16px 3px rgb(37 37 43 / 64%);
+  /* box-shadow: 0px 5px 30px 5px rgb(163, 139, 107); */
 }
