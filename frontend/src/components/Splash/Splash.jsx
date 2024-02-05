@@ -41,6 +41,7 @@ const SplashPage = () => {
             </button>
           </form>
           <div className='user-options-container'>
+            <div>
             {loggedIn ? (
               <button id="create-form-button" onClick={handleCreateForm}>
                 Post a Track
@@ -61,6 +62,7 @@ const SplashPage = () => {
             <TrackPostCreate onClose={handleCloseForm}/>
           </div>
         )}
+      </div>
       <div className='spacer'></div>
     </div>
   );
