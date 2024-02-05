@@ -1,11 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './TrackPostIndexItem.css';
 
 
 const TrackPostsIndexItem = ({trackPost}) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/trackPosts/${trackPost?._id}`)
+  }
 
   return (
-    <div className='post-card-container'>
+    <div className='post-card-container' onClick={handleClick}>
       <img id='album-img' src={trackPost?.albumArtSrc} alt="album cover" />
       <div id='post-contents'>
         <Link to={`trackPosts/${trackPost?._id}`} ><h1>{trackPost?.title}</h1></Link>
