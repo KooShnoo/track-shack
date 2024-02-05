@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import TrackPostCreate from '../TrackPostCreate/TrackPostCreate';
 import TrackPostsIndex from '../TrackIndex/TrackPostsIndex';
 import './Splash.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTracks } from '../../store/trackPost';
 
 const SplashPage = () => {
   const [toggleForm, setToggleForm] = useState(false);
+  const loggedIn = useSelector((state) => !!state.session.user)
   const dispatch = useDispatch();
 
   const handleCreateForm = () => { 
@@ -40,10 +41,15 @@ const SplashPage = () => {
             </button>
           </form>
           <div className='user-options-container'>
-            <div>
+            {loggedIn ? (
               <button id="create-form-button" onClick={handleCreateForm}>
                 Post a Track
               </button>
+            ) : (
+              <button id="create-form-button" disabled style={{pointerEvents: 'none'}}>
+                Log In to Post a Track
+              </button>
+            )}
             </div>
           </div>
           <div className="feed-container">

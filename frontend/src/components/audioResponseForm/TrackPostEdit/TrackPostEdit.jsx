@@ -76,7 +76,6 @@ const TrackPostEdit = ({ onClose }) => {
             <textarea
               className="track-input"
               rows="2"
-              cols="100"
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -88,7 +87,6 @@ const TrackPostEdit = ({ onClose }) => {
             <textarea
               className="track-input"
               rows="2"
-              cols="100"
               id="subtitle"
               value={subtitle}
               onChange={(e) => setSubtitle(e.target.value)}
@@ -101,7 +99,7 @@ const TrackPostEdit = ({ onClose }) => {
               className="track-input"
               id="description"
               rows="4"
-              cols="100"
+              
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>

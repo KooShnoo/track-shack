@@ -51,7 +51,6 @@ const AudioResponseForm = ({trackId, setShowForm}) => {
             className="track-input"
             id="description"
             rows="4"
-            cols="100"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
