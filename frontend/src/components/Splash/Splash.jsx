@@ -61,7 +61,6 @@ const SplashPage = () => {
             <TrackPostCreate onClose={handleCloseForm}/>
           </div>
         )}
-      </div>
       <div className='spacer'></div>
     </div>
   );
