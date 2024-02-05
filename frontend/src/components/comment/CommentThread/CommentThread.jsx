@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { deleteComment } from '../../../store/comment';
+import { createComment, deleteComment } from '../../../store/comment';
 import { useDispatch } from 'react-redux';
 
 const CommentThread = ({ id, author, timeAgo, content }) => {
@@ -39,14 +39,17 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
             className="reply-button"
             type="button"
             onClick={() => {
-              console.log('HIHIHIHIH');
-              dispatch(deleteComment(id, trackId));
-            }}
-          >
+              dispatch(createComment(content, trackId));
+            }}>
             Reply
           </button>
           {currentUser?._id === author?._id && (
-            <button className="delete-button" type="button">
+            <button 
+              className="delete-button" 
+              type="button"  
+              onClick={() => {
+                dispatch(deleteComment(id, trackId));
+              }}>
               Delete
             </button>
           )}

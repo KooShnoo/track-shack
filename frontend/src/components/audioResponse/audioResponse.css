@@ -41,8 +41,14 @@
   flex-direction: column;
   margin-bottom: 0.7rem;
   font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .response-text > h3 {
-  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.response-text > p {
+  margin: 10px;
+  font-size: 14px;
 }

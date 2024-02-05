@@ -16,7 +16,8 @@ const AudioResponse = ({ response, trackId }) => {
     <div className="audio-response-container">
       <div className="leftSide">
         <div className="response-text">
-          <h1>{response?.description}</h1>
+          <h3>From: {response?.author.username}</h3>
+          <p>{response?.description}</p>
         </div>
         <AudioPlayer src={response?.audioMasterSrc} />
       </div>

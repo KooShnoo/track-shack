@@ -14,7 +14,7 @@ const TrackShow = () => {
   const dispatch = useDispatch();
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState('comments');
   const audioResponses = track?.responses;
   const currentUserId = useSelector((state) => state.session.user?._id);
   const navigate = useNavigate();
@@ -67,10 +67,10 @@ const TrackShow = () => {
             Create Comment
           </button>
         </div>
+        {showForm === 'comments' && <CommentsContainer trackId={trackId} />}
         {showForm === 'audioReply' && (
           <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />
         )}
-        {showForm === 'comments' && <CommentsContainer trackId={trackId} />}
         {showForm === 'edit' && <TrackPostEdit />}
       </div>
     </div>

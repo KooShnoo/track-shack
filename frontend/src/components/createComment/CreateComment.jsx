@@ -26,7 +26,7 @@ const CreateComment = () => {
           id=""
           cols="60"
           rows="10"
-          placeholder="throw a lil comment"
+          placeholder=""
           value={body}
           onChange={(e) => setBody(e.target.value)}
         ></textarea>

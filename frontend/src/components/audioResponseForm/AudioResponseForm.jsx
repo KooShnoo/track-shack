@@ -40,8 +40,8 @@ const AudioResponseForm = ({trackId, setShowForm}) => {
       <div className="TrackPostCreateContainer">
         <div id="create-form-header">
           <h1>Create an Audio Response!</h1>
-          <button type="submit" onClick={handleSubmit}>
-            Create Audio Response
+          <button id="audio-response-button" type="submit" onClick={handleSubmit}>
+            Upload Audio
           </button>
         </div>
         <p className="label">Description</p>
