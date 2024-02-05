@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.post-card-container:hover #show-page-button {
+  animation: spin 2s infinite linear;
+}
+
 #album-img {
   min-width: 80px;
   min-height: 80px;
@@ -68,11 +72,6 @@
   color: rgb(216, 216, 216);
 }
 
-#show-page-button:hover {
-  animation: spin 4s infinite linear;
-  /* transition: box-shadow 0.4s ease; */
-  /* box-shadow: 0px 5px 30px 5px rgb(163, 139, 107); */
-}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }

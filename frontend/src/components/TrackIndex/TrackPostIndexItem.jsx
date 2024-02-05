@@ -20,6 +20,5 @@ const TrackPostsIndexItem = ({trackPost}) => {
   );
 };
 
-{/* <i className="fa-solid fa-arrow-right-long"></i> */}
 
 export default TrackPostsIndexItem;
