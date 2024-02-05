@@ -14,6 +14,7 @@ const TrackShow = () => {
   const dispatch = useDispatch();
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
+  const loggedIn = useSelector((state) => !!state.session.user)
   const [showForm, setShowForm] = useState('comments');
   const audioResponses = track?.responses;
   const currentUserId = useSelector((state) => state.session.user?._id);
@@ -69,7 +70,7 @@ const TrackShow = () => {
         </div>
         {showForm === 'comments' && <CommentsContainer trackId={trackId} />}
         {showForm === 'audioReply' && (
-          <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />
+          loggedIn ? <AudioResponseForm trackId={trackId} setShowForm={setShowForm} /> : <p style={{fontWeight: 'bold', fontSize: '2rem', textAlign: 'center'}}>sign in to contribute!</p>
         )}
         {showForm === 'edit' && <TrackPostEdit />}
       </div>
