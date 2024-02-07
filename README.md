@@ -45,25 +45,12 @@ Ex: If a user plays a guitar and they are interested adding drums to it, then th
 * Node.js
 * Typescript
 
+### Code Snippets
+
 
 ### The Shackers
 * Cole Manel - Lead Flex 
 * Ishan Chawla - Lead Backend 
 * Jake Tabor - Lead Frontend 
 * David Maine - Project Lead
-
-### Work Breakdown 
-* Jan 26-28 - User Auth 
-    - All roles involved 
-* Jan 29 - Audio Player Bar 
-    - Flex, Backend, Frontend
-* Jan 30 - Comments 
-    - Backend, Frontend 
-* Jan 31 - Music Posts
-    - All roles involved
-* Jan 32 - Tags / CSS
-    - Backend, Flex 
-    - Frontend, Project Lead
-* Jan 33 - Finalize applications looks 
-    - All roles involved
 
