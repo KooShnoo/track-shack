@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+.comments-scroll .logged-in {
+  overflow: auto;
+  height: 450px;
+}
 .comments-scroll {
   overflow: auto;
   height: 450px;

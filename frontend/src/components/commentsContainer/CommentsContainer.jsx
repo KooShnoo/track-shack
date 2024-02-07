@@ -26,7 +26,7 @@ const CommentsContainer = ({ trackId }) => {
           </p>
         )}
       </div>
-      <div className="comments-scroll">
+      <div className="comments-scroll logged-in">
         <Comment comments={comments} />
       </div>
     </div>
