@@ -42,7 +42,7 @@ const sessionErrorsSlice = createSlice({
     receiveSessionErrors : (state, action) => {    
       return action.payload
     },
-    clearSessionErrors : (state, action) => {
+    clearSessionErrors : () => {
       return null
     }
   },
@@ -58,7 +58,7 @@ export const sessionSlice = createSlice({
     receiveCurrentUser: (state, action) => {
      state.user = action.payload
     },
-    receiveUserLogout: (state, action) => {
+    receiveUserLogout: (state) => {
       state.user = null
     },
   }

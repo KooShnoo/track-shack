@@ -38,9 +38,6 @@ Ex: If a user plays a guitar and they are interested adding drums to it, then th
     - Users can filter posts by tags 
 * Audio hosting (hosting audio files)
 
-### Wireframes
-
-
 ### Technologies
 * MongoDB
 * Express

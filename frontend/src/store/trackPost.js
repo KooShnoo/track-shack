@@ -123,18 +123,11 @@ const trackPostsSlice = createSlice({
             state[action.payload[1]].comments.push(action.payload[0])
         },
         receiveAudioReply: (state, action) => {
-            //send trackPostId
             state[action.payload[1]].responses.push(action.payload[0])
         },
-        removeComment: (state, action) => {
-            let index;
-            state[action.payload[0]].comments.forEach((comment, i) => {
-                if(comment._id === action.payload[1]) {
-                    index = i
-                    return true 
-                }
-            })
-            state[action.payload[0]].comments.splice(index, 1)
+        removeComment: (state, action) => {      
+            let [trackId, commentId] = action.payload 
+            state[trackId].comments = state[trackId].comments.filter(comment => comment._id !== commentId)
         },
         removeAudioReply: (state, action) => {
             const {replyID, trackId} = action.payload
