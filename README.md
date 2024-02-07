@@ -38,6 +38,13 @@ Ex: If a user plays a guitar and they are interested adding drums to it, then th
     - Users can filter posts by tags 
 * Audio hosting (hosting audio files)
 
+### Demo
+
+![](README-assets/sign-up-recording.mov)
+
+
+![](README-assets/track-show-recording.mov)
+
 ### Technologies
 * MongoDB
 * Express
@@ -46,7 +53,7 @@ Ex: If a user plays a guitar and they are interested adding drums to it, then th
 * Typescript
 
 ### Code Snippets
-
+![](README-assets/trackPostsSlice-snippet.png)
 
 ### The Shackers
 * Cole Manel - Lead Flex 
