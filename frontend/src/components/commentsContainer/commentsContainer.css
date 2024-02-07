@@ -1,9 +1,9 @@
 .commentsContainer {
   padding: 1rem;
-  max-height: 700px;
+  max-height: 1100px;
   box-sizing: border-box;
   width: 100%;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .show-modal-container {
@@ -25,3 +25,9 @@
 .create-button-container h1:hover {
   cursor: pointer;
 }
+
+.comments-scroll {
+  overflow: auto;
+  height: 450px;
+}
+
