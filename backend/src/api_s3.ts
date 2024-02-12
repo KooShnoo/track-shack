@@ -1,6 +1,8 @@
 import { fromEnv } from "@aws-sdk/credential-providers";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { S3Client, GetObjectCommand, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { RequestHandler } from "express";
+import { ITrackPostSchema } from "./models/TrackPost.ts";
 
 const REGION = 'us-east-1';
 const BUCKET = 'track-shack';
@@ -14,7 +16,7 @@ const client = new S3Client({credentials: fromEnv(), region: REGION});
  * @returns url to be uploaded to
  */
 export async function getUploadUrl(filename: string) {
-  if (filename.length > 4096) return null;
+  if (filename.length > 512) return null;
   const putCommand = new PutObjectCommand({Bucket: BUCKET, Key: filename});
   const url = await getSignedUrl(client, putCommand);
   return url;
@@ -43,3 +45,13 @@ export async function deleteFile(filename: string) {
   }
 }
 
+export const ensureUniqueFilenames: RequestHandler = (req, res, next) => {
+  const tp: ITrackPostSchema = req.body;
+  const makeUniqueFilename = (filename: string) => `${new Date().toISOString()}_${crypto.randomUUID()}_${filename}`;
+  tp.audioMasterSrc = makeUniqueFilename(tp.audioMasterSrc);
+  tp.audioStemsSrc = makeUniqueFilename(tp.audioStemsSrc);
+  if (tp.albumArtSrc) {
+    tp.albumArtSrc = makeUniqueFilename(tp.albumArtSrc);
+  }
+  return next();
+};
