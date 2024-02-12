@@ -234,6 +234,23 @@
   height: 1rem;
 }
 
+.submit-container {
+  display: flex;
+  /* justify-content: space-around; */
+}
+
+.submit-errors {
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.inputs .error {
+  margin-bottom: 10px;
+  color: red;
+  /* font-weight: 400; */
+}
 
 @media (max-width: 1250px) {
   .audio-label {
