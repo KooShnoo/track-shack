@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import "./UserProfileShow.css";
+import "./ProfileShow.css";
 
-const UserProfileShow = ({tracks, comments}) => {
+const ProfileShow = ({tracks, comments}) => {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user) || null;
