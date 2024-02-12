@@ -1,0 +1,13 @@
+#create-response-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 5%;
+
+}
+
+#create-response-header .description {
+    margin: 10px;
+    line-height: 1.2em;
+    /* background-color: rgb(237, 211, 176, 0.3); */
+}
