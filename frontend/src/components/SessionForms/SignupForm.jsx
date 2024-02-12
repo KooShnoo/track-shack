@@ -8,6 +8,7 @@ function SignupForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [image, setImage] = useState(null);
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
 
@@ -46,10 +47,18 @@ function SignupForm() {
       email,
       username,
       password,
+      image
     };
 
     dispatch(signup(user));
   };
+
+  const handleImage = e => {
+     if (e.target.files.length > 0) {
+       const selectedImage = e.target.files[0];
+       setImage(selectedImage);
+     }
+  }
 
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
@@ -99,6 +108,17 @@ function SignupForm() {
             placeholder="Confirm Password"
           />
         </label>
+        <div className="img-button">
+        <label className="input-image-container" htmlFor="input-image">Add Profile Picture
+          <input 
+            type="file"
+            className='input-image'
+            id='input-image'
+            onChange={handleImage}
+           />
+        </label>
+
+        </div>
         
         <input id='submit-button'
           type="submit"
