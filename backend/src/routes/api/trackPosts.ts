@@ -1,7 +1,7 @@
 import express from "express";
 import { Error } from 'mongoose';
 import TrackPost, { ITrackPost, tpDelete, tpResponse, tpResponseForUpload } from "../../models/TrackPost.ts";
-import { serverErrorLogger } from "../../loggers.ts";
+import { serverErrorLogger, serverLogger } from "../../loggers.ts";
 import { restoreUser } from "../../passport.ts";
 import { PostTrackPostErrors, noticePostTrackPostNoUser, noticeDeleteTrackPostNoUser } from "../../validations/errors.ts";
 import { deleteReplyHandler, postReplyHandler } from "./trackPostReply.ts";
@@ -39,6 +39,19 @@ router.get('/:trackId', async (req, res, next) => {
     return res.json(tp);
   } catch {
     return res.status(404).json({error: "no such track post"});
+  }
+});
+
+router.get('/userProfile/:userId', async (req, res, next) => {
+  try {
+    const trackPosts = await TrackPost.find({author: req.params.userId}).populate('author');
+    serverErrorLogger('TRACKPOSTS', trackPosts);
+    if(trackPosts) {
+      return res.json(trackPosts);
+    }
+  } catch (error) {
+  //   let message = await error.json()
+    serverErrorLogger("DAVID ERROR", error);
   }
 });
 
