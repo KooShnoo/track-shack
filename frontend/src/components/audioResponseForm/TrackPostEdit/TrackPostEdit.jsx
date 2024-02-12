@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../TrackPostCreate/TrackPostCreate.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { postTrack } from "../../store/trackPost";
 
 const TrackPostEdit = ({ onClose }) => {
   const { trackId } = useParams();
@@ -14,6 +13,10 @@ const TrackPostEdit = ({ onClose }) => {
   const [stems, setStems] = useState(null);
   const [image, setImage] = useState(null);
   const [toggleForm, setToggleForm] = useState(true);
+  const [formError, setFormError] = useState("");
+  const [imageError, setImageError] = useState("");
+  const [audioFileError, setAudioFileError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (track) {
@@ -39,25 +42,66 @@ const TrackPostEdit = ({ onClose }) => {
     onClose();
   };
 
+  const handleImageUpload = (file) => {
+    const validImageTypes = ["img", "png", "jpg"];
+    let type = file.name.split(".")[1];
+    if (validImageTypes.includes(type)) {
+      setImageError("");
+      setImage(file);
+    } else {
+      setImageError("Please upload a valid image file type: img, png, jpg");
+    }
+  };
+
+  const handleAudioUpload = (file) => {
+    const validAudioTypes = ["wav", "mp3"];
+    let split = file.name.split(".");
+    let type = split[split.length - 1];
+    if (validAudioTypes.includes(type)) {
+      setAudioFileError("");
+      setAudioFile(file);
+    } else {
+      setAudioFileError("Please upload a valid audio file type: mp3, wav");
+    }
+  };
+
+  const isFormComplete = () => {
+    if (
+      title !== "" &&
+      subtitle !== "" &&
+      description !== "" &&
+      audioFile !== null &&
+      stems !== null
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   const handleSubmit = async () => {
-    // let trackPostId = await postTrack(
-    //   {
-    //     title,
-    //     subtitle,
-    //     description,
-    //     audioMasterSrc: audioFile.name,
-    //     audioStemsSrc: stems.name,
-    //     albumArtSrc: image?.name || null,
-    //   },
-    //   image || null,
-    //   audioFile,
-    //   stems
-    // );
-    // if (trackPostId) {
-    //   navigate(`/trackPosts/${trackPostId}`);
-    // } else {
-    //   console.log(trackPostId);
-    // }
+    debugger;
+    if (isFormComplete()) {
+      debugger;
+      //   await updateTrack(
+      //     {
+      //       title,
+      //       subtitle,
+      //       description,
+      //       audioMasterSrc: audioFile.name,
+      //       audioStemsSrc: stems.name,
+      //       albumArtSrc: image?.name || null,
+      //     },
+      //     image || null,
+      //     audioFile,
+      //     stems
+      //   );
+      //     navigate(`/trackPosts/${trackId}`);
+    } else {
+      debugger;
+      setFormError(
+        "Please complete the entire form before submitting! Default artwork will be used if none is provided."
+      );
+    }
   };
 
   return (
@@ -99,7 +143,6 @@ const TrackPostEdit = ({ onClose }) => {
               className="track-input"
               id="description"
               rows="4"
-              
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
@@ -122,6 +165,7 @@ const TrackPostEdit = ({ onClose }) => {
           <div className="inputs">
             <div className="file-input-container">
               <div className="master">
+                <p className="error">{audioFileError}</p>
                 <label className="audio-label" htmlFor="audioFile">
                   <p>Upload Master</p>
                   <input
@@ -129,13 +173,14 @@ const TrackPostEdit = ({ onClose }) => {
                     className="track-input-file"
                     type="file"
                     id="audioFile"
-                    onChange={(e) => setAudioFile(e.target.files[0])}
+                    onChange={(e) => handleAudioUpload(e.target.files[0])}
                   />
                 </label>
               </div>
             </div>
             <div className="file-input-container">
               <div className="image">
+                <p className="error">{imageError}</p>
                 <label htmlFor="image" className="audio-label">
                   <p>Upload Artwork</p>
                   <input
@@ -143,13 +188,14 @@ const TrackPostEdit = ({ onClose }) => {
                     type="file"
                     id="image"
                     className="track-input-file"
-                    onChange={(e) => setImage(e.target.files[0])}
+                    onChange={(e) => handleImageUpload(e.target.files[0])}
                   />
                 </label>
               </div>
             </div>
             <div className="file-input-container">
               <div className="stems">
+                <p className="error"> </p>
                 <label className="audio-label" htmlFor="stems">
                   <p>Upload Stems</p>
                   <input
@@ -162,13 +208,18 @@ const TrackPostEdit = ({ onClose }) => {
                 </label>
               </div>
             </div>
-            <button
-              id="create-track-button"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Post Track
-            </button>
+            <div className="submit-container">
+              <button
+                id="create-track-button"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Create Track
+              </button>
+              <div className="submit-errors">
+                <h2 className="edit-error">{formError}</h2>
+              </div>
+            </div>
           </div>
         </div>
       )}

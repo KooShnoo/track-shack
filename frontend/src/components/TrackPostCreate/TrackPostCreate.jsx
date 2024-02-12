@@ -44,13 +44,10 @@ const TrackPostCreate = ({ onClose }) => {
     const validAudioTypes = ["wav", "mp3"];
     let split = file.name.split(".");
     let type = split[split.length - 1]
-    debugger;
     if (validAudioTypes.includes(type)) {
-      debugger;
       setAudioFileError("");
       setAudioFile(file);
     } else {
-      debugger;
       setAudioFileError("Please upload a valid audio file type: mp3, wav");
     }
   };
