@@ -1,9 +1,8 @@
 import './trackMasterDisplay.css';
 import AudioPlayer from '../audio/AudioPlayer';
 
-const TrackMasterDisplay = ({ track }) => {
-
-  console.log('TRACK', track?.albumArtSrc)
+const TrackMasterDisplay = ({ track, trackId }) => {
+  console.log('TRACK', track?.albumArtSrc);
   return (
     <div className="track-info-container">
       <div className="track-items">
@@ -18,7 +17,7 @@ const TrackMasterDisplay = ({ track }) => {
       </div>
       <div className="audio-button-container">
         <div className="audio-player-container">
-          <AudioPlayer src={track?.audioMasterSrc} />
+          <AudioPlayer src={track?.audioMasterSrc} trackId={trackId} />
           <a className="download-button" download href={track?.audioStemsSrc}>
             <button className="audio-player-button">Download</button>
           </a>
