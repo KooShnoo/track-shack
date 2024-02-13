@@ -23,8 +23,8 @@ export const getTracks = () => async dispatch => {
  * @param {File} file 
  * @param {string} url 
  */
-export const awsUploadFile = (url, file) => {
-    fetch(url, {
+export const awsUploadFile = async (url, file) => {
+    await fetch(url, {
         method: 'PUT',
         headers: {['Content-Length']: file.size.toString()},
         body: file
@@ -65,7 +65,7 @@ export const postTrack = async (trackPost, albumpic, master, stems) => {
 export const updateTrack = async (trackPost, albumpic, master, stems) => { 
     const res = await (async () => {
         try {
-            return await jwtFetch(`/api/trackPosts/${trackPost._id}`, {method: 'POST', body: JSON.stringify(trackPost)});
+            return await jwtFetch(`/api/trackPosts/${trackPost._id}`, {method: 'PUT', body: JSON.stringify(trackPost)});
         } catch {
             return null;
         }})();
@@ -73,7 +73,6 @@ export const updateTrack = async (trackPost, albumpic, master, stems) => {
     /** @type {import('../../../backend/src/models/TrackPost').TpResponseForUpload | {error: string}} */
     const soba = await res.json()
     if ('error' in soba) return null;
-    console.log('wifo', master, stems, albumpic);
     await Promise.all([
         master && awsUploadFile(soba.audioMasterUploadURL, master),
         stems && awsUploadFile(soba.audioStemsUploadURL, stems),
