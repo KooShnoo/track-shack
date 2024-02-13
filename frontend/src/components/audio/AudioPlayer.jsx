@@ -3,8 +3,6 @@ import WaveSurfer from 'wavesurfer.js';
 import './AudioPlayer.css';
 
 function AudioPlayer({ src, trackId }) {
-  console.log('this is a console log for the source', src);
-
   const waveformId = `#myWaveForm`;
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -12,6 +10,9 @@ function AudioPlayer({ src, trackId }) {
     const song = WaveSurfer.create({
       container: `.waveForm-${trackId}`,
       height: 50,
+      waveColor: 'rgb(0, 0, 0)',
+      // width: 200,
+      fillParent: true,
       dragToSeek: true,
       hideScrollbar: true,
       normalize: true,
@@ -31,8 +32,10 @@ function AudioPlayer({ src, trackId }) {
   }, [src, waveformId]);
 
   return (
-    <div className="play-container">
-      <div id={waveformId} className={`waveForm-${trackId}`}></div>
+    <div className="waveform-container">
+      <div className="play-container">
+        <div id={waveformId} className={`waveForm-${trackId}`}></div>
+      </div>
     </div>
   );
 }
