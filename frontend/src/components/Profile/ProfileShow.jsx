@@ -10,11 +10,8 @@ const ProfileShow = () => {
   const { userId } = useParams();
   const tracks = useSelector(state => state.trackPosts);
 
-  let user;
-  for (let key in tracks) {
-    user = tracks[key].author;
-    break;
-  }
+  let user = tracks[0]?.author
+  if(user) console.log(user)
 
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [username, setUsername] = useState('user.username');
