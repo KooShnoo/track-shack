@@ -8,11 +8,11 @@ const ProfileShow = () => {
 
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const tracks = useSelector(state = state.trackPosts)
-  let user;
+  const tracks = useSelector(state => state.trackPosts);
 
+  let user;
   for (let key in tracks) {
-    user = tracks[key];
+    user = tracks[key].author;
     break;
   }
 
