@@ -16,6 +16,7 @@ const TrackPostCreate = ({ onClose }) => {
   const [formError, setFormError] = useState("");
   const [imageError, setImageError] = useState("");
   const [audioFileError, setAudioFileError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const handleCreateForm = () => {
     setToggleForm(!toggleForm);
     if (!toggleForm) {
@@ -29,26 +30,21 @@ const TrackPostCreate = ({ onClose }) => {
     onClose();
   };
 
-  const handleImageUpload = (file) => {
-    const validImageTypes = ["img", "png", "jpg"];
-    let type = file.name.split(".")[1];
-    if (validImageTypes.includes(type)) {
+const handleImageUpload = (file) => {
+    if (file.type.match('image.*')) {
       setImageError("");
       setImage(file);
     } else {
-      setImageError("Please upload a valid image file type: img, png, jpg");
+      setImageError("Please upload a valid image file type, such as img, png, jpg");
     }
   };
 
   const handleAudioUpload = (file) => {
-    const validAudioTypes = ["wav", "mp3"];
-    let split = file.name.split(".");
-    let type = split[split.length - 1]
-    if (validAudioTypes.includes(type)) {
+    if (file.type.match('audio.*')) {
       setAudioFileError("");
       setAudioFile(file);
     } else {
-      setAudioFileError("Please upload a valid audio file type: mp3, wav");
+      setAudioFileError("Please upload a valid audio file type, such as mp3 or wav");
     }
   };
 
@@ -67,6 +63,7 @@ const TrackPostCreate = ({ onClose }) => {
 
   const handleSubmit = async () => {
     if (isFormComplete()) {
+      setUploading(true);
       let trackPostId = await postTrack(
         {
           title,
@@ -86,6 +83,7 @@ const TrackPostCreate = ({ onClose }) => {
       } else {
         console.log(trackPostId);
       }
+      setUploading(false);
     } else {
       setFormError(
         "Please complete the entire form before submitting! Default artwork will be used if none is provided."
@@ -193,11 +191,12 @@ const TrackPostCreate = ({ onClose }) => {
             </div>
             <div className="submit-container">
               <button
+                disabled={uploading}
                 id="create-track-button"
                 type="submit"
                 onClick={handleSubmit}
               >
-                Create Track
+                {uploading? "uploading..." : "Create Track"}
               </button>
               <div className="submit-errors">
                 <h2 className="error">{formError}</h2>

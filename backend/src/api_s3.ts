@@ -48,10 +48,8 @@ export async function deleteFile(filename: string) {
 export const ensureUniqueFilenames: RequestHandler = (req, res, next) => {
   const tp: ITrackPostSchema = req.body;
   const makeUniqueFilename = (filename: string) => `${new Date().toISOString()}_${crypto.randomUUID()}_${filename}`;
-  tp.audioMasterSrc = makeUniqueFilename(tp.audioMasterSrc);
-  tp.audioStemsSrc = makeUniqueFilename(tp.audioStemsSrc);
-  if (tp.albumArtSrc) {
-    tp.albumArtSrc = makeUniqueFilename(tp.albumArtSrc);
-  }
+  if (tp.audioMasterSrc) tp.audioMasterSrc = makeUniqueFilename(tp.audioMasterSrc);
+  if (tp.audioStemsSrc) tp.audioStemsSrc = makeUniqueFilename(tp.audioStemsSrc);
+  if (tp.albumArtSrc) tp.albumArtSrc = makeUniqueFilename(tp.albumArtSrc);
   return next();
 };
