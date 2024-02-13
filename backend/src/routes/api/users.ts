@@ -19,18 +19,6 @@ router.get('/', function(req, res, next) {
   res.send('GET /api/users');
 });
 
-router.get('/:userId', async (req, res, next) => {
-  try {
-    const user = await User.findById(req.params.userId);
-    serverLogger('HIIII', user);
-    if(user) {
-      return res.json(user);
-    }
-  } catch (err) {
-    res.json(err);
-  }
-} );
-
 // POST /api/users/register
 router.post('/register', validateRegisterInput, async (req: Request, res: Response, next: NextFunction) => {
   // Check to make sure no one has already registered with the proposed email or
@@ -115,6 +103,17 @@ router.get('/current', restoreUser, (req, res) => {
     email: req.user.email
   });
 });
+
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if(user) {
+      return res.json(user);
+    }
+  } catch (err) {
+    res.json(err);
+  }
+} );
 
 
 export default router;
