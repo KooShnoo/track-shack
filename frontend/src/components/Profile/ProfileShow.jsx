@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import "./ProfileShow.css";
 
-const ProfileShow = ({tracks, comments}) => {
+export default function ProfileShow ({tracks, comments}) {
 
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user) || null;

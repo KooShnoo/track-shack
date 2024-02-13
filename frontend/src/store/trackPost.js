@@ -1,4 +1,4 @@
-
+// @ts-check
 import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -32,7 +32,6 @@ export const awsUploadFile = (url, file) => {
 }
 
 /**
- * 
  * @param {import('../../../backend/src/models/TrackPost').ITrackPostSchema} trackPost 
  * @param {File?} albumpic 
  * @param {File} master 
@@ -54,6 +53,33 @@ export const postTrack = async (trackPost, albumpic, master, stems) => {
         awsUploadFile(soba.audioStemsUploadURL, stems),
         soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
     ]);
+    return soba.id
+}
+
+/**
+ * @param {Partial<import('../../../backend/src/models/TrackPost').ITrackPostSchema & { _id: string }>} trackPost 
+ * @param {File?} albumpic 
+ * @param {File?} master 
+ * @param {File?} stems 
+ */
+export const updateTrack = async (trackPost, albumpic, master, stems) => { 
+    const res = await (async () => {
+        try {
+            return await jwtFetch(`/api/trackPosts/${trackPost._id}`, {method: 'POST', body: JSON.stringify(trackPost)});
+        } catch {
+            return null;
+        }})();
+    if (!res) return null;
+    /** @type {import('../../../backend/src/models/TrackPost').TpResponseForUpload | {error: string}} */
+    const soba = await res.json()
+    if ('error' in soba) return null;
+    console.log('wifo', master, stems, albumpic);
+    await Promise.all([
+        master && awsUploadFile(soba.audioMasterUploadURL, master),
+        stems && awsUploadFile(soba.audioStemsUploadURL, stems),
+        soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
+    ]);
+    console.log('ofa');
     return soba.id
 }
 

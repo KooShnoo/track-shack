@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../../TrackPostCreate/TrackPostCreate.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { updateTrack } from "../../../store/trackPost";
 
 const TrackPostEdit = ({ onClose }) => {
   const { trackId } = useParams();
@@ -23,9 +24,6 @@ const TrackPostEdit = ({ onClose }) => {
       setTitle(track.title);
       setSubtitle(track.subtitle);
       setDescription(track.description);
-      setAudioFile(track.audioMasterSrc);
-      setStems(track.audioStemsSrc);
-      setImage(track.albumArtSrc);
     }
   }, [track]);
 
@@ -65,43 +63,31 @@ const TrackPostEdit = ({ onClose }) => {
     }
   };
 
-  const isFormComplete = () => {
-    if (
-      title !== "" &&
-      subtitle !== "" &&
-      description !== "" &&
-      audioFile !== null &&
-      stems !== null
-    ) {
-      return true;
-    }
-    return false;
-  };
+  const isFormComplete = () => title && subtitle && description
 
   const handleSubmit = async () => {
-    debugger;
-    if (isFormComplete()) {
-      debugger;
-      //   await updateTrack(
-      //     {
-      //       title,
-      //       subtitle,
-      //       description,
-      //       audioMasterSrc: audioFile.name,
-      //       audioStemsSrc: stems.name,
-      //       albumArtSrc: image?.name || null,
-      //     },
-      //     image || null,
-      //     audioFile,
-      //     stems
-      //   );
-      //     navigate(`/trackPosts/${trackId}`);
-    } else {
-      debugger;
+    if (!isFormComplete()) {
       setFormError(
-        "Please complete the entire form before submitting! Default artwork will be used if none is provided."
+        "Please complete the entire form before submitting!\
+         Default artwork will be used if none is provided."
       );
+      return;
     }
+    await updateTrack(
+      {
+        _id: trackId,
+        title,
+        subtitle,
+        description,
+        audioMasterSrc: audioFile?.name || null,
+        audioStemsSrc: stems?.name || null,
+        albumArtSrc: image?.name || null,
+      },
+      image || null,
+      audioFile || null,
+      stems || null
+    );
+    navigate(`/`);
   };
 
   return (
@@ -167,7 +153,7 @@ const TrackPostEdit = ({ onClose }) => {
               <div className="master">
                 <p className="error">{audioFileError}</p>
                 <label className="audio-label" htmlFor="audioFile">
-                  <p>Upload Master</p>
+                  <p>Upload Updated Master</p>
                   <input
                     // value={audioFile}
                     className="track-input-file"
@@ -182,7 +168,7 @@ const TrackPostEdit = ({ onClose }) => {
               <div className="image">
                 <p className="error">{imageError}</p>
                 <label htmlFor="image" className="audio-label">
-                  <p>Upload Artwork</p>
+                  <p>Upload Updated Artwork</p>
                   <input
                     // value={image}
                     type="file"
@@ -197,7 +183,7 @@ const TrackPostEdit = ({ onClose }) => {
               <div className="stems">
                 <p className="error"> </p>
                 <label className="audio-label" htmlFor="stems">
-                  <p>Upload Stems</p>
+                  <p>Upload Updated Stems</p>
                   <input
                     // value={stems}
                     className="track-input-file"
@@ -214,7 +200,7 @@ const TrackPostEdit = ({ onClose }) => {
                 type="submit"
                 onClick={handleSubmit}
               >
-                Create Track
+                Edit Track
               </button>
               <div className="submit-errors">
                 <h2 className="edit-error">{formError}</h2>

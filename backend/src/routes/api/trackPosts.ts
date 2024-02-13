@@ -74,6 +74,24 @@ router.post('/', restoreUser, ensureUniqueFilenames, async (req, res, next) => {
   res.status(201).json(response);
 });
 
+router.post('/:trackId', restoreUser, ensureUniqueFilenames, async (req, res, next) => {
+  if (!req.user){
+    const errors: PostTrackPostErrors = {session: noticePostTrackPostNoUser};
+    return res.status(401).json(errors);
+  } 
+  const tp = new TrackPost({...req.body, author: req.user});
+  try {
+    await TrackPost.findOneAndReplace({ _id: req.params.trackId }, tp);
+  } catch(err) {
+    if (err instanceof Error.ValidationError) {
+      serverErrorLogger('invalid');
+    }
+    return res.status(422).json(err);
+  }
+  const response = await tpResponseForUpload(tp);
+  res.status(201).json(response);
+});
+
 router.delete('/:trackId', restoreUser, async (req, res, next) => {
   if (!req.user){
     const errors = {session: noticeDeleteTrackPostNoUser};

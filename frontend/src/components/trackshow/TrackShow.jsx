@@ -10,7 +10,6 @@ import AudioResponseForm from '../audioResponseForm/AudioResponseForm';
 import { deleteTrack } from '../../store/trackPost';
 import TrackPostEdit from '../audioResponseForm/TrackPostEdit/TrackPostEdit';
 import { getUserTracks } from '../../store/trackPost';
-import { getUser } from '../../store/userProfile';
 
 const TrackShow = () => {
   const dispatch = useDispatch();
