@@ -4,11 +4,7 @@ import { useParams } from "react-router-dom";
 import "./ProfileShow.css";
 import { getUserTracks } from "../../store/trackPost";
 
-<<<<<<< HEAD
-export default function ProfileShow ({tracks, comments}) {
-=======
 const ProfileShow = () => {
->>>>>>> 61d957a (refactor state selectors in ProfileShow)
 
   const dispatch = useDispatch();
   const { userId } = useParams();
