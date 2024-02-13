@@ -67,3 +67,5 @@ const ProfileShow = () => {
     </>
   );
 };
+
+export default ProfileShow;
