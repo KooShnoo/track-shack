@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
@@ -6,11 +6,17 @@ import { logout } from '../../store/session';
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user)
+  const navigate = useNavigate()
 
   const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
+
+  const navToProfile = () => {
+    navigate(`/profile/${user?._id}`)
+  }
 
   const getLinks = () => {
     if (loggedIn) {
@@ -19,6 +25,9 @@ function NavBar() {
           <button className="logout-button" onClick={logoutUser}>
             Logout
           </button>
+          <div className="user-icon">
+            <img onClick={navToProfile} src={user?.image || '../../../public/profileImage/default.avif'} alt="" className="icon" />
+          </div>
         </div>
       );
     } else {

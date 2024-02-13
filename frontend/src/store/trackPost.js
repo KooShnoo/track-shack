@@ -146,7 +146,11 @@ const trackPostsSlice = createSlice({
             return {[action.payload._id]: action.payload}
         },
         receiveTracksUserProfile: (state, action) => {
-            return {...state, ...action.payload}
+            let data = []
+            for(let key in action.payload) {
+                data.push(action.payload[key])
+            }
+            return data
         },
         clearTracks: () => {
             return {}

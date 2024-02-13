@@ -80,3 +80,20 @@
   background: rgb(197, 129, 51);
   box-shadow: 5px 15px 30px rgba(208, 139, 60, 0.541);
 }
+
+.user-icon {
+  margin-left: 50px;
+}
+
+.user-icon img {
+  height: 75px;
+  width: 75px;
+  border-radius: 100px;
+  transition: transform 0.3s;
+}
+
+.user-icon img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
