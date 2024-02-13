@@ -25,9 +25,9 @@ function NavBar() {
           <button className="logout-button" onClick={logoutUser}>
             Logout
           </button>
-          <div className="user-icon">
-            <img onClick={navToProfile} src={user?.image || '../../../public/profileImage/default.avif'} alt="" className="icon" />
-          </div>
+          <button className="profile-button" onClick={navToProfile}>
+            MyShack
+          </button>
         </div>
       );
     } else {
