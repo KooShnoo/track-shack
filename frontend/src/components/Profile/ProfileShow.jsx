@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./ProfileShow.css";
+import { getUserTracks } from "../../store/trackPost";
 
+<<<<<<< HEAD
 export default function ProfileShow ({tracks, comments}) {
+=======
+const ProfileShow = () => {
+>>>>>>> 61d957a (refactor state selectors in ProfileShow)
 
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user) || null;
-  const { userId } = useParams;
-  // const tracks = user.tracks;
-  // const comments = user.comments;
-  
+  const { userId } = useParams();
+  const tracks = useSelector(state = state.trackPosts)
+  let user;
+
+  for (let key in tracks) {
+    user = tracks[key];
+    break;
+  }
+
   const [showEditProfile, setShowEditProfile] = useState(false);
-  const [username, setUsername] = useState(user.username);
-  const [profileEmail, setProfileEmail] = useState(user.email);
+  const [username, setUsername] = useState('user.username');
+  const [profileEmail, setProfileEmail] = useState('user.email');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(true);
@@ -23,15 +32,15 @@ export default function ProfileShow ({tracks, comments}) {
   
   useEffect(() => {
     if ( userId ) {
-      dispatch(fetchUserTracks(userId, tracks));
+      dispatch(getUserTracks(userId));
     }
-  }, [userId, tracks, dispatch]);
+  }, [userId, dispatch]);
 
-  useEffect(() => {
-    if ( userId ) {
-      dispatch(fetchUserComments(userId, comments));
-    }
-  }, [userId, comments, dispatch]);
+  // useEffect(() => {
+  //   if ( userId ) {
+  //     dispatch(fetchUserComments(userId, comments));
+  //   }
+  // }, [userId, comments, dispatch]);
 
   return (
     <>
@@ -39,8 +48,8 @@ export default function ProfileShow ({tracks, comments}) {
         <div className="profile-info-container">
           <div id="profile-picture"><i className="fa-solid fa-compact-disc fa-spin"></i></div>
           <div id="profile-info">
-            <h1>{user.username}</h1>
-            <p>{user.email}</p>
+            <h1>{user?.username}</h1>
+            <p>{user?.email}</p>
             <p>{bio}</p> 
           </div>
           <button onClick={() => setShowEditProfile(!showEditProfile)}>Edit Info</button>
