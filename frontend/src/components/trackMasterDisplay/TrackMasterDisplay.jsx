@@ -12,7 +12,8 @@ const TrackMasterDisplay = ({ track }) => {
           <p className="body">{track?.description}</p>
         </div>
         <div className="image-container">
-          <img src={track?.albumArtSrc} alt="" />
+          {/* <img src="/defaultAlbumArt.png" alt="" /> */}
+          <img src={track?.albumArtSrc || '/defaultAlbumArt.png'} alt="" />
         </div>
       </div>
       <div className="audio-button-container">

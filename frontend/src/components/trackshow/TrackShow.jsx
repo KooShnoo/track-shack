@@ -9,7 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AudioResponseForm from '../audioResponseForm/AudioResponseForm';
 import { deleteTrack } from '../../store/trackPost';
 import TrackPostEdit from '../audioResponseForm/TrackPostEdit/TrackPostEdit';
-import { getUserTracks } from '../../store/trackPost';
+// import { getUserTracks } from '../../store/trackPost';
 
 const TrackShow = () => {
   const dispatch = useDispatch();
