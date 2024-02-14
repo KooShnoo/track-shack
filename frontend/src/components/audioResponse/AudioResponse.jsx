@@ -19,7 +19,7 @@ const AudioResponse = ({ response, trackId }) => {
           <h3>From: {response?.author.username}</h3>
           <p>{response?.description}</p>
         </div>
-        <AudioPlayer src={response?.audioMasterSrc} trackId={trackId} />
+        <AudioPlayer src={response?.audioMasterSrc} trackId={response?._id} />
       </div>
       <div className="dl-button-container">
         {currentUserId === response.author._id && (
