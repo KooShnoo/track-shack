@@ -46,7 +46,6 @@ const ProfileShow = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    debugger
     await uploadPfp(profilePicture)
     dispatch(updateUser({bio, username}, userId))
     // dispatch(getUser(userId))

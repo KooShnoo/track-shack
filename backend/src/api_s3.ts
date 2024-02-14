@@ -3,6 +3,7 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { S3Client, GetObjectCommand, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { RequestHandler } from "express";
 import { ITrackPostSchema } from "./models/TrackPost.ts";
+import { serverLogger } from "./loggers.ts";
 
 const REGION = 'us-east-1';
 const BUCKET = 'track-shack';
@@ -62,6 +63,7 @@ export const ensureUniqueTrackPostFilenames: RequestHandler = (req, res, next) =
 export const ensureUniquePFPFilename: RequestHandler = (req, res, next) => {
   try {
     req.body.pfp_filename = makeUniqueFilename(req.body.pfp_filename);
+    return next();
   } catch (e) {
     return res.status(422).json(e);
   }
