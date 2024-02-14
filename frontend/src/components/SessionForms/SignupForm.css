@@ -27,7 +27,7 @@
 .input-image-container {
   margin-top: 10px;
   text-align: center;
-  border: solid black 1px;
+  border: solid black .5px;
   background-color: white;
   width: 342px;
   height: 31px;

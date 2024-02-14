@@ -2,8 +2,8 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken'
-import User, { IUser } from './models/User.ts'
+import jwt from 'jsonwebtoken';
+import User, { IUser } from './models/User.ts';
 import { NextFunction, Request, Response } from 'express';
 import { serverErrorLogger } from './loggers.ts';
 

@@ -14,6 +14,8 @@ button:active {
 .comment {
   position: relative;
   margin: 20px auto;
+  padding-bottom: 10px;
+  border-bottom: 4px solid rgb(214, 192, 140, 0.4);
 }
 
 .comment-heading {
@@ -24,6 +26,7 @@ button:active {
 
 .comment-info {
   color: rgba(0, 0, 0, 0.5);
+  display: flex;
 }
 
 .comment-info > a {
@@ -86,6 +89,7 @@ details.comment[open] .comment-heading::after {
   content: 'Click to hide';
 }
 
+
 details.comment:not([open]) .comment-heading::after {
   font-size: 0.8rem;
   font-family: manrope;
@@ -95,3 +99,4 @@ details.comment:not([open]) .comment-heading::after {
 .comment .delete:hover {
   cursor: pointer;
 }
+

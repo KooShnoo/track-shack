@@ -104,5 +104,16 @@ router.get('/current', restoreUser, (req, res) => {
   });
 });
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if(user) {
+      return res.json(user);
+    }
+  } catch (err) {
+    res.json(err);
+  }
+} );
+
 
 export default router;

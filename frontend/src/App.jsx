@@ -11,6 +11,7 @@ import SignupForm from './components/SessionForms/SignupForm';
 import TrackPostCreate from './components/TrackPostCreate/TrackPostCreate.jsx';
 import TrackShow from './components/trackshow/TrackShow';
 import About from './components/about/About.jsx';
+import ProfileShow from './components/Profile/ProfileShow.jsx'
 import createComment from './components/createComment/CreateComment.jsx';
 
 import { getCurrentUser } from './store/session';
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'profile/:userId',
+        element: <ProfileShow />,
       },
     ],
   },

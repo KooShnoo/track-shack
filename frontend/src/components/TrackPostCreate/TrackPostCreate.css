@@ -204,7 +204,7 @@
 }
 
 #create-track-button {
-  margin-top: 1rem;
+  margin-top: 1.75rem;
   margin-left: 10px;
   border: none;
   font-family: Manrope;
@@ -234,6 +234,29 @@
   height: 1rem;
 }
 
+.submit-container {
+  display: flex;
+  /* justify-content: space-around; */
+}
+
+.submit-errors {
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.inputs .error {
+  margin-bottom: 10px;
+  color: red;
+  /* font-weight: 400; */
+}
+
+.inputs .edit-error {
+  margin-bottom: 10px;
+  color: red;
+  /* width: 50px; */
+}
 
 @media (max-width: 1250px) {
   .audio-label {

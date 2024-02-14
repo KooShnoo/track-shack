@@ -23,7 +23,7 @@
 }
 
 .credential-fields {
-  border: 2px solid rgb(62, 62, 62);
+  /* border: 2px solid rgb(62, 62, 62); */
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -84,13 +84,13 @@
   margin-top: 20px;
   display: inline-block;
   height: 50px;
-  background: unset;
-
+  background: black;
+  color: white;
   font-size: 16px;
   font-weight: 500;
   line-height: 2;
   /* color: white; */
-  /* border: none; */
+  border: none;
   border-radius: 24px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;

@@ -1,4 +1,4 @@
-
+// @ts-check
 import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
 
@@ -23,8 +23,8 @@ export const getTracks = () => async dispatch => {
  * @param {File} file 
  * @param {string} url 
  */
-export const awsUploadFile = (url, file) => {
-    fetch(url, {
+export const awsUploadFile = async (url, file) => {
+    await fetch(url, {
         method: 'PUT',
         headers: {['Content-Length']: file.size.toString()},
         body: file
@@ -32,7 +32,6 @@ export const awsUploadFile = (url, file) => {
 }
 
 /**
- * 
  * @param {import('../../../backend/src/models/TrackPost').ITrackPostSchema} trackPost 
  * @param {File?} albumpic 
  * @param {File} master 
@@ -57,10 +56,42 @@ export const postTrack = async (trackPost, albumpic, master, stems) => {
     return soba.id
 }
 
+/**
+ * @param {Partial<import('../../../backend/src/models/TrackPost').ITrackPostSchema & { _id: string }>} trackPost 
+ * @param {File?} albumpic 
+ * @param {File?} master 
+ * @param {File?} stems 
+ */
+export const updateTrack = async (trackPost, albumpic, master, stems) => { 
+    const res = await (async () => {
+        try {
+            return await jwtFetch(`/api/trackPosts/${trackPost._id}`, {method: 'PUT', body: JSON.stringify(trackPost)});
+        } catch {
+            return null;
+        }})();
+    if (!res) return null;
+    /** @type {import('../../../backend/src/models/TrackPost').TpResponseForUpload | {error: string}} */
+    const soba = await res.json()
+    if ('error' in soba) return null;
+    await Promise.all([
+        master && awsUploadFile(soba.audioMasterUploadURL, master),
+        stems && awsUploadFile(soba.audioStemsUploadURL, stems),
+        soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
+    ]);
+    console.log('ofa');
+    return soba.id
+}
+
 export const getTrack = (trackId) => async dispatch => {
     const res = await jwtFetch(`/api/trackPosts/${trackId}`);
     const track = await res.json()
         dispatch(receiveTrack(track))
+}
+
+export const getUserTracks = (userId) => async dispatch => {
+    const res = await jwtFetch(`/api/trackPosts/userProfile/${userId}`)
+    const tracks = await res.json()
+    dispatch(receiveTracksUserProfile(tracks))
 }
 
 export const deleteTrack = trackId => async dispatch => {
@@ -77,16 +108,16 @@ export const deleteTrack = trackId => async dispatch => {
     }
 }
 
-export const createTrack = (trackPost) => async dispatch => {
-    try {
-        const res = await jwtFetch(`api/trackPosts`, {
-        method: "POST",
-        body: trackPost
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
+// export const createTrack = (trackPost) => async dispatch => {
+//     try {
+//         await jwtFetch(`api/trackPosts`, {
+//         method: "POST",
+//         body: trackPost
+//         })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 
 export const trackErrorsSlice = createSlice({
@@ -113,6 +144,13 @@ const trackPostsSlice = createSlice({
         receiveTrack: (state, action) => {
             return {[action.payload._id]: action.payload}
         },
+        receiveTracksUserProfile: (state, action) => {
+            let data = []
+            for(let key in action.payload) {
+                data.push(action.payload[key])
+            }
+            return data
+        },
         clearTracks: () => {
             return {}
         },
@@ -136,7 +174,7 @@ const trackPostsSlice = createSlice({
     }
 })
 
-export const {receiveTracks, receiveTrack, clearTracks, receiveComment, removeComment, receiveAudioReply, removeAudioReply, removeTrack} = trackPostsSlice.actions
+export const {receiveTracks, receiveTrack, clearTracks, receiveComment, removeComment, receiveAudioReply, removeAudioReply, removeTrack, receiveTracksUserProfile} = trackPostsSlice.actions
 
 export const trackErrorsReducer = trackErrorsSlice.reducer
 

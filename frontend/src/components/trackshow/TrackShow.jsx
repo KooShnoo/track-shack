@@ -9,6 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AudioResponseForm from '../audioResponseForm/AudioResponseForm';
 import { deleteTrack } from '../../store/trackPost';
 import TrackPostEdit from '../audioResponseForm/TrackPostEdit/TrackPostEdit';
+import { getUserTracks } from '../../store/trackPost';
 
 const TrackShow = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const TrackShow = () => {
       </div>
       <div className="track-right-container">
         <div className="track-right-header">
+          <h1 onClick={() => dispatch(getUserTracks(currentUserId))}>TEST REQUEST USER TRACKS</h1>
           {' '}
           <button
             className="comment-button"

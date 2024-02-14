@@ -16,7 +16,6 @@ const TrackMasterDisplay = ({ track }) => {
           <h1 className="title">{currentTrack?.title}</h1>
           <p className="body">{currentTrack?.description}</p>
         </div>
-
         <div className="image-container">
           <img src={currentTrack?.albumArtSrc} alt="" />
         </div>

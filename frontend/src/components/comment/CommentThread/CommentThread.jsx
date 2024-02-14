@@ -1,7 +1,8 @@
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { createComment, deleteComment } from '../../../store/comment';
-import { useDispatch } from 'react-redux';
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { deleteComment } from "../../../store/comment";
+import { useDispatch } from "react-redux";
+import './commentThread.css'
 
 const CommentThread = ({ id, author, timeAgo, content }) => {
   const currentUser = useSelector((state) => state.session.user);
@@ -10,13 +11,15 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
 
   return (
     <details open className="comment" id={id}>
-      <a href={`#${id}`} className="comment-border-link">
+      {/* <a href={`#${id}`} className="comment-border-link">
         <span className="sr-only">{`Jump to ${id}`}</span>
-      </a>
+      </a> */}
       <summary>
         <div className="comment-heading">
           <div className="comment-info">
-            <a href="#">{author?.username}</a>
+            <a id="comment-author" href="#">
+              {author?.username}
+            </a>
             <p>{`${timeAgo}`}</p>
           </div>
         </div>
@@ -28,28 +31,29 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
           onClick={() => {
             dispatch(deleteComment(id, trackId));
           }}
-        >
-        </p>
+        ></p>
       )}
 
       <div className="comment-body">
         <p>{content}</p>
         <div className="comment-body-buttons">
-          <button
+          {/* <button
             className="reply-button"
             type="button"
             onClick={() => {
               dispatch(createComment(content, trackId));
-            }}>
+            }}
+          >
             Reply
-          </button>
+          </button> */}
           {currentUser?._id === author?._id && (
-            <button 
-              className="delete-button" 
-              type="button"  
+            <button
+              className="delete-button"
+              type="button"
               onClick={() => {
                 dispatch(deleteComment(id, trackId));
-              }}>
+              }}
+            >
               Delete
             </button>
           )}

@@ -1,8 +1,8 @@
 import { useState } from "react";
-
 import { postTrackReply } from "../../store/trackPostReply";
 import { receiveAudioReply } from "../../store/trackPost";
 import { useDispatch } from "react-redux";
+import './audioResponseForm.css'
 
 const AudioResponseForm = ({trackId, setShowForm}) => {
   const [description, setDescription] = useState("");
@@ -38,8 +38,9 @@ const AudioResponseForm = ({trackId, setShowForm}) => {
   return (
     <div className="createPage">
       <div className="TrackPostCreateContainer">
-        <div id="create-form-header">
+        <div id="create-response-header">
           <h1>Create an Audio Response!</h1>
+          <h2 className="description">Whats an Audio Respone? It&apos;s a contribution to this project that you&apos;d like to make! Are you a drummer? Upload some drums? A singer? You know what to do!</h2>
           <button id="audio-response-button" type="submit" onClick={handleSubmit}>
             Upload Audio
           </button>
