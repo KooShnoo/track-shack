@@ -1,4 +1,6 @@
-// import jwtFetch from "./jwt";
+// @ts-check
+import jwtFetch from "./jwt";
+import { awsUploadFile } from "./trackPost";
 // import { createSlice } from "@reduxjs/toolkit";
 
 
@@ -15,6 +17,13 @@
 //     }
 // }
 
+/** @param {File} pfp_file */
+export const uploadPfp = async pfp_file => {
+  const res = await jwtFetch('/api/users/pfp', {method: 'POST', body: JSON.stringify({pfp_filename: pfp_file.name})});
+  /** @type {import('../../../backend/src/routes/api/users').pfpResponseForUpload} */
+  const { pfpUploadURL } = await res.json();
+  await awsUploadFile(pfpUploadURL, pfp_file);
+}
 
 // const userProfileSlice = createSlice({
 //     name: 'userProfile',

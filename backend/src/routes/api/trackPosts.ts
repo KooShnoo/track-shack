@@ -5,7 +5,7 @@ import { serverErrorLogger} from "../../loggers.ts";
 import { restoreUser } from "../../passport.ts";
 import { PostTrackPostErrors, noticePostTrackPostNoUser, noticeDeleteTrackPostNoUser } from "../../validations/errors.ts";
 import { deleteReplyHandler, postReplyHandler } from "./trackPostReply.ts";
-import { ensureUniqueFilenames } from "../../api_s3.ts";
+import { ensureUniqueTrackPostFilenames } from "../../api_s3.ts";
 import pick from "lodash.pick";
 
 const router = express.Router();
@@ -46,7 +46,6 @@ router.get('/:trackId', async (req, res, next) => {
 router.get('/userProfile/:userId', async (req, res, next) => {
   try {
     const trackPosts = await TrackPost.find({author: req.params.userId}).populate('author');
-    serverErrorLogger('TRACKPOSTS', trackPosts);
     if(trackPosts) {
       return res.json(trackPosts);
     }
@@ -57,7 +56,7 @@ router.get('/userProfile/:userId', async (req, res, next) => {
 });
 
 
-router.post('/', restoreUser, ensureUniqueFilenames, async (req, res, next) => {
+router.post('/', restoreUser, ensureUniqueTrackPostFilenames, async (req, res, next) => {
   if (!req.user){
     const errors: PostTrackPostErrors = {session: noticePostTrackPostNoUser};
     return res.status(401).json(errors);
@@ -75,7 +74,7 @@ router.post('/', restoreUser, ensureUniqueFilenames, async (req, res, next) => {
   res.status(201).json(response);
 });
 
-router.put('/:trackId', restoreUser, ensureUniqueFilenames, async (req, res, next) => {
+router.put('/:trackId', restoreUser, ensureUniqueTrackPostFilenames, async (req, res, next) => {
   if (!req.user){
     const errors: PostTrackPostErrors = {session: noticePostTrackPostNoUser};
     return res.status(401).json(errors);

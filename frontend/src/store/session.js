@@ -1,8 +1,8 @@
 import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
 
-export const signup = user => startSession(user, 'api/users/register');
-export const login = user => startSession(user, 'api/users/login');
+export const signup = user => startSession(user, '/api/users/register');
+export const login = user => startSession(user, '/api/users/login');
 
 const startSession = (userInfo, route) => async dispatch => {
   try {   

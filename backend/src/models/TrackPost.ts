@@ -26,6 +26,9 @@ export interface ITrackPostSchema {
   title                : string;
   subtitle             : string;
   description          : string;
+  // these are actually filenames generated from makeUniqueFilenames in api_s3.ts, used as keys into the s3 bucket.
+  // whenever we actually send them down to the browser, we swap them for real URLs. we can't store those in the db
+  // because they are timed
   albumArtSrc         ?: string;
   audioMasterSrc       : string;
   audioStemsSrc        : string;
