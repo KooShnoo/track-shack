@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ProfileShow.css";
 import { getUserTracks } from "../../store/trackPost";
 import TrackPostsIndexItem from "../TrackIndex/TrackPostIndexItem";
@@ -8,8 +8,10 @@ import TrackPostsIndexItem from "../TrackIndex/TrackPostIndexItem";
 const ProfileShow = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userId } = useParams();
   const tracks = useSelector(state => state.trackPosts);
+  const currentUser = useSelector(state => state.session.user) || null;
   let user = tracks[0]?.author;
   // if(user) console.log(user);
 
@@ -23,6 +25,12 @@ const ProfileShow = () => {
   const [profilePicture, setProfilePicture] = useState('user.image');
   const [bio, setBio] = useState('');
   
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/");
+    }
+  },[currentUser, navigate]);
+
   useEffect(() => {
     if ( userId ) {
       dispatch(getUserTracks(userId));
@@ -44,9 +52,6 @@ const ProfileShow = () => {
     } else {
       setPasswordsMatch(true);
     }
-
-    
-
   };
 
   return (
@@ -56,7 +61,7 @@ const ProfileShow = () => {
           <img src={user?.image || '../../../public/profileImage/default.avif'} alt="profile picture" />
         </div>
         <div id="profile-info">
-          <h1>{user?.username}</h1>
+          <h1>{user?.username}</h1> 
           {/* <p>{user?.email}</p> */}
           <p>{bio}</p> 
           <button onClick={() => setShowEditProfile(!showEditProfile)}>Edit Info</button>
