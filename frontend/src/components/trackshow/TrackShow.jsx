@@ -15,7 +15,7 @@ const TrackShow = () => {
   const dispatch = useDispatch();
   const { trackId } = useParams();
   const track = useSelector((state) => state.trackPosts[trackId]);
-  const loggedIn = useSelector((state) => !!state.session.user)
+  const loggedIn = useSelector((state) => !!state.session.user);
   const [showForm, setShowForm] = useState('comments');
   const audioResponses = track?.responses;
   const currentUserId = useSelector((state) => state.session.user?._id);
@@ -37,9 +37,13 @@ const TrackShow = () => {
     <div className="track-show-page">
       <div className="left-track-container">
         {currentUserId === track?.author && (
-          <div className='left-button-container'>
-            <button id='edit-track-button' onClick={() => setShowForm('edit')}>Edit Track</button>{' '}
-            <button id='delete-track-button' onClick={handleDeleteTrack}>Delete Track</button>
+          <div className="left-button-container">
+            <button id="edit-track-button" onClick={() => setShowForm('edit')}>
+              Edit Track
+            </button>{' '}
+            <button id="delete-track-button" onClick={handleDeleteTrack}>
+              Delete Track
+            </button>
           </div>
         )}
         <TrackMasterDisplay track={track} />
@@ -55,8 +59,8 @@ const TrackShow = () => {
       </div>
       <div className="track-right-container">
         <div className="track-right-header">
-          <h1 onClick={() => dispatch(getUserTracks(currentUserId))}>TEST REQUEST USER TRACKS</h1>
-          {' '}
+          <h1 onClick={() => dispatch(getUserTracks(currentUserId))}></h1>
+
           <button
             className="comment-button"
             onClick={() => setShowForm('audioReply')}
@@ -71,9 +75,20 @@ const TrackShow = () => {
           </button>
         </div>
         {showForm === 'comments' && <CommentsContainer trackId={trackId} />}
-        {showForm === 'audioReply' && (
-          loggedIn ? <AudioResponseForm trackId={trackId} setShowForm={setShowForm} /> : <p style={{fontWeight: 'bold', fontSize: '2rem', textAlign: 'center'}}>sign in to contribute!</p>
-        )}
+        {showForm === 'audioReply' &&
+          (loggedIn ? (
+            <AudioResponseForm trackId={trackId} setShowForm={setShowForm} />
+          ) : (
+            <p
+              style={{
+                fontWeight: 'bold',
+                fontSize: '2rem',
+                textAlign: 'center',
+              }}
+            >
+              sign in to contribute!
+            </p>
+          ))}
         {showForm === 'edit' && <TrackPostEdit />}
       </div>
     </div>
