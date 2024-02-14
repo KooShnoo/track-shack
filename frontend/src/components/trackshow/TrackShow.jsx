@@ -55,7 +55,6 @@ const TrackShow = () => {
       </div>
       <div className="track-right-container">
         <div className="track-right-header">
-          <h1 onClick={() => dispatch(getUserTracks(currentUserId))}>TEST REQUEST USER TRACKS</h1>
           {' '}
           <button
             className="comment-button"
