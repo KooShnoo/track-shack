@@ -5,7 +5,7 @@ import "./ProfileShow.css";
 import { getUserTracks } from "../../store/trackPost";
 import TrackPostsIndexItem from "../TrackIndex/TrackPostIndexItem";
 import { uploadPfp } from "../../store/userProfile";
-import { getUser } from "../../store/userProfile";
+import { getUser, updateUser } from "../../store/userProfile";
 
 const ProfileShow = () => {
 
@@ -15,7 +15,7 @@ const ProfileShow = () => {
   const tracks = useSelector(state => state.trackPosts);
   const currentUser = useSelector(state => state.session.user) || null;
   // let user = tracks[0]?.author;
-  const user = useSelector(state => state);
+  const user = useSelector(state => state.userProfile);
   // if(user) console.log(user);
 
   const [showEditProfile, setShowEditProfile] = useState(false);
@@ -45,9 +45,11 @@ const ProfileShow = () => {
   }, [user])
 
   const handleSubmit = async (e) => {
-    e.preventDefault; 
+    e.preventDefault();
+    debugger
     await uploadPfp(profilePicture)
-
+    dispatch(updateUser({bio, username}, userId))
+    // dispatch(getUser(userId))
   };
 
   return (

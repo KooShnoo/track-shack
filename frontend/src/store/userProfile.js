@@ -6,14 +6,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 export const updateUser = (user, userId) => async dispatch => {
+  debugger
     try {
+      debugger
         const response = await jwtFetch(`/api/users/${userId}`, {
-          method: 'POST',
+          method: 'PUT',
           body: user
         })
+        debugger
         if(response.ok) {
+          debugger
             let data = await response.json()
-            // dispatch(receiveCurrentUserUpdate(user))
         }
     } catch (err) {
         console.log('USER PROFILE ERROR', err)
@@ -24,9 +27,7 @@ export const getUser = (userId) => async dispatch => {
 
   const result = await jwtFetch(`/api/users/${userId}`)
   if(result.ok) {
-    debugger
     const user = await result.json();
-    debugger
     dispatch(receiveUser(user))
   }
 }
@@ -35,7 +36,9 @@ export const getUser = (userId) => async dispatch => {
 
 /** @param {File} pfp_file */
 export const uploadPfp = async pfp_file => {
+  debugger
   const res = await jwtFetch('/api/users/pfp', {method: 'PUT', body: JSON.stringify({pfp_filename: pfp_file.name})});
+  debugger
   /** @type {import('../../../backend/src/routes/api/users').pfpResponseForUpload} */
   const { pfpUploadURL } = await res.json();
   await awsUploadFile(pfpUploadURL, pfp_file);
@@ -46,7 +49,6 @@ const userProfileSlice = createSlice({
     initialState: {},
     reducers: {
         receiveUser: (state, action) => {
-          debugger
             return {...action.payload}
         },
         clearUser: () => {
