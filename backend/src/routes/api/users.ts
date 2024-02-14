@@ -136,4 +136,19 @@ router.put('/pfp', restoreUser, ensureUniquePFPFilename, async (req, res, next) 
 });
 
 
+router.put('/', restoreUser, async (req, res, next) => {
+  try {
+    if(!req.user) { return res.status(404).json({error: 'You must be signed in to update your profile data.'}); }
+    const user = await User.findById(req.user.id);
+    if(!user) { return res.status(422).json({error: 'You must exist.'});}
+    if (req.body.bio) user.bio = req.body.bio;
+    if (req.body.username) user.username = req.body.username;
+    await user.save();
+    return res.json(user);
+  } catch (err) {
+    res.status(422).json(err);
+  }
+});
+
+
 export default router;
