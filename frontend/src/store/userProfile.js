@@ -19,7 +19,7 @@ import { awsUploadFile } from "./trackPost";
 
 /** @param {File} pfp_file */
 export const uploadPfp = async pfp_file => {
-  const res = await jwtFetch('/api/users/pfp', {method: 'POST', body: JSON.stringify({pfp_filename: pfp_file.name})});
+  const res = await jwtFetch('/api/users/pfp', {method: 'PUT', body: JSON.stringify({pfp_filename: pfp_file.name})});
   /** @type {import('../../../backend/src/routes/api/users').pfpResponseForUpload} */
   const { pfpUploadURL } = await res.json();
   await awsUploadFile(pfpUploadURL, pfp_file);
