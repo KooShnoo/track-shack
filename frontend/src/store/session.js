@@ -34,6 +34,8 @@ export const getCurrentUser = () => async dispatch => {
 };
 
 
+
+
 const sessionErrorsSlice = createSlice({
   name: 'errors',
   initialState: {
@@ -63,6 +65,7 @@ export const sessionSlice = createSlice({
     },
   }
 })
+
 
 // Action creators are generated for each case reducer function
 export const { receiveCurrentUser, receiveUserLogout} = sessionSlice.actions

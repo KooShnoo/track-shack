@@ -110,6 +110,7 @@ router.get('/:userId', async (req, res, next) => {
     const user = await User.findById(req.params.userId);
     if(!user) { return res.status(404).json(user); }
     if (user.pfpSrc) user.pfpSrc = await getFileUrl(user.pfpSrc);
+    if(!user.pfpSrc) user.pfpSrc = undefined;
     return res.json(user);
   } catch (err) {
     res.status(422).json(err);
