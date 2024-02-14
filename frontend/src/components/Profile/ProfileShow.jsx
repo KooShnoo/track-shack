@@ -65,13 +65,54 @@ const ProfileShow = () => {
         <div id="profile-info">
           <h1>{user?.username}</h1>
           {/* <p>{user?.email}</p> */}
-          <p>{user?.bio}</p>
-          <button onClick={() => setShowEditProfile(!showEditProfile)}>
-            Edit Info
+          <p id="profile-bio">{user?.bio}</p>
+          <button id="edit-info-button"onClick={() => setShowEditProfile(!showEditProfile)}>
+            <i className="fa-regular fa-pen-to-square"></i>
           </button>
         </div>
+        <div>
+          {showEditProfile && (
+            <div className="edit-info-form-container">
+              <button id="close-edit-form"type="submit" onClick={() => setShowEditProfile(false)}>
+                <i className="fa-regular fa-circle-xmark"></i>
+              </button>
+              <form className="edit-profile-info">
+                <p>New Username</p>
+                <br />
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <br />
+                <p>Bio</p>
+                <br />
+                <textarea
+                  placeholder="Tell us about you!..."
+                  id="bio-field"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                ></textarea>
+                <br />
+                <p>Upload Profile Picture</p>
+                <br />
+                <input
+                  type="file"
+                  onChange={(e) => setProfilePicture(e.target.files[0])}
+                />
+                <br />
+                {/* <input type="password" placeholder="Change Password" onChange={(e) => (setNewPassword(e.target.value) && setPasswordsMatch(e.target.value === confirmPassword))}/>
+              <input type="password" placeholder="Confirm New Password" onChange={(e) =>(setConfirmPassword(e.target.value) && setPasswordsMatch(e.target.value === newPassword))}/> */}
+                <button id="edit-user-submit"type="submit" onClick={handleSubmit}>
+                  Update Info
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
-      <h1>My Tracks</h1>
+      <h1 id="my-tracks">MYtracks</h1>
       <div className="user-tracks-container">
         <div id="profile-track-item">
           {Array.isArray(tracks) &&
@@ -80,36 +121,6 @@ const ProfileShow = () => {
             ))}
         </div>
       </div>
-      {showEditProfile && (
-        <div className="edit-info-form-container">
-          <button type="submit" onClick={() => setShowEditProfile(false)}>
-            Close
-          </button>
-          <form className="edit-profile-info">
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <textarea
-              placeholder="Tell us about you!..."
-              id="bio-field"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-            ></textarea>
-            <input
-              type="file"
-              onChange={(e) => setProfilePicture(e.target.files[0])}
-            />
-            {/* <input type="password" placeholder="Change Password" onChange={(e) => (setNewPassword(e.target.value) && setPasswordsMatch(e.target.value === confirmPassword))}/>
-          <input type="password" placeholder="Confirm New Password" onChange={(e) =>(setConfirmPassword(e.target.value) && setPasswordsMatch(e.target.value === newPassword))}/> */}
-            <button type="submit" onClick={handleSubmit}>
-              Update Info
-            </button>
-          </form>
-        </div>
-      )}
     </div>
   );
 };
