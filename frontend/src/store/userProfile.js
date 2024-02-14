@@ -7,20 +7,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const updateUser = (user, userId) => async dispatch => {
     try {
-        const response = await jwtFetch(`/api/users/${userId}`, {
+        const response = await jwtFetch(`/api/users`, {
           method: 'PUT',
-          body: user
+          body: JSON.stringify(user)
         })
         if(response.ok) {
             let data = await response.json()
+            dispatch(getUser(userId))
         }
     } catch (err) {
-        console.log('USER PROFILE ERROR', err)
+        let errors = await err.json()
+        console.log('USER PROFILE ERROR', errors)
     }
 }
 
 export const getUser = (userId) => async dispatch => {
-
+  
   const result = await jwtFetch(`/api/users/${userId}`)
   if(result.ok) {
     const user = await result.json();

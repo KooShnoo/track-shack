@@ -152,4 +152,20 @@ router.put('/', restoreUser, async (req, res, next) => {
 });
 
 
+// router.put('/update/:userId', async (req, res, next) => {
+//   try{
+//     serverLogger('HI', req.params.userId)
+//     const user = await User.findOneAndUpdate({_id: req.params.userId}, req.body);
+//     serverLogger('HIHIH', user)
+//     if(!user) { 
+//       return res.status(404).json(user);}
+//     if (user.pfpSrc) user.pfpSrc = await getFileUrl(user.pfpSrc);
+//     const updatedUser = await User.findById(req.params.userId);
+//     return res.json(updatedUser);
+//   } catch (err)
+//  {
+//   res.status(422).json(err);
+//  }});
+
+
 export default router;
