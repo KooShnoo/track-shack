@@ -23,14 +23,10 @@
 }
 
 .credential-fields {
-  /* border: 2px solid rgb(62, 62, 62); */
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   padding: 20px;
   width: 350px;
-  height: fit-content;
-  border-radius: 24px;
   gap: 10px;
 }
 
@@ -38,24 +34,31 @@
   margin-top: 10px;
   appearance: none;
   background-color: #ffffff;
-  box-shadow: var(0px 1px 4px 0px inset rgba(14, 14, 14, 0.0901960784));
-  border-bottom: var(#0e0e0e2e, rgba(14, 14, 14, 0.1803921569));
   border-style: solid;
   border-width: 1px;
-  border-radius: 6px;
+  border-radius: 10px;
   color: #222222;
   display: block;
   font-family: inherit;
   font-size: 16px;
   line-height: 1.7;
   height: 35px;
-  outline: 3px solid rgba(0, 0, 0, 0);
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 12px;
   padding-right: 12px;
-  width: 90%;
-  min-width: 0;
+  max-width: 320px;
+  width: 320px;
+}
+
+#input-field:hover {
+  outline: 0.5px solid rgba(0, 0, 0, 0.788);
+}
+
+#input-field:active,
+#input-field:focus {
+  border: solid 1px rgb(255, 123, 34);
+  outline: 0.5px solid rgba(255, 123, 34, 0.788);
 }
 
 #submit-button {
@@ -63,21 +66,23 @@
   display: inline-block;
   height: 50px;
   background: unset;
-  background-color: black;
+  background-color: #585858;
   font-size: 16px;
   font-weight: 500;
   line-height: 2;
   color: white;
   border: none;
-  border-radius: 24px;
+  border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 #submit-button:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: rgb(62, 62, 62);
-  transform: scale(1.01);
+  background-color: #3b3b3b;
+}
+
+#submit-button:active {
+  background-color: #1a1818;
 }
 
 #demo-button {
@@ -89,9 +94,8 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 2;
-  /* color: white; */
   border: none;
-  border-radius: 24px;
+  border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
