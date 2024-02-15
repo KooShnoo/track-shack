@@ -70,17 +70,17 @@ const ProfileShow = () => {
             <label className="upload-option">
               <i className="fa-solid fa-upload"></i>
               <input
-              className="image"
+                className="image"
                 type="file"
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               />
-              {savePicture && (
-                <button id="save-button" onClick={handleSubmit}>
-                  Save
-                </button>
-              )}
             </label>
+            {savePicture && (
+              <button id="image-save-button" onClick={handleSubmit}>
+                Save
+              </button>
+            )}
           </div>
           <div id="profile-info">
             <div id="profile-username">
@@ -136,7 +136,7 @@ const ProfileShow = () => {
         </div>
         <h1 id="my-tracks">MYtracks</h1>
         <div className="user-tracks-container">
-          <div id="profile-track-item">
+          <div id="profile-track-list">
             {Array.isArray(tracks) &&
               tracks.map((trackPost) => (
                 <TrackPostsIndexItem
