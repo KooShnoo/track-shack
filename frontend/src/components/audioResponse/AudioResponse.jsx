@@ -19,11 +19,13 @@ const AudioResponse = ({ response, trackId }) => {
           <h3>From: {response?.author.username}</h3>
           <p>{response?.description}</p>
         </div>
-        <AudioPlayer src={response?.audioMasterSrc} />
+        <AudioPlayer src={response?.audioMasterSrc} trackId={response?._id} />
       </div>
       <div className="dl-button-container">
         {currentUserId === response.author._id && (
-          <button onClick={handleDelete} className='audio-player-delete'>Delete</button>
+          <button onClick={handleDelete} className="audio-player-delete">
+            Delete
+          </button>
         )}
         <a href={response?.audioStemsSrc} className="button-anchor">
           <button onClick className="audio-player-button">

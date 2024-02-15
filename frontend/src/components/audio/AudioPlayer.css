@@ -13,6 +13,24 @@
   border: solid 2px rgb(221, 159, 87);
 }
 
+::part(wrapper) {
+  margin-bottom: 10px;
+}
+
+.waveform-container {
+  max-width: 600px;
+  min-height: 90px;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  background-color: rgba(236, 215, 182, 0.603);
+}
+
+.play-container {
+  width: 600px;
+}
+
 .audio-player:active {
   transition: box-shadow 0.4s ease;
 
