@@ -57,71 +57,73 @@ const ProfileShow = () => {
   };
 
   return (
-    <div className="profile-main-page">
-      <div className="profile-info-container">
-        <div id="profile-picture" className="profile-image-container">
-          <img
-            src={user?.pfpSrc || "/profileImage/default.avif"}
-            alt="profile picture"
-          />
-          <label className="upload-option">
-            <i className="fa-solid fa-upload"></i>
-            <input
-              type="file"
-              style={{ display: "none" }}
-              onChange={handleFileChange}
+    <div className="profile-base">
+      <div className="profile-main-page">
+        <div className="profile-info-container">
+          <div id="profile-picture" className="profile-image-container">
+            <img
+              src={user?.pfpSrc || "/profileImage/default.avif"}
+              alt="profile picture"
             />
-          </label>
-        </div>
-        <div id="profile-info">
-          <div id="profile-username">
-            {editingField === "username" ? (
-              <div className="profile-edit-field">
-                <input
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <button id="save-button"onClick={handleSubmit}>Save</button>
-              </div>
-            ) : (
-              <>
-                <h1>{user?.username}</h1>
-                <button id="edit-info-button" onClick={() => setEditingField("username")}>
-                  <i className="fa-regular fa-pen-to-square"></i>
-                </button>
-              </>
-            )}
+            <label className="upload-option">
+              <i className="fa-solid fa-upload"></i>
+              <input
+                type="file"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
+            </label>
           </div>
-          <p id="profile-bio">
-            {editingField === "bio" ? (
-              <div className="profile-edit-field">
-                <textarea
-                  placeholder="Tell us about you!..."
-                  value={bio}
-                  onChange={(e) => setBio(e.target.value)}
-                ></textarea>
-                <button id="save-button" onClick={handleSubmit}>Save</button>
-              </div>
-            ) : (
-              <p>
-                {user?.bio}
-                <button id="edit-info-button" onClick={() => setEditingField("bio")}>
-                  <i className="fa-regular fa-pen-to-square"></i>
-                </button>
-              </p>
-            )}
-          </p>
+          <div id="profile-info">
+            <div id="profile-username">
+              {editingField === "username" ? (
+                <div className="profile-edit-field">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <button id="save-button"onClick={handleSubmit}>Save</button>
+                </div>
+              ) : (
+                <>
+                  <h1>{user?.username}</h1>
+                  <button id="edit-info-button" onClick={() => setEditingField("username")}>
+                    <i className="fa-regular fa-pen-to-square"></i>
+                  </button>
+                </>
+              )}
+            </div>
+            <p id="profile-bio">
+              {editingField === "bio" ? (
+                <div className="profile-edit-field">
+                  <textarea
+                    placeholder="Tell us about you!..."
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
+                  ></textarea>
+                  <button id="save-button" onClick={handleSubmit}>Save</button>
+                </div>
+              ) : (
+                <p>
+                  {user?.bio}
+                  <button id="edit-info-button" onClick={() => setEditingField("bio")}>
+                    <i className="fa-regular fa-pen-to-square"></i>
+                  </button>
+                </p>
+              )}
+            </p>
+          </div>
         </div>
-      </div>
-      <h1 id="my-tracks">MYtracks</h1>
-      <div className="user-tracks-container">
-        <div id="profile-track-item">
-          {Array.isArray(tracks) &&
-            tracks.map((trackPost) => (
-              <TrackPostsIndexItem key={trackPost?.id} trackPost={trackPost} />
-            ))}
+        <h1 id="my-tracks">MYtracks</h1>
+        <div className="user-tracks-container">
+          <div id="profile-track-item">
+            {Array.isArray(tracks) &&
+              tracks.map((trackPost) => (
+                <TrackPostsIndexItem key={trackPost?.id} trackPost={trackPost} />
+              ))}
+          </div>
         </div>
       </div>
     </div>
