@@ -58,7 +58,7 @@ const ProfileShow = () => {
       <div className="profile-info-container">
         <div id="profile-picture">
           <img
-            src={user?.pfpSrc || "../../../public/profileImage/default.avif"}
+            src={user?.pfpSrc || "/profileImage/default.avif"}
             alt="profile picture"
           />
         </div>
