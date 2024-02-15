@@ -25,16 +25,63 @@
 }
 
 .profile-info-container {
+  position: relative;
   /* border: 2px solid red; */
   height: fit-content;
   border-bottom: 4px solid rgb(214, 192, 140, 0.4);
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
 }
 
+.profile-image-container {
+  /* border: 2px solid black; */
+  position: relative;
+  height: 180px;
+  width: 180px;
+  padding: 10px;
+  width: fit-content;
+  height: fit-content;
+}
+
+#profile-picture > img {
+  max-height: 150px;
+  max-width: 150px;
+  border: 3px solid white;
+  border-radius: 50%;
+  margin: 10px;
+  box-shadow: -25px 25px 150px rgba(0, 0, 0, 0.3);
+}
+
+.profile-image-container:hover .upload-option {
+  display: flex;
+}
+
+.upload-option {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  background: none;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.upload-option i {
+  font-size: 1.5rem;
+  color: rgb(74, 84, 93);
+  opacity: 0.4;
+}
+
+.upload-option i:hover {
+  color: black;
+  scale: 1.1;
+}
 #profile-username {
   /* border: 2px solid black; */
+  margin-left: 19px;
   position: relative;
   padding-top: 20px;
   font-weight: 900;
@@ -53,11 +100,9 @@
   position: relative;
   height: fit-content;
   width: 300px;
-  padding: 30px;
+  padding-top: 30px;
   color: white;
 }
-
-
 
 #edit-info-button {
   position: absolute;
@@ -74,13 +119,18 @@
   opacity: 0.4;
 }
 
+#edit-info-button:hover{
+  color: black;
+  scale: 1.1;
+}
+
 .profile-edit-field input,
 .profile-edit-field textarea {
   box-sizing: border-box;
-  width: 80%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  z-index: 20;
 }
 
 .profile-edit-field textarea {
@@ -107,42 +157,11 @@
   background-color: #374048;
 }
 
-#profile-picture > img {
-  max-height: 150px;
-  max-width: 150px;
-  border: 3px solid white;
-  border-radius: 50%;
-  margin: 10px;
-  box-shadow: -25px 25px 150px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.profile-image-container {
-  /* border: 2px solid black; */
-  padding: 10px;
-  position: relative;
-}
-
-.profile-image-container:hover .upload-option {
-  display: flex;
-}
-
-.upload-option {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: none;
-  background: none;
-  border-radius: 50%;
-  padding: 5px;
-  margin: 5px;
-  cursor: pointer;
-}
-
-.upload-option i {
-  font-size: 1.5rem;
-  color: rgb(74, 84, 93);
-  opacity: 0.4;
+#my-tracks {
+  font-family: CentralAve;
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 2.5rem;
 }
 
 .user-tracks-container {
@@ -152,8 +171,8 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 5px;
-  margin-left: 50px;
-  margin-right: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
   z-index: 10;
 }
 
@@ -167,11 +186,3 @@
   align-items: center;
   gap: 20px;
 }
-
-#my-tracks {
-  font-family: CentralAve;
-  padding-top: 20px;
-  padding-left: 20px;
-  font-size: 2.5rem;
-}
-
