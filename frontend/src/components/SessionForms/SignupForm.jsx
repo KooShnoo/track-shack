@@ -43,13 +43,13 @@ function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-      const user = {
-        email,
-        username,
-        password,
-      };
-  
-      dispatch(signup(user));
+    const user = {
+      email,
+      username,
+      password,
+    };
+
+    dispatch(signup(user));
   };
 
   return (
@@ -117,6 +117,8 @@ function SignupForm() {
         </div>
       </form>
     </div>
+
+       
 
   );
 }
