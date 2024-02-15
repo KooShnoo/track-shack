@@ -13,15 +13,14 @@ const ProfileShow = () => {
   const { userId } = useParams();
   const tracks = useSelector((state) => state.trackPosts);
   const currentUser = useSelector((state) => state.session.user) || null;
-  // let user = tracks[0]?.author;
   const user = useSelector((state) => state.userProfile);
-  // if(user) console.log(user);
 
-  const [showEditProfile, setShowEditProfile] = useState(false);
-  const [username, setUsername] = useState("");
+
   // const [newPassword, setNewPassword] = useState('');
   // const [confirmPassword, setConfirmPassword] = useState('');
   // const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [editingField, setEditingField] = useState(null);
+  const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [bio, setBio] = useState("");
 
@@ -43,6 +42,10 @@ const ProfileShow = () => {
     setBio(user?.bio);
   }, [user]);
 
+  const handleFileChange = (e) => {
+    setProfilePicture(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (profilePicture) {
@@ -50,66 +53,66 @@ const ProfileShow = () => {
     }
     dispatch(updateUser({ bio, username }, userId));
     setProfilePicture(null);
-    setShowEditProfile(false);
+    setEditingField(null);
   };
 
   return (
     <div className="profile-main-page">
       <div className="profile-info-container">
-        <div id="profile-picture">
+        <div id="profile-picture" className="profile-image-container">
           <img
             src={user?.pfpSrc || "../../../public/profileImage/default.avif"}
             alt="profile picture"
           />
+          <label className="upload-option">
+            <i className="fa-solid fa-upload"></i>
+            <input
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+          </label>
         </div>
         <div id="profile-info">
-          <h1>{user?.username}</h1>
-          {/* <p>{user?.email}</p> */}
-          <p id="profile-bio">{user?.bio}</p>
-          <button id="edit-info-button"onClick={() => setShowEditProfile(!showEditProfile)}>
-            <i className="fa-regular fa-pen-to-square"></i>
-          </button>
-        </div>
-        <div>
-          {showEditProfile && (
-            <div className="edit-info-form-container">
-              <button id="close-edit-form"type="submit" onClick={() => setShowEditProfile(false)}>
-                <i className="fa-regular fa-circle-xmark"></i>
-              </button>
-              <form className="edit-profile-info">
-                <p>New Username</p>
-                <br />
+          <div id="profile-username">
+            {editingField === "username" ? (
+              <div className="profile-edit-field">
                 <input
                   type="text"
                   placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
-                <br />
-                <p>Bio</p>
-                <br />
+                <button id="save-button"onClick={handleSubmit}>Save</button>
+              </div>
+            ) : (
+              <>
+                <h1>{user?.username}</h1>
+                <button id="edit-info-button" onClick={() => setEditingField("username")}>
+                  <i className="fa-regular fa-pen-to-square"></i>
+                </button>
+              </>
+            )}
+          </div>
+          <p id="profile-bio">
+            {editingField === "bio" ? (
+              <div className="profile-edit-field">
                 <textarea
                   placeholder="Tell us about you!..."
-                  id="bio-field"
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
                 ></textarea>
-                <br />
-                <p>Upload Profile Picture</p>
-                <br />
-                <input
-                  type="file"
-                  onChange={(e) => setProfilePicture(e.target.files[0])}
-                />
-                <br />
-                {/* <input type="password" placeholder="Change Password" onChange={(e) => (setNewPassword(e.target.value) && setPasswordsMatch(e.target.value === confirmPassword))}/>
-              <input type="password" placeholder="Confirm New Password" onChange={(e) =>(setConfirmPassword(e.target.value) && setPasswordsMatch(e.target.value === newPassword))}/> */}
-                <button id="edit-user-submit"type="submit" onClick={handleSubmit}>
-                  Update Info
+                <button id="save-button" onClick={handleSubmit}>Save</button>
+              </div>
+            ) : (
+              <p>
+                {user?.bio}
+                <button id="edit-info-button" onClick={() => setEditingField("bio")}>
+                  <i className="fa-regular fa-pen-to-square"></i>
                 </button>
-              </form>
-            </div>
-          )}
+              </p>
+            )}
+          </p>
         </div>
       </div>
       <h1 id="my-tracks">MYtracks</h1>
