@@ -52,9 +52,8 @@
   min-width: 120px;
 }
 
-#edit-track-button:hover{
+#edit-track-button:hover {
   background: rgb(249, 163, 64);
-
 }
 
 #delete-track-button {
@@ -76,7 +75,7 @@
   min-width: 120px;
 }
 
-#delete-track-button:hover{
+#delete-track-button:hover {
   cursor: pointer;
   background: rgb(193, 39, 39);
 }
@@ -98,8 +97,7 @@
   margin-right: 10px;
   height: 100%;
   width: 600px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .track-right-header {
