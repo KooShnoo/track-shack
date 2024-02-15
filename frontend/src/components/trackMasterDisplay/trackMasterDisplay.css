@@ -16,6 +16,7 @@
   box-sizing: border-box;
   background-color: rgba(237, 211, 176, 0.1);
   border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .description-container {
@@ -38,7 +39,9 @@
 }
 
 .image-container {
-  border-top-right-radius: 10px;
+  margin: 1rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 10px rgba(143, 118, 81, 0.178);
   overflow: hidden;
   display: flex;
   justify-content: center;
