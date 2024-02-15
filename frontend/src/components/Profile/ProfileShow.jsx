@@ -44,6 +44,7 @@ const ProfileShow = () => {
 
   const handleFileChange = (e) => {
     setProfilePicture(e.target.files[0]);
+    handleSubmit(e);
   };
 
   const handleSubmit = async (e) => {
