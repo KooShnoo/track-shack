@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
@@ -6,8 +7,9 @@ import { logout } from '../../store/session';
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user)
-  const navigate = useNavigate()
+  const user = useSelector(state => state.session.user);
+  const navigate = useNavigate();
+  const [profilePage, setIsProfilePage] = useState(false);
 
   const logoutUser = (e) => {
     e.preventDefault();
@@ -15,8 +17,14 @@ function NavBar() {
   };
 
   const navToProfile = () => {
-    navigate(`/profile/${user?._id}`)
-  }
+    navigate(`/profile/${user?._id}`);
+    setIsProfilePage(true);
+  };
+
+  const navToHome = () => {
+    navigate('/');
+    setIsProfilePage(false);
+  };
 
   const getLinks = () => {
     if (loggedIn) {
@@ -25,9 +33,15 @@ function NavBar() {
           <button className="logout-button" onClick={logoutUser}>
             Logout
           </button>
-          <button className="profile-button" onClick={navToProfile}>
-            MyShack
-          </button>
+          {profilePage ? (
+            <button className="profile-button" onClick={navToHome}>
+              Home
+            </button>
+          ) : (
+            <button className="profile-button" onClick={navToProfile}>
+              MyShack
+            </button>
+          )}
         </div>
       );
     } else {
