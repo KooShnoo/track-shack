@@ -7,7 +7,7 @@ export const selectPostsArray = (state) => Object.values(state.trackPosts);
 
 export const getTracks = () => async dispatch => {
     try {
-        const res = await jwtFetch('api/trackPosts');
+        const res = await jwtFetch('/api/trackPosts');
         if(res.ok) {
             const tracks = await res.json()
             dispatch(receiveTracks(tracks))
@@ -40,7 +40,7 @@ export const awsUploadFile = async (url, file) => {
 export const postTrack = async (trackPost, albumpic, master, stems) => { 
     const res = await (async () => {
         try {
-            return await jwtFetch('api/trackPosts/', {method: 'POST', body: JSON.stringify(trackPost)});
+            return await jwtFetch('/api/trackPosts/', {method: 'POST', body: JSON.stringify(trackPost)});
         } catch {
             return null;
         }})();
@@ -110,7 +110,7 @@ export const deleteTrack = trackId => async dispatch => {
 
 // export const createTrack = (trackPost) => async dispatch => {
 //     try {
-//         await jwtFetch(`api/trackPosts`, {
+//         await jwtFetch(`/api/trackPosts`, {
 //         method: "POST",
 //         body: trackPost
 //         })

@@ -9,6 +9,7 @@ import { UserLoginErrors, UserSignUpErrors, noticeBadCredentials, noticeEmailTak
 import { validateRegisterInput } from '../../validations/register.ts';
 import { validateLoginInput } from '../../validations/login.ts';
 import { serverLogger } from '../../loggers.ts';
+import { ensureUniquePFPFilename, getFileUrl, getUploadUrl } from '../../api_s3.ts';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -107,13 +108,64 @@ router.get('/current', restoreUser, (req, res) => {
 router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId);
-    if(user) {
-      return res.json(user);
-    }
+    if(!user) { return res.status(404).json(user); }
+    if (user.pfpSrc) user.pfpSrc = await getFileUrl(user.pfpSrc);
+    if(!user.pfpSrc) user.pfpSrc = undefined;
+    return res.json(user);
   } catch (err) {
-    res.json(err);
+    res.status(422).json(err);
   }
-} );
+});
+
+
+export interface pfpResponseForUpload { pfpUploadURL: string }
+
+router.put('/pfp', restoreUser, ensureUniquePFPFilename, async (req, res, next) => {
+  try {
+    if(!req.user) { return res.status(404).json({error: 'You must be signed in to update your profile photo.'}); }
+    const user = await User.findById(req.user.id);
+    if(!user) { return res.status(422).json({error: 'You must exist.'});}
+    user.pfpSrc = req.body.pfp_filename;
+    const pfpUploadURL = await getUploadUrl(req.body.pfp_filename);
+    if (!pfpUploadURL) { return res.status(422).json({error: "invalid fileName"}); }
+    const res_: pfpResponseForUpload = {pfpUploadURL};
+    await user.save();
+    return res.json(res_);
+  } catch (err) {
+    res.status(422).json(err);
+  }
+});
+
+
+router.put('/', restoreUser, async (req, res, next) => {
+  try {
+    if(!req.user) { return res.status(404).json({error: 'You must be signed in to update your profile data.'}); }
+    const user = await User.findById(req.user.id);
+    if(!user) { return res.status(422).json({error: 'You must exist.'});}
+    if (req.body.bio) user.bio = req.body.bio;
+    if (req.body.username) user.username = req.body.username;
+    await user.save();
+    return res.json(user);
+  } catch (err) {
+    res.status(422).json(err);
+  }
+});
+
+
+// router.put('/update/:userId', async (req, res, next) => {
+//   try{
+//     serverLogger('HI', req.params.userId)
+//     const user = await User.findOneAndUpdate({_id: req.params.userId}, req.body);
+//     serverLogger('HIHIH', user)
+//     if(!user) { 
+//       return res.status(404).json(user);}
+//     if (user.pfpSrc) user.pfpSrc = await getFileUrl(user.pfpSrc);
+//     const updatedUser = await User.findById(req.params.userId);
+//     return res.json(updatedUser);
+//   } catch (err)
+//  {
+//   res.status(422).json(err);
+//  }});
 
 
 export default router;

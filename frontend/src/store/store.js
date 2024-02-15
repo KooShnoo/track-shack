@@ -7,9 +7,7 @@ import trackPostsReducer from './trackPost'
 import audioSourceReducer from './audioSource'
 import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
-// import session from "./session";
-// import errors from "./errors";
-// import tweets from "./tweets";
+import userProfileReducer from './userProfile.js'
 
 const middlewareArray = [thunk, logger];
 
@@ -21,7 +19,8 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     errors: errorsReducer,
     trackPosts: trackPostsReducer,
-    audioSource: audioSourceReducer
+    audioSource: audioSourceReducer,
+    userProfile: userProfileReducer
 })
 
 export default configureStore({

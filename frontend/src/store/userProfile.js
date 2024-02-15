@@ -1,34 +1,61 @@
-// import jwtFetch from "./jwt";
-// import { createSlice } from "@reduxjs/toolkit";
+// @ts-check
+import jwtFetch from "./jwt";
+import { awsUploadFile } from "./trackPost";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 
-// export const getUser = (userId) => async dispatch => {
-//     try {
-//         const user = await jwtFetch(`/api/users/${userId}`)
-//         if(user.ok) {
-//             let data = await user.json()
-//             dispatch(receiveUser(data))
-//         }
-//     } catch (err) {
-//         console.log('USER PROFILE ERROR', err)
-//     }
-// }
+export const updateUser = (user, userId) => async dispatch => {
+    try {
+        const response = await jwtFetch(`/api/users`, {
+          method: 'PUT',
+          body: JSON.stringify(user)
+        })
+        if(response.ok) {
+            let data = await response.json()
+            dispatch(getUser(userId))
+        }
+    } catch (err) {
+        let errors = await err.json()
+        console.log('USER PROFILE ERROR', errors)
+    }
+}
+
+export const getUser = (userId) => async dispatch => {
+  
+  const result = await jwtFetch(`/api/users/${userId}`)
+  if(result.ok) {
+    const user = await result.json();
+    dispatch(receiveUser(user))
+  }
+}
 
 
-// const userProfileSlice = createSlice({
-//     name: 'userProfile',
-//     initialState: {},
-//     reducers: {
-//         receiveUser: (state, action) => {
-//             return {...state, ...action.payload}
-//         },
-//         clearUser: () => {
-//             return {}
-//         }
-//     }
-// })
 
-// export const {receiveUser, clearUser} = userProfileSlice.actions
+/** @param {File} pfp_file */
+export const uploadPfp = async pfp_file => {
+  const res = await jwtFetch('/api/users/pfp', {method: 'PUT', body: JSON.stringify({pfp_filename: pfp_file.name})});
+  /** @type {import('../../../backend/src/routes/api/users').pfpResponseForUpload} */
+  const { pfpUploadURL } = await res.json();
+  await awsUploadFile(pfpUploadURL, pfp_file);
+}
 
-// export default userProfileSlice.reducer 
+const userProfileSlice = createSlice({
+    name: 'userProfile',
+    initialState: {},
+    reducers: {
+        receiveUser: (state, action) => {
+            return {...action.payload}
+        },
+        clearUser: () => {
+            return {}
+        },
+        recieveUpdate: (state, action) => {
+          return {}
+        }
+    }
+})
+
+export const {receiveUser, clearUser, recieveUpdate} = userProfileSlice.actions
+
+export default userProfileSlice.reducer 

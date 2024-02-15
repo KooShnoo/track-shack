@@ -1,8 +1,8 @@
 import jwtFetch from './jwt';
 import { createSlice } from '@reduxjs/toolkit'
 
-export const signup = user => startSession(user, 'api/users/register');
-export const login = user => startSession(user, 'api/users/login');
+export const signup = user => startSession(user, '/api/users/register');
+export const login = user => startSession(user, '/api/users/login');
 
 const startSession = (userInfo, route) => async dispatch => {
   try {   
@@ -34,6 +34,8 @@ export const getCurrentUser = () => async dispatch => {
 };
 
 
+
+
 const sessionErrorsSlice = createSlice({
   name: 'errors',
   initialState: {
@@ -63,6 +65,7 @@ export const sessionSlice = createSlice({
     },
   }
 })
+
 
 // Action creators are generated for each case reducer function
 export const { receiveCurrentUser, receiveUserLogout} = sessionSlice.actions

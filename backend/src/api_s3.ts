@@ -3,6 +3,7 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { S3Client, GetObjectCommand, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { RequestHandler } from "express";
 import { ITrackPostSchema } from "./models/TrackPost.ts";
+import { serverLogger } from "./loggers.ts";
 
 const REGION = 'us-east-1';
 const BUCKET = 'track-shack';
@@ -45,11 +46,25 @@ export async function deleteFile(filename: string) {
   }
 }
 
-export const ensureUniqueFilenames: RequestHandler = (req, res, next) => {
-  const tp: ITrackPostSchema = req.body;
-  const makeUniqueFilename = (filename: string) => `${new Date().toISOString()}_${crypto.randomUUID()}_${filename}`;
-  if (tp.audioMasterSrc) tp.audioMasterSrc = makeUniqueFilename(tp.audioMasterSrc);
-  if (tp.audioStemsSrc) tp.audioStemsSrc = makeUniqueFilename(tp.audioStemsSrc);
-  if (tp.albumArtSrc) tp.albumArtSrc = makeUniqueFilename(tp.albumArtSrc);
-  return next();
+const makeUniqueFilename = (filename: string) => `${new Date().toISOString()}_${crypto.randomUUID()}_${filename}`;
+
+export const ensureUniqueTrackPostFilenames: RequestHandler = (req, res, next) => {
+  try {
+    const tp: ITrackPostSchema = req.body;
+    if (tp.audioMasterSrc) tp.audioMasterSrc = makeUniqueFilename(tp.audioMasterSrc);
+    if (tp.audioStemsSrc) tp.audioStemsSrc = makeUniqueFilename(tp.audioStemsSrc);
+    if (tp.albumArtSrc) tp.albumArtSrc = makeUniqueFilename(tp.albumArtSrc);
+    return next();
+  } catch (e) {
+    return res.status(422).json(e);
+  }
+};
+
+export const ensureUniquePFPFilename: RequestHandler = (req, res, next) => {
+  try {
+    req.body.pfp_filename = makeUniqueFilename(req.body.pfp_filename);
+    return next();
+  } catch (e) {
+    return res.status(422).json(e);
+  }
 };
