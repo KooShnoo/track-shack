@@ -40,7 +40,7 @@ const About = () => {
               </div>
             </div>
             <div className="img-container">
-              <img src="./../../public/aboutPageAssets/Cole.jpeg" alt="photo" />
+              <img src="/aboutPageAssets/Cole.jpeg" alt="photo" />
             </div>
           </div>
           <div className="nerd-container">
@@ -58,7 +58,7 @@ const About = () => {
             </div>
             <div className="img-container">
               <img
-                src="./../../public/aboutPageAssets/Ishan.jpeg"
+                src="/aboutPageAssets/Ishan.jpeg"
                 alt="photo"
               />
             </div>
@@ -80,7 +80,7 @@ const About = () => {
             </div>
             <div className="img-container">
               <img
-                src="./../../public/aboutPageAssets/Jake.jpeg"
+                src="/aboutPageAssets/Jake.jpeg"
                 alt="photo"
               />
             </div>

@@ -1,13 +1,14 @@
 .splash-base {
   display: flex;
   justify-content: center;
+  min-width: 1400px;
 }
 
 .splash-container {
   /* border: 2px solid blue;  */
   margin-top: 30px;
   /* for jakes computer */
-  max-height: 650px;
+  max-height: 750px;
   width: 90%;
   display: flex;
   flex-direction: row;
@@ -27,7 +28,7 @@
   backdrop-filter: blur(11px); 
   width: 50%; 
   max-height: 100%;
-  overflow: auto;
+  /* overflow: hidden; */
 
 }
 
@@ -38,7 +39,7 @@
   box-shadow: -25px 25px 150px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(11px);
   width: 70%;
-  overflow: auto;
+  /* overflow: auto; */
   /* transition: transform 0.5s ease; */
 }
 
@@ -56,24 +57,23 @@
 }
 
 .feed-container {
-  /* border: 2px solid yellow; */
   margin-top: 20px;
   margin-left: 15px;
-  height: fit-content;
+  height: 500px;
   width: 95%;
-
-  /* background-color: rgb(237, 211, 176, 0.3); */
+  overflow: scroll;
 }
 
 .user-options-container {
   /* border: 2px solid purple; */
+  width: 40px;
   margin-top: 20px;
   padding-left: 50px;
   padding-right: 50px;
   display: flex;
   flex-direction: row;
   justify-content: right;
-  border-bottom: 4px solid rgb(214, 192, 140, 0.4);
+  align-items: center;
 }
 
 #create-form-button {
@@ -136,3 +136,47 @@
 #search-button:hover {
   background: rgb(106, 106, 201);
 }
+
+.hell {
+  /* border: red solid 1px; */
+  /* display: flex; */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 4px solid rgb(214, 192, 140, 0.4);
+}
+
+.welcome-container {
+  height: 100px;
+  width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: 800;
+  margin-left: 100px;
+}
+
+.description p {
+  width: 700px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  line-height: 1.2em;
+  padding-left: 150px;
+  padding-bottom: 10px;
+}
+
+.feed-container::-webkit-scrollbar-corner {
+   display: none;
+  }

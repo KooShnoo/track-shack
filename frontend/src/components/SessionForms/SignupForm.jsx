@@ -8,7 +8,6 @@ function SignupForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [image, setImage] = useState(null);
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
 
@@ -43,21 +42,14 @@ function SignupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email,
-      username,
-      password,
-      image,
-    };
 
-    dispatch(signup(user));
-  };
-
-  const handleImage = (e) => {
-    if (e.target.files.length > 0) {
-      const selectedImage = e.target.files[0];
-      setImage(selectedImage);
-    }
+      const user = {
+        email,
+        username,
+        password,
+      };
+  
+      dispatch(signup(user));
   };
 
   return (
@@ -125,6 +117,39 @@ function SignupForm() {
         </div>
       </form>
     </div>
+
+        </label>
+        <div className="errors">{errors?.password}</div>
+        <label>
+          <span>Password:</span>
+          <input id='input-field'
+            type="password"
+            value={password}
+            onChange={update('password')}
+            placeholder="Password"
+          />
+        </label>
+        <div className="errors">
+          {password !== password2 && 'Confirm Password field must match'}
+        </div>
+        <label>
+          <span>Confirm Password:</span>
+          <input id='input-field'
+            type="password"
+            value={password2}
+            onChange={update('password2')}
+            placeholder="Confirm Password"
+          />
+        </label>
+        
+        <input id='submit-button'
+          type="submit"
+          value="Sign Up"
+          // disabled={!email || !username || !password || password !== password2}
+        />
+      </div>
+    </form>
+
   );
 }
 
