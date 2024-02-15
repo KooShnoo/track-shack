@@ -23,6 +23,7 @@ const ProfileShow = () => {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [bio, setBio] = useState("");
+  const [savePicture, setShowSavePicture] = useState(false)
 
   useEffect(() => {
     if (!currentUser) {
@@ -44,7 +45,7 @@ const ProfileShow = () => {
 
   const handleFileChange = (e) => {
     setProfilePicture(e.target.files[0]);
-    handleSubmit(e);
+    setShowSavePicture(true)
   };
 
   const handleSubmit = async (e) => {
@@ -69,10 +70,16 @@ const ProfileShow = () => {
             <label className="upload-option">
               <i className="fa-solid fa-upload"></i>
               <input
+              className="image"
                 type="file"
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               />
+              {savePicture && (
+                <button id="save-button" onClick={handleSubmit}>
+                  Save
+                </button>
+              )}
             </label>
           </div>
           <div id="profile-info">
@@ -85,12 +92,17 @@ const ProfileShow = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
-                  <button id="save-button"onClick={handleSubmit}>Save</button>
+                  <button id="save-button" onClick={handleSubmit}>
+                    Save
+                  </button>
                 </div>
               ) : (
                 <>
                   <h1>{user?.username}</h1>
-                  <button id="edit-info-button" onClick={() => setEditingField("username")}>
+                  <button
+                    id="edit-info-button"
+                    onClick={() => setEditingField("username")}
+                  >
                     <i className="fa-regular fa-pen-to-square"></i>
                   </button>
                 </>
@@ -104,12 +116,17 @@ const ProfileShow = () => {
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
                   ></textarea>
-                  <button id="save-button" onClick={handleSubmit}>Save</button>
+                  <button id="save-button" onClick={handleSubmit}>
+                    Save
+                  </button>
                 </div>
               ) : (
                 <p>
                   {user?.bio}
-                  <button id="edit-info-button" onClick={() => setEditingField("bio")}>
+                  <button
+                    id="edit-info-button"
+                    onClick={() => setEditingField("bio")}
+                  >
                     <i className="fa-regular fa-pen-to-square"></i>
                   </button>
                 </p>
@@ -122,7 +139,10 @@ const ProfileShow = () => {
           <div id="profile-track-item">
             {Array.isArray(tracks) &&
               tracks.map((trackPost) => (
-                <TrackPostsIndexItem key={trackPost?.id} trackPost={trackPost} />
+                <TrackPostsIndexItem
+                  key={trackPost?.id}
+                  trackPost={trackPost}
+                />
               ))}
           </div>
         </div>
