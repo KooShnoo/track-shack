@@ -5,25 +5,25 @@ button:active {
 }
 
 .comment-thread {
-  max-width: 40rem;
   border: 1px solid transparent;
-  height: 400px;
-  /* overflow: auto; */
+  overflow-x: hidden;
+  max-width: 40rem;
+  max-height: 460px;
 }
 
 .comment {
   position: relative;
-  margin: 20px auto;
-  padding-bottom: 10px;
   border-bottom: 4px solid rgb(214, 192, 140, 0.4);
 }
 
 .comment-heading {
   display: flex;
-  align-items: center;
-  height: 50px;
+  margin: 16px 0 12px 0;
 }
 
+.comment-heading::after {
+  margin-right: 15px;
+}
 .comment-info {
   color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -62,7 +62,7 @@ button:active {
 }
 
 .comment-body {
-  padding: 0 20px;
+  padding: 0 0 16px 20px;
 }
 
 .replies {
@@ -89,7 +89,6 @@ details.comment[open] .comment-heading::after {
   content: 'Click to hide';
 }
 
-
 details.comment:not([open]) .comment-heading::after {
   font-size: 0.8rem;
   font-family: manrope;
@@ -99,4 +98,3 @@ details.comment:not([open]) .comment-heading::after {
 .comment .delete:hover {
   cursor: pointer;
 }
-
