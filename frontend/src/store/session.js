@@ -5,18 +5,15 @@ export const signup = user => startSession(user, '/api/users/register');
 export const login = user => startSession(user, '/api/users/login');
 
 const startSession = (userInfo, route) => async dispatch => {
-  debugger
   try {   
     const res = await jwtFetch(route, {
       method: "POST",
       body: JSON.stringify(userInfo)
     });
-    debugger
     const { user, token } = await res.json();
     localStorage.setItem('jwtToken', token);
     return dispatch(receiveCurrentUser(user));
   } catch(err) {
-    debugger
     const res = await err.json();
     return dispatch(receiveSessionErrors(res));
     // if (res.statusCode === 400) {
