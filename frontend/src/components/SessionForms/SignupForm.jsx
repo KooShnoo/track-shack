@@ -61,7 +61,7 @@ function SignupForm() {
       <form className="signup-form" onSubmit={handleSubmit}>
         <h2 id="signup-header">Welcome to the Shack!</h2>
         <div className="credential-fields">
-          <div className="errors">{errors?.errors}</div>
+          <div className="errors">{errors?.errors?.email}</div>
           <div className="errors">{errors?.email}</div>
           <label>
             <span>Email:</span>
