@@ -70,16 +70,20 @@
   min-width: 70px;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
-.logout-button:hover,
-.profile-button:hover,
+
+#home-button:hover,
+#logout-button:hover,
+#profile-button:hover,
 #about-button:hover,
 #signup-button:hover,
 #login-button:hover {
   background: rgb(249, 163, 64);
   box-shadow: 5px 15px 30px 10px rgba(208, 139, 60, 0.541);
 }
-.logout-button:active,
-.profile-button:active,
+
+#home-button:active,
+#logout-button:active,
+#profile-button:active,
 #about-button:active,
 #signup-button:active,
 #login-button:active {
