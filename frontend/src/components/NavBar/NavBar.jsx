@@ -8,40 +8,28 @@ function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const navigate = useNavigate();
-  const [profilePage, setIsProfilePage] = useState(false);
 
   const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
 
-  const navToProfile = () => {
-    navigate(`/profile/${user?._id}`);
-    setIsProfilePage(true);
-  };
-
-  const navToHome = () => {
-    navigate('/');
-    setIsProfilePage(false);
-  };
-
   const getLinks = () => {
     if (loggedIn) {
       return (
         <div className="links-nav">
-          <button className="logout-button" onClick={logoutUser}>
+          <Link id="about-button" to={'/about'}>
+            About
+          </Link>
+          <Link id="home-button" to={'/'}>
+            Home
+          </Link>
+          <Link id="profile-button" to={`/profile/${user?._id}`}>
+            MyShack
+          </Link>
+          <button id="logout-button" onClick={logoutUser}>
             Logout
           </button>
-          {profilePage ? (
-            <button className="profile-button" onClick={navToHome}>
-              Home
-            </button>
-          ) : (
-            <button className="profile-button" onClick={navToProfile}>
-              MyShack
-            </button>
-          )}
         </div>
       );
     } else {

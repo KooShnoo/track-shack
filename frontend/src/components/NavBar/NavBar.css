@@ -44,10 +44,11 @@
   justify-content: space-between;
 }
 
-.logout-button,
-.profile-button,
+#home-button,
+#profile-button,
 #about-button,
 #signup-button,
+#logout-button,
 #login-button {
   margin-left: 10px;
   margin-right: 10px;
