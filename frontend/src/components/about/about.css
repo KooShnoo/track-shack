@@ -1,3 +1,8 @@
+@font-face {
+  font-family: CentralAve;
+  src: url('/fonts/central-avenue-bold-pro.woff2') format('woff2');
+}
+
 .splash-container-about {
   /* border: 2px solid blue;  */
   margin-top: 30px;
@@ -7,9 +12,19 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  position: relative;
+}
+
+#about-header{
+  font-family: CentralAve;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 3rem;
 }
 
 .right-container-about {
+  padding-top: 160px;
   /* border: 2px solid red; */
   border-radius: 10px;
   box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.3);
@@ -26,15 +41,20 @@
 }
 
 .nerd-container {
-    height: 150px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 2px solid red; */
+    height: 500px;
     width: 800px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     display: flex;
-    margin-left: 80px;
+    flex-direction: row;
     margin-top: 10px;
 }
 
 .nerd-container .title-bio-container {
+    /* border: 2px solid blue; */
     height: 100px;
     width: 60%;
 }
@@ -44,27 +64,41 @@
     width: 40%;
 }
 
-.nerd-container .links-container {
-    height: 30px;
-}
-
 .nerd-container h1 {
     font-size: 26px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     /* padding-top: 10px; */
 }
 
 .nerd-container p {
+    /* border: 2px solid green; */
     font-size: 18px;
-    margin-bottom: 25px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
 }
 
 .nerd-container .links-container {
+    /* border: 2px solid green; */
+    height: 30px;
     display: flex;
+    flex-direction: row;
+    /* align-items: center;
+    justify-content: center; */
 }
 
 .nerd-container a {
+    font-size: 30px;
     margin-left: 10px;
+    margin-right: 10px;
+}
+
+#github-icon {
+  color: rgb(57, 52, 52);
+}
+
+#linkedin-icon {
+  color: rgb(41, 86, 131)
 }
 
 .nerd-container .img-container {
@@ -76,4 +110,19 @@
 .nerd-container img {
     width: 150px;
     height: 150px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#footer-spacer {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+#item-spacer{
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  border: 2px solid rgba(180, 151, 82, 0.4);
 }
