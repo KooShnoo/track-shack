@@ -1,8 +1,10 @@
 .commentsContainer {
   padding: 1rem;
-  max-height: 670px;
+  padding-bottom: 50px;
+  max-height: 650px;
   box-sizing: border-box;
   width: 100%;
+  overflow: auto;
 }
 
 .comments-logged-out::after {

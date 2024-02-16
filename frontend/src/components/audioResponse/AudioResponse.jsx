@@ -33,9 +33,9 @@ const AudioResponse = ({ response, trackId }) => {
           </button>
         )}
         <a href={response?.audioStemsSrc} className="button-anchor">
-          <button onClick className="audio-player-button">
+          {/* <button onClick className="audio-player-button">
             Download
-          </button>
+          </button> */}
         </a>
       </div>
     </div>

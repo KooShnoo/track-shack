@@ -39,7 +39,7 @@ const TrackMasterDisplay = ({ track }) => {
             download
             href={currentTrack?.audioStemsSrc}
           >
-            <button className="audio-player-button">Download</button>
+            {/* <button className="audio-player-button">Download</button> */}
           </a>
         </div>
       </div>

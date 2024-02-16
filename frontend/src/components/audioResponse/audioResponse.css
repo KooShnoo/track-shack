@@ -10,13 +10,13 @@
   max-width: 1000px;
 }
 .leftSide {
-  width: 75%;
+  width: 100%;
+  margin-left: 15px;
 }
 
 .audio-response-container {
   padding: 10px;
   display: flex;
-  justify-content: center;
   align-items: center;
   background-color: rgb(237, 211, 176, 0.3);
   /* box-shadow: 0px 15px 10px rgba(124, 93, 57, 0.541); */
