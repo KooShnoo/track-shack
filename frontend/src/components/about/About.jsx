@@ -31,8 +31,9 @@ const About = () => {
               <div className="title-bio-container">
                 <h1>Cole Manel: Flex Engineer</h1>
                 <p>
-                  David Maine is a software developer, Musician, Massage
-                  Therapist, and cat lover.{" "}
+                Cole worked closely with both frontend and backend engineers to
+                create responsive components that are both easy to use and
+                styled well.{" "}
                 </p>
                 <div className="links-container">
                   {/* <p>Links:</p> */}
@@ -72,7 +73,7 @@ const About = () => {
               <div className="title-bio-container">
                 <h1>Jake Tabor: Lead Frontend Engineer</h1>
                 <p>
-                  As Frontend Lead, Jake worked closely with the other roles to ensure that application functionality promoted 
+                  As Frontend Lead, Jake worked with the other roles to ensure that application functionality promoted 
                   a good user experience and that application styling maintained a consistent and professional apperance.  
                   {" "}
                 </p>
