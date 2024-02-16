@@ -47,7 +47,8 @@ router.get('/userProfile/:userId', async (req, res, next) => {
   try {
     const trackPosts = await TrackPost.find({author: req.params.userId}).populate('author');
     if(trackPosts) {
-      return res.json(trackPosts);
+      const tps: ITrackPost[] = await Promise.all(trackPosts.map(async tp => await tpResponse(tp) as ITrackPost));
+      return res.json(tps);
     }
   } catch (error) {
   //   let message = await error.json()
