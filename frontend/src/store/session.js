@@ -14,7 +14,9 @@ const startSession = (userInfo, route) => async dispatch => {
     localStorage.setItem('jwtToken', token);
     return dispatch(receiveCurrentUser(user));
   } catch(err) {
+    debugger
     const res = await err.json();
+    debugger
     return dispatch(receiveSessionErrors(res));
     // if (res.statusCode === 400) {
       
@@ -42,6 +44,7 @@ const sessionErrorsSlice = createSlice({
   },
   reducers: {
     receiveSessionErrors : (state, action) => {    
+      debugger
       return action.payload
     },
     clearSessionErrors : () => {
