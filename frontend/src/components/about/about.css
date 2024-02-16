@@ -4,9 +4,7 @@
 }
 
 .splash-container-about {
-  /* border: 2px solid blue;  */
   margin-top: 30px;
-  /* for jakes computer */
   height: 700px;
   width: 100%;
   display: flex;
@@ -15,82 +13,70 @@
   position: relative;
 }
 
-#about-header{
+#about-header {
   font-family: CentralAve;
-  margin-top: 20px;
+  margin-top: 120px;
+  margin-left: 30px;
   padding-top: 20px;
   padding-left: 10px;
   font-size: 3rem;
 }
 
 .right-container-about {
-  padding-top: 160px;
-  /* border: 2px solid red; */
   border-radius: 10px;
   box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(11px);
-  margin-left: 10px;
-  margin-right: 10px;
   width: 900px;
-  max-height: 100%;
+  height: 700px;
+  max-height: 700px;
   overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* transition: transform 0.5s ease;  */
 }
 
 .nerd-container {
-    padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 2px solid red; */
-    height: 500px;
-    width: 800px;
-    /* box-sizing: border-box; */
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
+  margin-left: 30px;
+  padding: 10px;
+  height: 500px;
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
 }
 
 .nerd-container .title-bio-container {
-    /* border: 2px solid blue; */
-    height: 100px;
-    width: 60%;
+  height: 100px;
+  width: 60%;
 }
 
 .nerd-container .img-container {
-    height: 150px;
-    width: 40%;
+  height: 150px;
+  width: 40%;
 }
 
 .nerd-container h1 {
-    font-size: 26px;
-    margin-bottom: 20px;
-    /* padding-top: 10px; */
+  font-size: 26px;
+  margin-bottom: 20px;
 }
 
 .nerd-container p {
-    /* border: 2px solid green; */
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .nerd-container .links-container {
-    /* border: 2px solid green; */
-    height: 30px;
-    display: flex;
-    flex-direction: row;
-    /* align-items: center;
-    justify-content: center; */
+  height: 30px;
+  display: flex;
+  flex-direction: row;
 }
 
 .nerd-container a {
-    font-size: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #github-icon {
@@ -98,29 +84,29 @@
 }
 
 #linkedin-icon {
-  color: rgb(41, 86, 131)
+  color: rgb(41, 86, 131);
 }
 
 .nerd-container .img-container {
-    display: flex;
-    justify-content: right;
-    align-items: center;
+  display: flex;
+  justify-content: right;
+  align-items: center;
 }
 
 .nerd-container img {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-#footer-spacer {
+/* #footer-spacer {
   height: 100%;
   width: 100%;
   margin-bottom: 100px;
-}
+} */
 
-#item-spacer{
+#item-spacer {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
