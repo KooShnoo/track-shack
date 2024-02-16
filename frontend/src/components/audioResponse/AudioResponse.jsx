@@ -2,21 +2,26 @@ import './audioResponse.css';
 import AudioPlayer from '../audio/AudioPlayer';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTrackReply } from '../../store/trackPostReply';
+import { useNavigate } from 'react-router-dom';
 
 const AudioResponse = ({ response, trackId }) => {
   const currentUserId = useSelector((state) => state.session.user?._id);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  console.log('RESPONSE ID', response?._id);
   const handleDelete = () => {
     dispatch(deleteTrackReply(response?._id, trackId));
   };
+
+    const handleNav = () => {
+      navigate(`/profile/${response?.author._id}`);
+    };
 
   return (
     <div className="audio-response-container">
       <div className="leftSide">
         <div className="response-text">
-          <h3>From: {response?.author.username}</h3>
+          <h3 onClick={handleNav}>From: {response?.author.username}</h3>
           <p>{response?.description}</p>
         </div>
         <AudioPlayer src={response?.audioMasterSrc} trackId={response?._id} />

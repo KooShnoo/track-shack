@@ -44,6 +44,10 @@
   font-weight: bold;
 }
 
+.response-text > h3:hover {
+  cursor: pointer;
+}
+
 .response-text > p {
   margin: 10px;
   font-size: 14px;
