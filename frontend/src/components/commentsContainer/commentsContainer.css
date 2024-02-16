@@ -5,6 +5,25 @@
   width: 100%;
 }
 
+.comments-logged-out::after {
+  content: 'Log in to comment or reply!';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.295);
+}
+
+.comments-logged-out::after {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+}
+
 .show-modal-container {
   display: flex;
   justify-content: center;

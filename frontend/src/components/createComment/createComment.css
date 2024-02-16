@@ -13,7 +13,6 @@
 
 .comment-text {
   resize: none;
-  /* border: 0.25rem solid var(--color-four); */
   border: 0.25rem solid rgb(237, 211, 176, 0.3);
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
@@ -35,8 +34,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  /* background-color: var(--color-four); */
-  /* background-color: #12304b; */
   background-color: rgb(237, 211, 176, 0.3);
   height: 2.5rem;
   border-bottom-right-radius: 0.5rem;
