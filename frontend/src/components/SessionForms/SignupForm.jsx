@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import './SignupForm.css';
-import { signup, clearSessionErrors } from '../../store/session';
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import "./SignupForm.css";
+import { signup, clearSessionErrors } from "../../store/session";
 
 function SignupForm() {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [submitError, setSubmitError] = useState("");
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
 
@@ -21,20 +22,20 @@ function SignupForm() {
     let setState;
 
     switch (field) {
-      case 'email':
+      case "email":
         setState = setEmail;
         break;
-      case 'username':
+      case "username":
         setState = setUsername;
         break;
-      case 'password':
+      case "password":
         setState = setPassword;
         break;
-      case 'password2':
+      case "password2":
         setState = setPassword2;
         break;
       default:
-        throw Error('Unknown field in Signup Form');
+        throw Error("Unknown field in Signup Form");
     }
 
     return (e) => setState(e.currentTarget.value);
@@ -42,14 +43,17 @@ function SignupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (email === "" || username === "" || password === "") {
+      setSubmitError("Please fill out the entire form before submitting");
+    } else {
+      const user = {
+        email,
+        username,
+        password,
+      };
 
-    const user = {
-      email,
-      username,
-      password,
-    };
-
-    dispatch(signup(user));
+      dispatch(signup(user));
+    }
   };
 
   return (
@@ -65,7 +69,7 @@ function SignupForm() {
               id="input-field"
               type="text"
               value={email}
-              onChange={update('email')}
+              onChange={update("email")}
               placeholder="Email"
             />
           </label>
@@ -76,7 +80,7 @@ function SignupForm() {
               id="input-field"
               type="text"
               value={username}
-              onChange={update('username')}
+              onChange={update("username")}
               placeholder="Username"
             />
           </label>
@@ -87,12 +91,12 @@ function SignupForm() {
               id="input-field"
               type="password"
               value={password}
-              onChange={update('password')}
+              onChange={update("password")}
               placeholder="Password"
             />
           </label>
           <div className="errors">
-            {password !== password2 && 'Confirm Password field must match'}
+            {password !== password2 && "Confirm Password field must match"}
           </div>
           <label>
             <span>Confirm Password:</span>
@@ -100,26 +104,24 @@ function SignupForm() {
               id="input-field"
               type="password"
               value={password2}
-              onChange={update('password2')}
+              onChange={update("password2")}
               placeholder="Confirm Password"
             />
           </label>
+          <p className="submitError">{submitError}</p>
           <div className="img-button"></div>
 
           <input
             id="submit-button"
             type="submit"
             value="Sign Up"
-            disabled={
-              !email || !username || !password || password !== password2
-            }
+            // disabled={
+            //   !email || !username || !password || password !== password2
+            // }
           />
         </div>
       </form>
     </div>
-
-       
-
   );
 }
 

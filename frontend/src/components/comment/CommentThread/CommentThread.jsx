@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteComment } from "../../../store/comment";
 import { useDispatch } from "react-redux";
 import './commentThread.css'
@@ -8,6 +8,11 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
   const currentUser = useSelector((state) => state.session.user);
   const { trackId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleNav = () => {
+    navigate(`/profile/${author?._id}`);
+  };
 
   return (
     <details open className="comment" id={id}>
@@ -17,7 +22,7 @@ const CommentThread = ({ id, author, timeAgo, content }) => {
       <summary>
         <div className="comment-heading">
           <div className="comment-info">
-            <a id="comment-author" href="#">
+            <a onClick={handleNav}id="comment-author" href="#">
               {author?.username}
             </a>
             <p>{`${timeAgo}`}</p>

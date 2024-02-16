@@ -14,6 +14,7 @@ const ProfileShow = () => {
   const tracks = useSelector((state) => state.trackPosts);
   const currentUser = useSelector((state) => state.session.user) || null;
   const user = useSelector((state) => state.userProfile);
+  console.log(userId, user?._id)
 
 
   // const [newPassword, setNewPassword] = useState('');
@@ -67,15 +68,17 @@ const ProfileShow = () => {
               src={user?.pfpSrc || "/profileImage/default.avif"}
               alt="profile picture"
             />
-            <label className="upload-option">
-              <i className="fa-solid fa-upload"></i>
-              <input
-                className="image"
-                type="file"
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-              />
-            </label>
+            {userId === currentUser?._id && (
+              <label className="upload-option">
+                <i className="fa-solid fa-upload"></i>
+                <input
+                  className="image"
+                  type="file"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
+              </label>
+            )}
             {savePicture && (
               <button id="image-save-button" onClick={handleSubmit}>
                 Save
@@ -99,12 +102,14 @@ const ProfileShow = () => {
               ) : (
                 <>
                   <h1>{user?.username}</h1>
-                  <button
-                    id="edit-info-button"
-                    onClick={() => setEditingField("username")}
-                  >
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </button>
+                  {userId === currentUser?._id && (
+                    <button
+                      id="edit-info-button"
+                      onClick={() => setEditingField("username")}
+                    >
+                      <i className="fa-regular fa-pen-to-square"></i>
+                    </button>
+                  )}
                 </>
               )}
             </div>
@@ -123,12 +128,14 @@ const ProfileShow = () => {
               ) : (
                 <p>
                   {user?.bio}
-                  <button
-                    id="edit-info-button"
-                    onClick={() => setEditingField("bio")}
-                  >
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </button>
+                  {userId === currentUser?._id && (
+                    <button
+                      id="edit-info-button"
+                      onClick={() => setEditingField("bio")}
+                    >
+                      <i className="fa-regular fa-pen-to-square"></i>
+                    </button>
+                  )}
                 </p>
               )}
             </p>

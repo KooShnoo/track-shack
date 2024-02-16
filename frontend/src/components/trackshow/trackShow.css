@@ -105,3 +105,12 @@
   margin-top: 1rem;
   margin-left: 1rem;
 }
+
+.author {
+  margin-bottom: 10px;
+  color: var(--color-four);
+}
+
+.author:hover {
+  cursor: pointer;
+}

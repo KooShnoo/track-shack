@@ -34,6 +34,8 @@ router.get('/:trackId', async (req, res, next) => {
     }, {
       path: 'responses',
       populate: {path: 'author'}
+    }, {
+      path: 'author'
     }]);
     if (!tp) return res.status(404).json({error: "no such track post"});
     await tpResponse(tp, true);

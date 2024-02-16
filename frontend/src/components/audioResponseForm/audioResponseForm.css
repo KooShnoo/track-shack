@@ -11,3 +11,19 @@
     line-height: 1.2em;
     /* background-color: rgb(237, 211, 176, 0.3); */
 }
+
+.error-container {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.master .error {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.stems .error {
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 1px;
+}
