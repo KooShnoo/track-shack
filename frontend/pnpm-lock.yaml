@@ -41,6 +41,9 @@ dependencies:
   reset-css:
     specifier: ^5.0.2
     version: 5.0.2
+  wavesurfer.js:
+    specifier: ^7.7.3
+    version: 7.7.3
 
 devDependencies:
   '@types/react':
@@ -2510,6 +2513,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /wavesurfer.js@7.7.3:
+    resolution: {integrity: sha512-TC7cQb0RVggtNC+Dl05gcnhSFL5U+fww3ZYJUuqgfR+r9oY+bh/hChCipDFDjs5cWtuek3GEtsPXWa93a9XYxw==}
+    dev: false
 
   /which-boxed-primitive@1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}

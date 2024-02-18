@@ -10,8 +10,6 @@ function LoginForm() {
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
 
-  if (errors) console.log('HIHIHI', errors);
-
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
@@ -39,7 +37,6 @@ function LoginForm() {
     );
   };
 
-  if (errors) console.log('ERRORS', errors);
   return (
     <div className="signup-container">
       <form className="login-form" onSubmit={handleSubmit}>

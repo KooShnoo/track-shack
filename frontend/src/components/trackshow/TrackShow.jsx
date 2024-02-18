@@ -21,14 +21,11 @@ const TrackShow = () => {
   const currentUserId = useSelector((state) => state.session.user?._id);
   const navigate = useNavigate();
 
-  if (currentUserId) console.log('USER ID', currentUserId, track?.author);
-
   useEffect(() => {
     dispatch(getTrack(trackId));
   }, [dispatch, trackId]);
 
   const handleDeleteTrack = () => {
-    console.log('vussup');
     let result = dispatch(deleteTrack(trackId));
     if (result) navigate('/');
   };
@@ -36,7 +33,7 @@ const TrackShow = () => {
   return (
     <div className="track-show-page">
       <div className="left-track-container">
-        {currentUserId === track?.author && (
+        {currentUserId === track?.author._id && (
           <div className="left-button-container">
             <button id="edit-track-button" onClick={() => setShowForm('edit')}>
               Edit Track

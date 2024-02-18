@@ -52,8 +52,9 @@ const About = () => {
               <div className="title-bio-container">
                 <h1>Ishan Chawla: Lead Backend Engineer</h1>
                 <p>
-                  David Maine is a software developer, Musician, Massage
-                  Therapist, and cat lover.{" "}
+                Ishan Chawla is a seasoned software engineer, railfan, language enthusiast, and urbanist.
+                Through this project, he has become gitpilled and rebased. 
+                Ishan architected and managed the backend, integrating MongoDB and AWS.
                 </p>
                 <div className="links-container">
                   {/* <p>Links:</p> */}

@@ -5,15 +5,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 
-export const updateUser = (user, userId) => async dispatch => {
+export const updateUser = (user) => async dispatch => {
     try {
         const response = await jwtFetch(`/api/users`, {
           method: 'PUT',
           body: JSON.stringify(user)
         })
         if(response.ok) {
-            let data = await response.json()
-            dispatch(getUser(userId))
+            let updatedUser = await response.json()
+            dispatch(receiveUser(updatedUser))
         }
     } catch (err) {
         let errors = await err.json()
@@ -50,12 +50,9 @@ const userProfileSlice = createSlice({
         clearUser: () => {
             return {}
         },
-        recieveUpdate: (state, action) => {
-          return {}
-        }
     }
 })
 
-export const {receiveUser, clearUser, recieveUpdate} = userProfileSlice.actions
+export const {receiveUser, clearUser} = userProfileSlice.actions
 
 export default userProfileSlice.reducer 

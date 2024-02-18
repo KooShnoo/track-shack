@@ -1,8 +1,8 @@
 // @ts-check
 import jwtFetch from './jwt';
-import { createSlice } from '@reduxjs/toolkit'
+import { createSelector, createSlice } from '@reduxjs/toolkit'
 
-export const selectPostsArray = (state) => Object.values(state.trackPosts);
+export const selectPostsArray = createSelector(state => state.trackPosts, tps=> Object.values(tps));
 
 
 export const getTracks = () => async dispatch => {
@@ -13,9 +13,7 @@ export const getTracks = () => async dispatch => {
             dispatch(receiveTracks(tracks))
         }
     } catch (err) {
-        // let errors = await err.json()
         console.log('FROM GET TRACKS THUNK', err)
-        // dispatch()
     }
 }
 
@@ -78,7 +76,6 @@ export const updateTrack = async (trackPost, albumpic, master, stems) => {
         stems && awsUploadFile(soba.audioStemsUploadURL, stems),
         soba.albumArtUploadURL && albumpic && awsUploadFile(soba.albumArtUploadURL, albumpic),
     ]);
-    console.log('ofa');
     return soba.id
 }
 

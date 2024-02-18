@@ -30,7 +30,7 @@
 .left-button-container {
   display: flex;
   margin-top: 1rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 #edit-track-button {
@@ -97,7 +97,7 @@
   margin-right: 10px;
   height: 100%;
   width: 600px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .track-right-header {

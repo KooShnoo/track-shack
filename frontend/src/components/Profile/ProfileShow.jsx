@@ -14,7 +14,6 @@ const ProfileShow = () => {
   const tracks = useSelector((state) => state.trackPosts);
   const currentUser = useSelector((state) => state.session.user) || null;
   const user = useSelector((state) => state.userProfile);
-  console.log(userId, user?._id)
 
 
   // const [newPassword, setNewPassword] = useState('');
@@ -113,7 +112,7 @@ const ProfileShow = () => {
                 </>
               )}
             </div>
-            <p id="profile-bio">
+            <div id="profile-bio">
               {editingField === "bio" ? (
                 <div className="profile-edit-field">
                   <textarea
@@ -126,7 +125,7 @@ const ProfileShow = () => {
                   </button>
                 </div>
               ) : (
-                <p>
+                <div>
                   {user?.bio}
                   {userId === currentUser?._id && (
                     <button
@@ -136,9 +135,9 @@ const ProfileShow = () => {
                       <i className="fa-regular fa-pen-to-square"></i>
                     </button>
                   )}
-                </p>
+                </div>
               )}
-            </p>
+            </div>
           </div>
         </div>
         <h1 id="my-tracks">MYtracks</h1>
@@ -147,7 +146,7 @@ const ProfileShow = () => {
             {Array.isArray(tracks) &&
               tracks.map((trackPost) => (
                 <TrackPostsIndexItem
-                  key={trackPost?.id}
+                  key={trackPost?._id}
                   trackPost={trackPost}
                 />
               ))}

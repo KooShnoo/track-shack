@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit'
 import sessionReducer from './session'
@@ -6,10 +5,9 @@ import errorsReducer from './errors'
 import trackPostsReducer from './trackPost'
 import audioSourceReducer from './audioSource'
 import thunk from 'redux-thunk';
-import { logger } from 'redux-logger';
 import userProfileReducer from './userProfile.js'
 
-const middlewareArray = [thunk, logger];
+const middlewareArray = [thunk, /* logger */];
 
 
 // window.dispatch = dispatch

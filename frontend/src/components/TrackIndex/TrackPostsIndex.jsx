@@ -13,9 +13,9 @@ const TrackPostsIndex = () => {
 
   const trackPosts = useSelector(selectPostsArray);
 
-  const trackPostsList = trackPosts.map((trackPost) => {
-    return <TrackPostsIndexItem key={trackPost.id} trackPost={trackPost} />;
-  });
+  const trackPostsList = trackPosts.map((trackPost) => 
+    <TrackPostsIndexItem key={trackPost._id} trackPost={trackPost} />
+);
 
   return (
     <div className="display-posts-container">

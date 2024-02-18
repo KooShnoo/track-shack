@@ -16,9 +16,9 @@ function NavBar() {
   const getLinks = () => {
     if (loggedIn) {
       return (
-        <div className="links-nav">
+        <div className="links">
           <Link id="about-button" to={'/about'}>
-            About
+            About Us
           </Link>
           <Link id="home-button" to={'/'}>
             Home
@@ -33,9 +33,9 @@ function NavBar() {
       );
     } else {
       return (
-        <div className="links-auth">
+        <div className="links">
           <Link id="about-button" to={'/about'}>
-            About
+            About Us
           </Link>
           <Link id="signup-button" to={'/signup'}>
             Signup
