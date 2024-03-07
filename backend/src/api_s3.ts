@@ -13,8 +13,8 @@ const client = new S3Client({credentials: fromEnv(), region: REGION});
  * gets a presigned url to upload a file to s3. 
  * 
  * to use, make a `PUT` request to the returned url with the file as the body.
- * @param filename name to be stored as the `key` in s3. length must be under 4096.
- * @returns url to be uploaded to
+ * @param filename name to be stored as the `key` in s3. length must be under 512.
+ * @returns presigned url to be uploaded to
  */
 export async function getUploadUrl(filename: string) {
   if (filename.length > 512) return null;
